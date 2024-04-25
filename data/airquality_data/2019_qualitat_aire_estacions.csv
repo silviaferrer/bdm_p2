@@ -1,0 +1,40 @@
+_id,Estacio,nom_cabina,codi_dtes,zqa,codi_eoi,Longitud,Latitud,ubicacio,Codi_districte,Nom_districte,Codi_barri,Nom_barri,Clas_1,Clas_2,Codi_Contaminant
+1,50,Barcelona - Ciutadella,IL,1,8019050,2.1874,41.3864,Parc de la Ciutadella,1,Ciutat Vella,4,"Sant Pere, Santa Caterina i la Ribera",Urbana,Fons,8
+2,50,Barcelona - Ciutadella,IL,1,8019050,2.1874,41.3864,Parc de la Ciutadella,1,Ciutat Vella,4,"Sant Pere, Santa Caterina i la Ribera",Urbana,Fons,14
+3,50,Barcelona - Ciutadella,IL,1,8019050,2.1874,41.3864,Parc de la Ciutadella,1,Ciutat Vella,4,"Sant Pere, Santa Caterina i la Ribera",Urbana,Fons,7
+4,50,Barcelona - Ciutadella,IL,1,8019050,2.1874,41.3864,Parc de la Ciutadella,1,Ciutat Vella,4,"Sant Pere, Santa Caterina i la Ribera",Urbana,Fons,12
+5,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,8
+6,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,14
+7,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,10
+8,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,1
+9,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,6
+10,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,7
+11,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,12
+12,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,8
+13,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,14
+14,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,10
+15,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,1
+16,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,6
+17,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,7
+18,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,12
+19,57,Barcelona - Palau Reial,IZ,1,8019057,2.1151,41.3875,c/ John Maynard Keynes - c/ de Jordi Girona,4,Les Corts,21,Pedralbes,Urbana,Fons,8
+20,57,Barcelona - Palau Reial,IZ,1,8019057,2.1151,41.3875,c/ John Maynard Keynes - c/ de Jordi Girona,4,Les Corts,21,Pedralbes,Urbana,Fons,14
+21,57,Barcelona - Palau Reial,IZ,1,8019057,2.1151,41.3875,c/ John Maynard Keynes - c/ de Jordi Girona,4,Les Corts,21,Pedralbes,Urbana,Fons,10
+22,57,Barcelona - Palau Reial,IZ,1,8019057,2.1151,41.3875,c/ John Maynard Keynes - c/ de Jordi Girona,4,Les Corts,21,Pedralbes,Urbana,Fons,1
+23,57,Barcelona - Palau Reial,IZ,1,8019057,2.1151,41.3875,c/ John Maynard Keynes - c/ de Jordi Girona,4,Les Corts,21,Pedralbes,Urbana,Fons,6
+24,57,Barcelona - Palau Reial,IZ,1,8019057,2.1151,41.3875,c/ John Maynard Keynes - c/ de Jordi Girona,4,Les Corts,21,Pedralbes,Urbana,Fons,7
+25,57,Barcelona - Palau Reial,IZ,1,8019057,2.1151,41.3875,c/ John Maynard Keynes - c/ de Jordi Girona,4,Les Corts,21,Pedralbes,Urbana,Fons,12
+26,4,Barcelona - Poblenou,I2,1,8019004,2.2045,41.4039,Plaça Josep Trueta (Pujades - Lope de Vega),10,Sant Marti,68,el Poblenou,Urbana,Fons,8
+27,4,Barcelona - Poblenou,I2,1,8019004,2.2045,41.4039,Plaça Josep Trueta (Pujades - Lope de Vega),10,Sant Marti,68,el Poblenou,Urbana,Fons,10
+28,4,Barcelona - Poblenou,I2,1,8019004,2.2045,41.4039,Plaça Josep Trueta (Pujades - Lope de Vega),10,Sant Marti,68,el Poblenou,Urbana,Fons,7
+29,4,Barcelona - Poblenou,I2,1,8019004,2.2045,41.4039,Plaça Josep Trueta (Pujades - Lope de Vega),10,Sant Marti,68,el Poblenou,Urbana,Fons,12
+30,42,Barcelona - Sants,ID,1,8019042,2.1331,41.3788,Jardins de Can Mantega (Joan Güell - Violant d’Hongria),3,Sants-Montjuic,18,Sants,Urbana,Fons,8
+31,42,Barcelona - Sants,ID,1,8019042,2.1331,41.3788,Jardins de Can Mantega (Joan Güell - Violant d’Hongria),3,Sants-Montjuic,18,Sants,Urbana,Fons,7
+32,42,Barcelona - Sants,ID,1,8019042,2.1331,41.3788,Jardins de Can Mantega (Joan Güell - Violant d’Hongria),3,Sants-Montjuic,18,Sants,Urbana,Fons,12
+33,54,Barcelona - Vall Hebron,IN,1,8019054,2.1480,41.4261,Parc de la Vall d’Hebron. c/ Martí Codolar - c/ Granja Vella,7,Horta-Guinardo,41,la Vall d'Hebron,Urbana,Fons,8
+34,54,Barcelona - Vall Hebron,IN,1,8019054,2.1480,41.4261,Parc de la Vall d’Hebron. c/ Martí Codolar - c/ Granja Vella,7,Horta-Guinardo,41,la Vall d'Hebron,Urbana,Fons,14
+35,54,Barcelona - Vall Hebron,IN,1,8019054,2.1480,41.4261,Parc de la Vall d’Hebron. c/ Martí Codolar - c/ Granja Vella,7,Horta-Guinardo,41,la Vall d'Hebron,Urbana,Fons,10
+36,54,Barcelona - Vall Hebron,IN,1,8019054,2.1480,41.4261,Parc de la Vall d’Hebron. c/ Martí Codolar - c/ Granja Vella,7,Horta-Guinardo,41,la Vall d'Hebron,Urbana,Fons,1
+37,54,Barcelona - Vall Hebron,IN,1,8019054,2.1480,41.4261,Parc de la Vall d’Hebron. c/ Martí Codolar - c/ Granja Vella,7,Horta-Guinardo,41,la Vall d'Hebron,Urbana,Fons,6
+38,54,Barcelona - Vall Hebron,IN,1,8019054,2.1480,41.4261,Parc de la Vall d’Hebron. c/ Martí Codolar - c/ Granja Vella,7,Horta-Guinardo,41,la Vall d'Hebron,Urbana,Fons,12
+39,54,Barcelona - Vall Hebron,IN,1,8019054,2.1480,41.4261,Parc de la Vall d’Hebron. c/ Martí Codolar - c/ Granja Vella,7,Horta-Guinardo,41,la Vall d'Hebron,Urbana,Fons,7
