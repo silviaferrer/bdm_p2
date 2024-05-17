@@ -1,6 +1,7 @@
 import os
 
 from utils.loadtoMongo import MongoLoader
+from utils.formatedLoader import LoadtoFormatted
 
 def main():
     
@@ -8,7 +9,7 @@ def main():
     mongoLoader = MongoLoader()
     ################################################################
 
-    
+    formatedLoader = LoadtoFormatted()
 
     #######################
     return None 
