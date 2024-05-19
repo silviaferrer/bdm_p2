@@ -2,11 +2,12 @@ import os
 from pyspark.sql import SparkSession
 
 dir_path = os.getcwd()
-data_path = os.path.join(dir_path,'data')
-idealista_path = os.path.join(data_path,'idealista')
-income_path = os.path.join(data_path,'income_opendata')
-lookuptables_path = os.path.join(data_path,'lookup_tables')
-airquality_path = os.path.join(data_path,'airquality_data')
+data_path = os.path.join(dir_path, 'data')
+idealista_path = os.path.join(data_path, 'idealista')
+income_path = os.path.join(data_path, 'income_opendata')
+lookuptables_path = os.path.join(data_path, 'lookup_tables')
+airquality_path = os.path.join(data_path, 'airquality_data')
+
 
 class LoadtoFormatted:
 
@@ -14,19 +15,22 @@ class LoadtoFormatted:
 
         # Create spark session
         spark = self.connectPySpark()
-        
+
         # Load data to PySpark
         print('Loading airquality data to PySpark...')
         df_airqual = self.loadToSpark(spark, airquality_path)
-        if df_airqual is not None: print('Airquality data loaded!')
+        if df_airqual is not None:
+            print('Airquality data loaded!')
 
         print('Loading income data to PySpark...')
         df_income = self.loadToSpark(spark, income_path)
-        if df_income is not None: print('Income data loaded!')
+        if df_income is not None:
+            print('Income data loaded!')
 
         print('Loading lookup tables data to PySpark...')
         df_lookup = self.loadToSpark(spark, lookuptables_path)
-        if df_lookup is not None: print('Lookup tables data loaded!')
+        if df_lookup is not None:
+            print('Lookup tables data loaded!')
 
         print('Loading idealista data to PySpark...')
         dfs_idealista = []
@@ -38,19 +42,22 @@ class LoadtoFormatted:
                 df = self.loadToSpark(spark, file_path)[0]
                 if df is not None:
                     dfs_idealista.append(df)
-        if dfs_idealista: print('Idealista data loaded!')
+        if dfs_idealista:
+            print('Idealista data loaded!')
 
-        spark.stop()
+        self.dfs = {'airqual': df_airqual, 'income': df_income,
+                    'lookup': df_lookup, 'idealista': dfs_idealista}
+        self.spark = spark
 
         return None
-    
-    
-    def connectPySpark(self): 
+
+    def connectPySpark(self):
         try:
-            spark = SparkSession.builder.appName("P2FormatedZone").getOrCreate()
+            spark = SparkSession.builder.appName(
+                "P2FormatedZone").getOrCreate()
             print("Spark connection is successful!")
             return spark
-        
+
         except Exception as e:
             print("Error: ", e)
 
@@ -63,15 +70,15 @@ class LoadtoFormatted:
         for file_name in file_names:
             file_path = os.path.join(path, file_name)
             if file_name.split('.')[-1] == 'json':
-                df = spark.read.json(file_path)
+                df = spark.read.option('header', True).json(file_path)
             elif file_name.split('.')[-1] == 'csv':
-                df = spark.read.csv(file_path)
+                df = spark.read.option('header', True).csv(file_path)
             elif file_name.split('.')[-1] == 'parquet':
-                df = spark.read.parquet(file_path)
+                df = spark.read.option('header', True).parquet(file_path)
             else:
                 df = None
                 print("Uningestible file format: ", file_name)
-                
+
             if df is not None:
                 dfs.append(df)
                 '''if combined_df is None and df is not None:
