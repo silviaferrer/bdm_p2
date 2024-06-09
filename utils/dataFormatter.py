@@ -1,40 +1,172 @@
+import os
+import re
+import pandas as pd
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
+from pyspark.sql.functions import col
+
+dir_path = os.getcwd()
+data_path = os.path.join(dir_path, 'data')
+out_path = os.path.join(data_path, 'output')
+idealista_path = os.path.join(data_path, 'idealista')
+income_path = os.path.join(data_path, 'income_opendata')
+lookuptables_path = os.path.join(data_path, 'lookup_tables')
+airquality_path = os.path.join(data_path, 'airquality_data')
 
 
-class DataFormatter():
-
+class DataFormatter:
     def __init__(self, dfs):
+        self.dfs = dfs
 
-        # Test with single df
-        df = dfs
-        df.show(5, 0)
-        print('Columns:', df.columns)
-        print('N_rows:', df.count())
-        df = df.dropDuplicates()
-        print('N_rows after dropping duplicates:', df.count())
+        # Remove duplicates from each DataFrame in the dictionary
+        print("Removing duplicates...")
+        self.remove_duplicates()
+        print("Duplicates removed!")
 
-        ########## Remove duplicates ############
-        # Simply use .dropDuplicates()
-        ##########################################################
+        #self.output_first_5_rows_to_csv(out_path)
 
-        ########## Append, join and reconciliate data ############
-        # Reconciliate = join using the lookup tables
-        ##########################################################
+        # Append, join, and reconciliate data
+        print("Reconciliating data...")
+        merged_df = self.reconciliate_data()
+        print("Data reconciliated")
 
-        ########## Clean data ##########
-        '''General cleaning steps:
-            0. Remove columns with > 30% null values
-            1. Remove rows with null values
-            2. Find columns with wrong values (like negative height)
-            3. Transform wrong columns
-            4. Remove rows with wrong data that cannot be transformed
-        '''
-        ################################
-
-        return None
+        # Clean data
+        #self.clean_data()
 
 
-if __name__ == '__main__':
+    def output_first_5_rows_to_csv(self, output_dir):
+        for key, df in self.dfs.items():
+            if key == 'lookup':
+                if isinstance(df, list) and len(df) > 0:
+                    for i, sub_df in enumerate(df):
+                        # Convert to Pandas DataFrame
+                        pandas_df = sub_df.toPandas()
+                        # Output to CSV file
+                        pandas_df.head().to_csv(f"{output_dir}/{key}_{i}_first_5_rows.csv", index=False)
+            else:
+                if isinstance(df, list) and len(df) > 0:
+                    # Convert to Pandas DataFrame
+                    pandas_df = df[0].toPandas()
+                    # Output to CSV file
+                    pandas_df.head().to_csv(f"{output_dir}/{key}_first_5_rows.csv", index=False)
+                else:
+                    # Convert to Pandas DataFrame
+                    pandas_df = df.toPandas()
+                    # Output to CSV file
+                    pandas_df.head().to_csv(f"{output_dir}/{key}_first_5_rows.csv", index=False)
+
+
+    def remove_duplicates(self):
+        # Iterate over each DataFrame in the dictionary and drop duplicates
+        for key, df in self.dfs.items():
+            if isinstance(df, list):
+                # Handle list of DataFrames
+                self.dfs[key] = [sub_df.dropDuplicates() for sub_df in df]
+            else:
+                self.dfs[key] = df.dropDuplicates()
+
+
+    def reconciliate_data(self):
+        df_lookup_list = self.dfs.get('lookup')
+        # Find the lookup DataFrame that contains the 'district' column
+        df_lookup = None
+        if isinstance(df_lookup_list, list):
+            for df in df_lookup_list:
+                if 'district' in df.columns:
+                    df_lookup = df
+                    break
+
+        if df_lookup is not None:
+            print('Starting join process...')
+            def print_shape_info(df, df_name):
+                if df is not None:
+                    print(f"{df_name} shape: {df.count()} rows, {len(df.columns)} columns")
+                else:
+                    print(f"{df_name} is None")
+
+            def join_and_union(dfs, join_column, lookup_column, df_name):
+                joined_list = []
+                for df in dfs:
+                    print_shape_info(df, f"{df_name} before join")
+                    joined_df = df.join(df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
+                    print_shape_info(joined_df, f"{df_name} after join")
+                    joined_list.append(joined_df)
+                if joined_list:
+                    merged_df = joined_list[0]
+                    for df in joined_list[1:]:
+                        merged_df = merged_df.union(df)
+                    return merged_df
+                return None
+
+            # Process df_income
+            df_income_list = self.dfs.get('income')
+            if df_income_list is not None and isinstance(df_income_list, list):
+                df_income_join_column = 'district_name'  # Replace with the actual join column in df_income
+                df_lookup_income_column = 'district'  # Replace with the actual join column in df_lookup for df_income
+                df_income_merged = join_and_union(df_income_list, df_income_join_column, df_lookup_income_column, "df_income")
+
+            # Process df_idealista
+            df_idealista_list = self.dfs.get('idealista')
+            if df_idealista_list is not None and isinstance(df_idealista_list, list):
+                df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
+                df_lookup_idealista_column = 'district'  # Replace with the actual join column in df_lookup for df_idealista
+                df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista")
+
+            # Process df_airqual
+            df_airqual_list = self.dfs.get('airqual')
+            if df_airqual_list is not None and isinstance(df_airqual_list, list):
+                df_airqual_join_column = 'Nom_districte'  # Replace with the actual join column in df_airqual
+                df_lookup_airqual_column = 'district_name'  # Replace with the actual join column in df_lookup for df_airqual
+
+                # Transform the column in df_airqual to match the case before joining
+                df_airqual_list_transformed = [
+                    df_airqual.withColumn(df_airqual_join_column, col(df_airqual_join_column).alias('district_name'))  # Transform the column to lowercase
+                    for df_airqual in df_airqual_list
+                ]
+
+                df_airqual_merged = join_and_union(df_airqual_list_transformed, df_airqual_join_column, df_lookup_airqual_column, "df_airqual")
+
+            print('Starting final join...')
+            # Merge df_income, df_airqual, and df_idealista into a single DataFrame
+            final_df = df_income_merged
+            if df_airqual_merged is not None:
+                final_df = final_df.join(df_airqual_merged, final_df[df_income_join_column] == df_airqual_merged[df_airqual_join_column], 'outer')
+            if df_idealista_merged is not None:
+                final_df = final_df.join(df_idealista_merged, final_df[df_income_join_column] == df_idealista_merged[df_idealista_join_column], 'outer')
+
+            print_shape_info(final_df, "final_df")
+
+            # Store the final DataFrame in the dictionary
+            self.dfs['final'] = final_df
+
+            return final_df
+
+    def clean_data(self, df):
+        # Step 0: Remove columns with > 30% null values
+        threshold = 0.3 * df.count()
+        for col in df.columns:
+            if df.filter(df[col].isNull()).count() > threshold:
+                df = df.drop(col)
+
+        # Step 1: Remove rows with null values
+        df = df.dropna()
+
+        # Step 2: Find columns with wrong values (e.g., negative height)
+        if 'height' in df.columns:
+            df = df.filter(df['height'] >= 0)
+
+        # Step 3: Transform wrong columns (if necessary)
+        if 'age' in df.columns:
+            df = df.withColumn('age', F.when(df['age'] < 0, None).otherwise(df['age']))
+
+        # Step 4: Remove rows with wrong data that cannot be transformed
+        df = df.dropna()
+
+        return df
+
+
+
+'''if __name__ == '__main__':
 
     # Initialize Spark connection
     try:
@@ -55,3 +187,4 @@ if __name__ == '__main__':
     DataFormatter(df)
 
     spark.stop()
+'''

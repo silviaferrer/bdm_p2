@@ -35,7 +35,6 @@ class LoadtoFormatted:
         print('Loading idealista data to PySpark...')
         dfs_idealista = []
         folder_names = os.listdir(idealista_path)
-        print(folder_names)
         for folder in folder_names:
             file_path = os.path.join(idealista_path, folder)
             if os.path.isdir(file_path):
@@ -47,6 +46,7 @@ class LoadtoFormatted:
 
         self.dfs = {'airqual': df_airqual, 'income': df_income,
                     'lookup': df_lookup, 'idealista': dfs_idealista}
+        
         self.spark = spark
 
         return None

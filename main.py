@@ -8,14 +8,14 @@ from utils.dataFormatter import DataFormatter
 def main():
 
     ####################### Load data to MongoDB#####################
-    mongoLoader = MongoLoader()
-    ################################################################
+    #mongoLoader = MongoLoader()
+    #################################################################
 
     formatedLoader = LoadtoFormatted()
 
     dataFormatter = DataFormatter(formatedLoader.dfs)
 
-    formatedLoader.spark.stop()
+    #formatedLoader.spark.stop()
     #######################
     return None
 
