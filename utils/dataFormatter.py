@@ -189,12 +189,10 @@ class DataFormatter:
             df_income_merged = df_income_merged.drop('neigh_name ', 'neighborhood').withColumnRenamed('neighborhood_reconciled', 'neighborhood')
 
             # Explode info column into year, pop, RFD
-            #df_income_merged
+            df_income_merged = df_income_merged.withColumn('RFD', 
+                col('info')[0]['RFD']).withColumn('pop', col('info')[0]['pop']).withColumn('year', col('info')[0]['year']).drop('info')
 
             print(f"Income after merge columns: {df_income_merged.columns}")
-            #=======================
-            # transform info column to columns tear, pop, RFD
-            #======================
 
         # Process df_idealista
         df_idealista_list = list(self.dfs.get('idealista').values())
