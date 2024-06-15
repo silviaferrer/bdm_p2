@@ -1,7 +1,7 @@
 import os
 
 from utils.loadtoMongo import MongoLoader
-from utils.formatedLoader import LoadtoFormatted
+from utils.formattedLoader import LoadtoFormatted
 from utils.dataFormatter import DataFormatter
 
 
@@ -11,11 +11,11 @@ def main():
     #mongoLoader = MongoLoader()
     #################################################################
 
-    formatedLoader = LoadtoFormatted()
+    formattedLoader = LoadtoFormatted()
 
-    dataFormatter = DataFormatter(formatedLoader.dfs)
+    dataFormatter = DataFormatter(formattedLoader.dfs)
 
-    #formatedLoader.spark.stop()
+    #formattedLoader.spark.stop()
     #######################
     return None
 
