@@ -95,6 +95,15 @@ class DataFormatter:
                 all_columns.update(df.columns)
             return list(all_columns) if all_columns else []
 
+        def explode_column(dfs, column_name):
+            output_dfs = []
+            for df in dfs:
+                if column_name in df.columns:
+                    for subcol in df.select(column_name + '.*').columns:
+                        df = df.withColumn(subcol, col(column_name + '.' + subcol))
+                    output_dfs.append(df.drop(column_name))
+            return output_dfs
+
         def ensure_all_columns(df, all_columns):
             # Add missing columns with null values
             for col_name in all_columns:
@@ -202,10 +211,9 @@ class DataFormatter:
             # =================================================================
             # Explode columns parkingSpace, detailedType, suggestedTexts
             # =================================================================
-
-
-
-            
+            df_idealista_list = explode_column(df_idealista_list, 'parkingSpace')
+            df_idealista_list = explode_column(df_idealista_list, 'detailedType')
+            df_idealista_list = explode_column(df_idealista_list, 'suggestedTexts')
 
             # Reconcile district
             df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
@@ -221,7 +229,7 @@ class DataFormatter:
             df_idealista_merged = join_and_union([df_idealista_merged], df_lookup, 'neighborhood', 'ne', 'df_idealista')
             df_idealista_merged = df_idealista_merged.drop('neighborhood', 'ne').withColumnRenamed('ne_re', 'neighborhood')
 
-            print(f"Income after merge columns: {df_income_merged.columns}")
+            print(f"Idealista after merge columns: {df_idealista_merged.columns}")
 
         # Process df_airqual
         df_airqual_list = list(self.dfs.get('airqual').values())
