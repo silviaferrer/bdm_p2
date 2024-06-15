@@ -80,7 +80,7 @@ class LoadtoFormatted:
                 print("Uningestible file format: ", file_name)
 
             if df is not None:
-                dfs[df] = file_name
+                dfs[file_name] = df
                 '''if combined_df is None and df is not None:
                     combined_df = df
                 else:
