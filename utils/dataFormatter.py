@@ -196,12 +196,32 @@ class DataFormatter:
 
             print(f"Income after merge columns: {df_income_merged.columns}")
 
-        '''# Process df_idealista
+        # Process df_idealista
         df_idealista_list = list(self.dfs.get('idealista').values())
         if df_idealista_list is not None and isinstance(df_idealista_list, list):
+            # =================================================================
+            # Explode columns parkingSpace, detailedType, suggestedTexts
+            # =================================================================
+
+
+
+            
+
+            # Reconcile district
             df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
-            df_lookup_idealista_column = 'district'  # Replace with the actual join column in df_lookup for df_idealista
-            df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)'''
+            df_lookup_idealista_column = 'di'  # Replace with the actual join column in df_lookup for df_idealista
+            df_lookup = self.dfs['lookup']['rent_lookup_district.json'].select('di', 'di_re')
+            df_idealista_merged = join_and_union(df_idealista_list, df_lookup, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)
+            # Keep only reconciled column
+            df_idealista_merged = df_idealista_merged.drop('di', 'district').withColumnRenamed('di_re', 'district')
+
+            # Reconcile neighborhood
+            df_lookup = self.dfs['lookup']['rent_lookup_neighborhood.json'].select(
+                'ne', 'ne_re')
+            df_idealista_merged = join_and_union([df_idealista_merged], df_lookup, 'neighborhood', 'ne', 'df_idealista')
+            df_idealista_merged = df_idealista_merged.drop('neighborhood', 'ne').withColumnRenamed('ne_re', 'neighborhood')
+
+            print(f"Income after merge columns: {df_income_merged.columns}")
 
         # Process df_airqual
         df_airqual_list = list(self.dfs.get('airqual').values())
@@ -246,7 +266,7 @@ class DataFormatter:
             df_airqual_merged = df_airqual_merged.drop('Nom_barri', 'neighborhood_name', 'Codi_barri').withColumnRenamed(
                 'neighborhood_reconciled', 'neighborhood')
 
-        print(f"Airqual after merge columns: {df_airqual_merged.columns}")
+            print(f"Airqual after merge columns: {df_airqual_merged.columns}")
 
         '''print('Starting final join...')
         # Merge df_income, df_airqual, and df_idealista into a single DataFrame
