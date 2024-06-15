@@ -3,7 +3,7 @@ import os
 import re
 import unicodedata
 import pandas as pd
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession, Row
 from pyspark.sql import functions as F
 from pyspark.sql.functions import col, lit, udf
 from pyspark.sql.types import StructType
@@ -144,16 +144,22 @@ class DataFormatter:
                     if isinstance(lookup_data_type, StructType):
                         # If the lookup column type is a struct, cast the DataFrame column to match
                         df = df.withColumn(
-                            col_name, df[col_name].cast(lookup_data_type))
+                            join_column, df[join_column].cast(lookup_data_type))
                     else:
                         # Otherwise, add or replace the column with null values
-                        df = df.withColumn(col_name, lit(None).cast(lookup_data_type))
+                        df = df.withColumn(join_column, lit(None).cast(lookup_data_type))
 
                 print_shape_info(df, f"{df_name} before join")
                 joined_df = df.join(df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
                 print_shape_info(joined_df, f"{df_name} after join")
                 
                 # Alias columns to avoid ambiguous references
+                rdd = joined_df.rdd
+                # We use RDDs because withColumnRenamed
+                # changes the name of all columns with the old name, so if we
+                # have two columns named equally, after renaming them,
+                # they will keep having the same name
+
                 aliased_columns = []
                 for col_name in joined_df.columns:
                     aliased_name = col_name
@@ -162,7 +168,12 @@ class DataFormatter:
                         aliased_name = f"{col_name}_{count}"
                         count += 1
                     aliased_columns.append(aliased_name)
-                    joined_df = joined_df.withColumnRenamed(col_name, aliased_name)
+                
+                schema = joined_df.schema
+                for idx, aliased_column in enumerate(aliased_columns):
+                    schema[idx].name = aliased_column
+                joined_df = rdd.toDF(schema)
+                #joined_df = rdd.toDF(Row(*aliased_columns))
                 
                 # Reorder columns
                 joined_df = ensure_all_columns(joined_df, all_columns)
