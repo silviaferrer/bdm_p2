@@ -1,9 +1,11 @@
+from pyspark.sql.types import StringType
 import os
 import re
+import unicodedata
 import pandas as pd
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
-from pyspark.sql.functions import col, lit
+from pyspark.sql.functions import col, lit, udf
 from pyspark.sql.types import StructType
 
 
@@ -194,26 +196,57 @@ class DataFormatter:
 
             print(f"Income after merge columns: {df_income_merged.columns}")
 
-        # Process df_idealista
+        '''# Process df_idealista
         df_idealista_list = list(self.dfs.get('idealista').values())
         if df_idealista_list is not None and isinstance(df_idealista_list, list):
             df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
             df_lookup_idealista_column = 'district'  # Replace with the actual join column in df_lookup for df_idealista
-            df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)
+            df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)'''
 
         # Process df_airqual
         df_airqual_list = list(self.dfs.get('airqual').values())
         if df_airqual_list is not None and isinstance(df_airqual_list, list):
-            df_airqual_join_column = 'Nom_districte'  # Replace with the actual join column in df_airqual
-            df_lookup_airqual_column = 'district_name'  # Replace with the actual join column in df_lookup for df_airqual
+            # Transform district and neighborhood names to join them with the
+            # lowercase names in the lookup tables
+            def remove_accents(input_str):
+                nfkd_form = unicodedata.normalize('NFKD', input_str)
+                only_ascii = nfkd_form.encode('ASCII', 'ignore')
+                return only_ascii.decode()
+            def lowercase_lookup(s):
+                # Replace this with your actual string function
+                return remove_accents(s.lower().replace('-', ' '))
+            lowercase_lookup_udf = udf(lowercase_lookup, StringType())
 
-            # Transform the column in df_airqual to match the case before joining
+            # Apply the UDF to each row of the 'Nom_districte' column
+            df_airqual_list = [df.withColumn('Nom_districte', lowercase_lookup_udf(df['Nom_districte'])).withColumn('Nom_barri', lowercase_lookup_udf(df['Nom_barri'])) for df in df_airqual_list]
+
+
+            df_airqual_join_column = 'Nom_districte'
+            df_lookup_airqual_column = 'district_name'
+
+            '''# Transform the column in df_airqual to match the case before joining
             df_airqual_list_transformed = [
                 df_airqual.withColumn(df_airqual_join_column, col(df_airqual_join_column).alias('district_name'))  # Transform the column to lowercase
                 for df_airqual in df_airqual_list
-            ]
+            ]'''
+            # df_lookup for df_airqual
+            df_lookup = self.dfs['lookup']['income_lookup_district.json'].select(
+                'district_name', 'district_reconciled')
+            df_airqual_merged = join_and_union(
+                df_airqual_list, df_lookup, df_airqual_join_column, df_lookup_airqual_column, "df_airqual")
+            # Keep only reconciled column
+            df_airqual_merged = df_airqual_merged.drop(
+                'district_name', 'Nom_districte', 'Codi_districte').withColumnRenamed('district_reconciled', 'district')
 
-            df_airqual_merged = join_and_union(df_airqual_list_transformed, df_airqual_join_column, df_lookup_airqual_column, "df_airqual")
+            # Reconcile neigborhood
+            df_lookup = self.dfs['lookup']['income_lookup_neighborhood.json'].select(
+                'neighborhood_name', 'neighborhood_reconciled')
+            df_airqual_merged = join_and_union(
+                [df_airqual_merged], df_lookup, 'Nom_barri', 'neighborhood_name', 'df_airqual')
+            df_airqual_merged = df_airqual_merged.drop('Nom_barri', 'neighborhood_name', 'Codi_barri').withColumnRenamed(
+                'neighborhood_reconciled', 'neighborhood')
+
+        print(f"Airqual after merge columns: {df_airqual_merged.columns}")
 
         '''print('Starting final join...')
         # Merge df_income, df_airqual, and df_idealista into a single DataFrame

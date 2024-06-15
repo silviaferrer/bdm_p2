@@ -1,9 +1,8 @@
 # bdm_p2
 Notes for the report:
-- The neighborhood Sant Pere, Santa Caterina i la Ribera is not found on the income df lookup because in the lookup tables it is written like "Sant Pere, Santa Caterina i la Ribera"
+- The neighborhood Sant Pere, Santa Caterina i la Ribera is not found on the income df and airqual df lookup because in the lookup tables it is written like "Sant Pere, Santa Caterina i la Ribera"
 
 Steps:
-    0. Read data from VM  instead of locally
     1. Reconciliate District and Neighbourhood names:
         Join the 3 tables airquality, idealista, income with the respective
         lookup tables and transform the District and Neighbourhood names (and
