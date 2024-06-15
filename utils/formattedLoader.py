@@ -33,14 +33,14 @@ class LoadtoFormatted:
             print('Lookup tables data loaded!')
 
         print('Loading idealista data to PySpark...')
-        dfs_idealista = []
+        dfs_idealista = {}
         folder_names = os.listdir(idealista_path)
         for folder in folder_names:
             file_path = os.path.join(idealista_path, folder)
             if os.path.isdir(file_path):
-                df = self.loadToSpark(spark, file_path)[0]
+                df = next(iter(self.loadToSpark(spark, file_path).values()))
                 if df is not None:
-                    dfs_idealista.append(df)
+                    dfs_idealista[folder] = df
         if dfs_idealista:
             print('Idealista data loaded!')
 

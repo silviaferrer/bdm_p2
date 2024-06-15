@@ -25,7 +25,7 @@ class DataFormatter:
         self.remove_duplicates()
         print("Duplicates removed!")
 
-        self.output_first_5_rows_to_csv(out_path)
+        #self.output_first_5_rows_to_csv(out_path)
 
         # Append, join, and reconciliate data
         print("Reconciliating data...")
@@ -36,7 +36,7 @@ class DataFormatter:
         #self.clean_data()
 
 
-    def output_first_5_rows_to_csv(self, output_dir):
+    '''def output_first_5_rows_to_csv(self, output_dir):
         for key, df in self.dfs.items():
             if key == 'lookup' or key=='idealista':
                 if isinstance(df, list) and len(df) > 0:
@@ -57,17 +57,16 @@ class DataFormatter:
                     # Convert to Pandas DataFrame
                     pandas_df = df.toPandas()
                     # Output to CSV file
-                    pandas_df.head().to_csv(f"{output_dir}/{key}_first_5_rows.csv", index=False)
+                    pandas_df.head().to_csv(f"{output_dir}/{key}_first_5_rows.csv", index=False)'''
 
 
     def remove_duplicates(self):
         # Iterate over each DataFrame in the dictionary and drop duplicates
-        for key, df in self.dfs.items():
-            if isinstance(df, list):
-                # Handle list of DataFrames
-                self.dfs[key] = [sub_df.dropDuplicates() for sub_df in df]
-            else:
-                self.dfs[key] = df.dropDuplicates()
+        for df_family_name, df_family in self.dfs.items():
+            for file_name, df in df_family.items():
+                if isinstance(df, list):
+                    # Handle list of DataFrames
+                    self.dfs[df_family_name][file_name] = df.dropDuplicates()
 
 
     def reconciliate_data(self):
@@ -109,6 +108,7 @@ class DataFormatter:
         def join_and_union(dfs, df_lookup, join_column, lookup_column, df_name, ensure_same_schema=False):
             joined_list = []
             all_columns = get_all_columns(dfs)
+            all_columns += get_all_columns([df_lookup])
 
             for df in dfs:
                 if ensure_same_schema:
@@ -137,8 +137,6 @@ class DataFormatter:
                     else:
                         # Otherwise, add or replace the column with null values
                         df = df.withColumn(col_name, lit(None).cast(lookup_data_type))
-
-
 
                 print_shape_info(df, f"{df_name} before join")
                 joined_df = df.join(df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
@@ -170,27 +168,43 @@ class DataFormatter:
 
 
         # Process df_income
-        df_income_list = self.dfs.get('income').values()
+        df_income_list = list(self.dfs.get('income').values())
         if df_income_list is not None and isinstance(df_income_list, list):
+            # Reconcile district
             df_income_join_column = 'district_name'  # Replace with the actual join column in df_income
             df_lookup_income_column = 'district'  # Replace with the actual join column in df_lookup for df_income
-            df_lookup = self.dfs['lookup']['income_lookup_district.json']
+            df_lookup = self.dfs['lookup']['income_lookup_district.json'].select('district', 'district_reconciled')
             df_income_merged = join_and_union(df_income_list, df_lookup, df_income_join_column, df_lookup_income_column, "df_income")
+            # Keep only reconciled column
+            df_income_merged = df_income_merged.drop('district', 'district_name', 'district_id').withColumnRenamed('district_reconciled', 'district')
+
+            # Reconcile neigborhood
+            df_lookup = self.dfs['lookup']['income_lookup_neighborhood.json'].select(
+                'neighborhood', 'neighborhood_reconciled')
+            df_income_merged = join_and_union([df_income_merged]
+                                              , df_lookup
+                                              , 'neigh_name '
+                                              , 'neighborhood'
+                                              , 'df_income')
+            df_income_merged = df_income_merged.drop('neigh_name ', 'neighborhood').withColumnRenamed('neighborhood_reconciled', 'neighborhood')
+
+            # Explode info column into year, pop, RFD
+            #df_income_merged
+
             print(f"Income after merge columns: {df_income_merged.columns}")
             #=======================
-            # join and union on neighborhood
-            # DROP LOOKUP COLUMNS != district_reconciled, neighborhood_reconciled
+            # transform info column to columns tear, pop, RFD
             #======================
 
         # Process df_idealista
-        df_idealista_list = self.dfs.get('idealista').values()
+        df_idealista_list = list(self.dfs.get('idealista').values())
         if df_idealista_list is not None and isinstance(df_idealista_list, list):
             df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
             df_lookup_idealista_column = 'district'  # Replace with the actual join column in df_lookup for df_idealista
             df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)
 
         # Process df_airqual
-        df_airqual_list = self.dfs.get('airqual').values()
+        df_airqual_list = list(self.dfs.get('airqual').values())
         if df_airqual_list is not None and isinstance(df_airqual_list, list):
             df_airqual_join_column = 'Nom_districte'  # Replace with the actual join column in df_airqual
             df_lookup_airqual_column = 'district_name'  # Replace with the actual join column in df_lookup for df_airqual

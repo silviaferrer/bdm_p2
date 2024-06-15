@@ -1,4 +1,6 @@
 # bdm_p2
+Notes for the report:
+- The neighborhood Sant Pere, Santa Caterina i la Ribera is not found on the income df lookup because in the lookup tables it is written like "Sant Pere, Santa Caterina i la Ribera"
 
 Steps:
     1. Reconciliate District and Neighborhood names:
