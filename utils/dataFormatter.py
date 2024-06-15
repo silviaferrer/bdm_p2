@@ -71,133 +71,143 @@ class DataFormatter:
 
 
     def reconciliate_data(self):
-        df_lookup_list = self.dfs.get('lookup')
+        '''df_lookup_list = self.dfs.get('lookup')
         # Find the lookup DataFrame that contains the 'district' column
         df_lookup = None
         if isinstance(df_lookup_list, list):
             for df in df_lookup_list:
                 if 'district' in df.columns:
                     df_lookup = df
-                    break
+                    break'''
 
-        if df_lookup is not None:
-            print('Starting join process...')
-            def print_shape_info(df, df_name):
-                if df is not None:
-                    print(f"{df_name} shape: {df.count()} rows, {len(df.columns)} columns")
-                else:
-                    print(f"{df_name} is None")
+        '''if df_lookup is not None:'''
+        print('Starting join process...')
+        def print_shape_info(df, df_name):
+            if df is not None:
+                print(f"{df_name} shape: {df.count()} rows, {len(df.columns)} columns")
+            else:
+                print(f"{df_name} is None")
 
-            def get_all_columns(dfs):
-                all_columns = set()
-                for df in dfs:
-                    all_columns.update(df.columns)
-                return list(all_columns) if all_columns else []
+        def get_all_columns(dfs):
+            all_columns = set()
+            for df in dfs:
+                all_columns.update(df.columns)
+            return list(all_columns) if all_columns else []
 
-            def ensure_all_columns(df, all_columns):
-                # Add missing columns with null values
-                for col_name in all_columns:
-                    if col_name not in df.columns:
-                        df = df.withColumn(col_name, lit(None))
+        def ensure_all_columns(df, all_columns):
+            # Add missing columns with null values
+            for col_name in all_columns:
+                if col_name not in df.columns:
+                    df = df.withColumn(col_name, lit(None))
 
-                # Reorder columns to match the order in all_columns
-                ordered_columns = [col_name for col_name in all_columns if col_name in df.columns]
-                df = df.select(*ordered_columns)
+            # Reorder columns to match the order in all_columns
+            ordered_columns = [col_name for col_name in all_columns if col_name in df.columns]
+            df = df.select(*ordered_columns)
 
-                return df
+            return df
 
-            def join_and_union(dfs, join_column, lookup_column, df_name, ensure_same_schema=False):
-                joined_list = []
-                all_columns = get_all_columns(dfs)
+        def join_and_union(dfs, df_lookup, join_column, lookup_column, df_name, ensure_same_schema=False):
+            joined_list = []
+            all_columns = get_all_columns(dfs)
 
-                for df in dfs:
-                    if ensure_same_schema:
-                        df = ensure_all_columns(df, all_columns)
+            for df in dfs:
+                if ensure_same_schema:
+                    df = ensure_all_columns(df, all_columns)
 
-                    # Ensure compatible column types
-                    for col_name in df.columns:
-                        if col_name in df_lookup.columns:
-                            lookup_data_type = df_lookup.schema[col_name].dataType
-                            if df.schema[col_name].dataType != lookup_data_type:
-                                # Handle mismatched column types
-                                if isinstance(lookup_data_type, StructType):
-                                    # If the lookup column type is a struct, cast the DataFrame column to match
-                                    df = df.withColumn(col_name, df[col_name].cast(lookup_data_type))
-                                else:
-                                    # Otherwise, add or replace the column with null values
-                                    df = df.withColumn(col_name, lit(None).cast(lookup_data_type))
-
-                    print_shape_info(df, f"{df_name} before join")
-                    joined_df = df.join(df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
-                    print_shape_info(joined_df, f"{df_name} after join")
-                    
-                    # Alias columns to avoid ambiguous references
-                    aliased_columns = []
-                    for col_name in joined_df.columns:
-                        aliased_name = col_name
-                        count = 1
-                        while aliased_name in aliased_columns:
-                            aliased_name = f"{col_name}_{count}"
-                            count += 1
-                        aliased_columns.append(aliased_name)
-                        joined_df = joined_df.withColumnRenamed(col_name, aliased_name)
-                    
-                    # Reorder columns
-                    joined_df = ensure_all_columns(joined_df, all_columns)
-
-                    joined_list.append(joined_df)
-
-                if joined_list:
-                    merged_df = joined_list[0]
-                    for df in joined_list[1:]:
-                        merged_df = merged_df.union(df)
-                    return merged_df
-                return None
+                # Ensure compatible column types
+                '''for col_name in df.columns:
+                    if col_name in df_lookup.columns:
+                        lookup_data_type = df_lookup.schema[col_name].dataType
+                        if df.schema[col_name].dataType != lookup_data_type:
+                            # Handle mismatched column types
+                            if isinstance(lookup_data_type, StructType):
+                                # If the lookup column type is a struct, cast the DataFrame column to match
+                                df = df.withColumn(col_name, df[col_name].cast(lookup_data_type))
+                            else:
+                                # Otherwise, add or replace the column with null values
+                                df = df.withColumn(col_name, lit(None).cast(lookup_data_type))'''
+                # Ensure compatible column types on join columns
+                lookup_data_type = df_lookup.schema[lookup_column].dataType
+                if df.schema[join_column]
 
 
-            # Process df_income
-            df_income_list = self.dfs.get('income')
-            if df_income_list is not None and isinstance(df_income_list, list):
-                df_income_join_column = 'district_name'  # Replace with the actual join column in df_income
-                df_lookup_income_column = 'district'  # Replace with the actual join column in df_lookup for df_income
-                df_income_merged = join_and_union(df_income_list, df_income_join_column, df_lookup_income_column, "df_income")
-                print(f"Income after merge columns: {df_income_merged.columns}")
+                print_shape_info(df, f"{df_name} before join")
+                joined_df = df.join(df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
+                print_shape_info(joined_df, f"{df_name} after join")
+                
+                # Alias columns to avoid ambiguous references
+                aliased_columns = []
+                for col_name in joined_df.columns:
+                    aliased_name = col_name
+                    count = 1
+                    while aliased_name in aliased_columns:
+                        aliased_name = f"{col_name}_{count}"
+                        count += 1
+                    aliased_columns.append(aliased_name)
+                    joined_df = joined_df.withColumnRenamed(col_name, aliased_name)
+                
+                # Reorder columns
+                joined_df = ensure_all_columns(joined_df, all_columns)
 
-            # Process df_idealista
-            '''df_idealista_list = self.dfs.get('idealista')
-            if df_idealista_list is not None and isinstance(df_idealista_list, list):
-                df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
-                df_lookup_idealista_column = 'district'  # Replace with the actual join column in df_lookup for df_idealista
-                df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)
-            '''
-            # Process df_airqual
-            df_airqual_list = self.dfs.get('airqual')
-            if df_airqual_list is not None and isinstance(df_airqual_list, list):
-                df_airqual_join_column = 'Nom_districte'  # Replace with the actual join column in df_airqual
-                df_lookup_airqual_column = 'district_name'  # Replace with the actual join column in df_lookup for df_airqual
+                joined_list.append(joined_df)
 
-                # Transform the column in df_airqual to match the case before joining
-                df_airqual_list_transformed = [
-                    df_airqual.withColumn(df_airqual_join_column, col(df_airqual_join_column).alias('district_name'))  # Transform the column to lowercase
-                    for df_airqual in df_airqual_list
-                ]
+            # Union
+            if joined_list:
+                merged_df = joined_list[0]
+                for df in joined_list[1:]:
+                    merged_df = merged_df.union(df)
+                return merged_df
+            return None
 
-                df_airqual_merged = join_and_union(df_airqual_list_transformed, df_airqual_join_column, df_lookup_airqual_column, "df_airqual")
 
-            print('Starting final join...')
-            # Merge df_income, df_airqual, and df_idealista into a single DataFrame
-            final_df = df_income_merged
-            if df_airqual_merged is not None:
-                final_df = final_df.join(df_airqual_merged, final_df[df_income_join_column] == df_airqual_merged[df_airqual_join_column], 'outer')
-            if df_idealista_merged is not None:
-                final_df = final_df.join(df_idealista_merged, final_df[df_income_join_column] == df_idealista_merged[df_idealista_join_column], 'outer')
+        # Process df_income
+        df_income_list = self.dfs.get('income')
+        if df_income_list is not None and isinstance(df_income_list, list):
+            df_income_join_column = 'district_name'  # Replace with the actual join column in df_income
+            df_lookup_income_column = 'district'  # Replace with the actual join column in df_lookup for df_income
+            df_lookup = self.dfs['lookup']
+            df_income_merged = join_and_union(df_income_list, df_lookup=df_lookup, df_income_join_column, df_lookup_income_column, "df_income")
+            print(f"Income after merge columns: {df_income_merged.columns}")
+            #=======================
+            # join and union on neighborhood
+            # DROP LOOKUP COLUMNS != district_reconciled, neighborhood_reconciled
+            #======================
 
-            print_shape_info(final_df, "final_df")
+        # Process df_idealista
+        df_idealista_list = self.dfs.get('idealista')
+        if df_idealista_list is not None and isinstance(df_idealista_list, list):
+            df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
+            df_lookup_idealista_column = 'district'  # Replace with the actual join column in df_lookup for df_idealista
+            df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)
 
-            # Store the final DataFrame in the dictionary
-            self.dfs['final'] = final_df
+        # Process df_airqual
+        df_airqual_list = self.dfs.get('airqual')
+        if df_airqual_list is not None and isinstance(df_airqual_list, list):
+            df_airqual_join_column = 'Nom_districte'  # Replace with the actual join column in df_airqual
+            df_lookup_airqual_column = 'district_name'  # Replace with the actual join column in df_lookup for df_airqual
 
-            return final_df
+            # Transform the column in df_airqual to match the case before joining
+            df_airqual_list_transformed = [
+                df_airqual.withColumn(df_airqual_join_column, col(df_airqual_join_column).alias('district_name'))  # Transform the column to lowercase
+                for df_airqual in df_airqual_list
+            ]
+
+            df_airqual_merged = join_and_union(df_airqual_list_transformed, df_airqual_join_column, df_lookup_airqual_column, "df_airqual")
+
+        '''print('Starting final join...')
+        # Merge df_income, df_airqual, and df_idealista into a single DataFrame
+        final_df = df_income_merged
+        if df_airqual_merged is not None:
+            final_df = final_df.join(df_airqual_merged, final_df[df_income_join_column] == df_airqual_merged[df_airqual_join_column], 'outer')
+        if df_idealista_merged is not None:
+            final_df = final_df.join(df_idealista_merged, final_df[df_income_join_column] == df_idealista_merged[df_idealista_join_column], 'outer')
+
+        print_shape_info(final_df, "final_df")
+
+        # Store the final DataFrame in the dictionary
+        self.dfs['final'] = final_df
+
+        return final_df'''
 
     def clean_data(self, df):
         # Step 0: Remove columns with > 30% null values

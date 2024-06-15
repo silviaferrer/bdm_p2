@@ -65,7 +65,7 @@ class LoadtoFormatted:
 
         file_names = os.listdir(path)
 
-        dfs = []
+        dfs = {}
         combined_df = None
         for file_name in file_names:
             file_path = os.path.join(path, file_name)
@@ -80,7 +80,7 @@ class LoadtoFormatted:
                 print("Uningestible file format: ", file_name)
 
             if df is not None:
-                dfs.append(df)
+                dfs[df] = file_name
                 '''if combined_df is None and df is not None:
                     combined_df = df
                 else:
