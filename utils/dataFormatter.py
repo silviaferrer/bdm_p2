@@ -3,7 +3,7 @@ import os
 import re
 import unicodedata
 import pandas as pd
-from pyspark.sql import SparkSession, Row
+from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.functions import col, lit, udf
 from pyspark.sql.types import StructType
