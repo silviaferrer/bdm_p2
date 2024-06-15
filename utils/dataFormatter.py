@@ -128,7 +128,16 @@ class DataFormatter:
                                 df = df.withColumn(col_name, lit(None).cast(lookup_data_type))'''
                 # Ensure compatible column types on join columns
                 lookup_data_type = df_lookup.schema[lookup_column].dataType
-                if df.schema[join_column]
+                if df.schema[join_column].dataType != lookup_data_type:
+                    # Handle mismatched column types
+                    if isinstance(lookup_data_type, StructType):
+                        # If the lookup column type is a struct, cast the DataFrame column to match
+                        df = df.withColumn(
+                            col_name, df[col_name].cast(lookup_data_type))
+                    else:
+                        # Otherwise, add or replace the column with null values
+                        df = df.withColumn(col_name, lit(None).cast(lookup_data_type))
+
 
 
                 print_shape_info(df, f"{df_name} before join")
@@ -161,12 +170,12 @@ class DataFormatter:
 
 
         # Process df_income
-        df_income_list = self.dfs.get('income')
+        df_income_list = self.dfs.get('income').values()
         if df_income_list is not None and isinstance(df_income_list, list):
             df_income_join_column = 'district_name'  # Replace with the actual join column in df_income
             df_lookup_income_column = 'district'  # Replace with the actual join column in df_lookup for df_income
-            df_lookup = self.dfs['lookup']
-            df_income_merged = join_and_union(df_income_list, df_lookup=df_lookup, df_income_join_column, df_lookup_income_column, "df_income")
+            df_lookup = self.dfs['lookup']['income_lookup_district.json']
+            df_income_merged = join_and_union(df_income_list, df_lookup, df_income_join_column, df_lookup_income_column, "df_income")
             print(f"Income after merge columns: {df_income_merged.columns}")
             #=======================
             # join and union on neighborhood
@@ -174,14 +183,14 @@ class DataFormatter:
             #======================
 
         # Process df_idealista
-        df_idealista_list = self.dfs.get('idealista')
+        df_idealista_list = self.dfs.get('idealista').values()
         if df_idealista_list is not None and isinstance(df_idealista_list, list):
             df_idealista_join_column = 'district'  # Replace with the actual join column in each df_idealista
             df_lookup_idealista_column = 'district'  # Replace with the actual join column in df_lookup for df_idealista
             df_idealista_merged = join_and_union(df_idealista_list, df_idealista_join_column, df_lookup_idealista_column, "df_idealista", ensure_same_schema=True)
 
         # Process df_airqual
-        df_airqual_list = self.dfs.get('airqual')
+        df_airqual_list = self.dfs.get('airqual').values()
         if df_airqual_list is not None and isinstance(df_airqual_list, list):
             df_airqual_join_column = 'Nom_districte'  # Replace with the actual join column in df_airqual
             df_lookup_airqual_column = 'district_name'  # Replace with the actual join column in df_lookup for df_airqual
