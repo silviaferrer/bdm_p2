@@ -31,11 +31,12 @@ class DataFormatter:
 
         # Append, join, and reconciliate data
         print("Reconciliating data...")
-        merged_df = self.reconciliate_data()
+        merged_dfs = self.reconciliate_data()
         print("Data reconciliated")
 
         # Clean data
-        #self.clean_data()
+        for df in merged_dfs.values():
+            self.clean_data(df)
 
 
     '''def output_first_5_rows_to_csv(self, output_dir):
@@ -287,6 +288,10 @@ class DataFormatter:
 
             print(f"Airqual after merge columns: {df_airqual_merged.columns}")
 
+        dfs = {'airqual': df_airqual_merged, 'income': df_income_merged, 'idealista': df_idealista_merged}
+        
+        return dfs
+
         '''print('Starting final join...')
         # Merge df_income, df_airqual, and df_idealista into a single DataFrame
         final_df = df_income_merged
@@ -303,13 +308,14 @@ class DataFormatter:
         return final_df'''
 
     def clean_data(self, df):
+        
         # Step 0: Remove columns with > 30% null values
         threshold = 0.3 * df.count()
         for col in df.columns:
             if df.filter(df[col].isNull()).count() > threshold:
                 df = df.drop(col)
 
-        # Step 1: Remove rows with null values
+        '''# Step 1: Remove rows with null values
         df = df.dropna()
 
         # Step 2: Find columns with wrong values (e.g., negative height)
@@ -321,7 +327,7 @@ class DataFormatter:
             df = df.withColumn('age', F.when(df['age'] < 0, None).otherwise(df['age']))
 
         # Step 4: Remove rows with wrong data that cannot be transformed
-        df = df.dropna()
+        df = df.dropna()'''
 
         return df
 
