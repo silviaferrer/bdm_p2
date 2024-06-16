@@ -1,5 +1,4 @@
 import os
-from pyspark.sql import SparkSession
 
 dir_path = os.getcwd()
 data_path = os.path.join(dir_path, 'data')
@@ -11,11 +10,7 @@ airquality_path = os.path.join(data_path, 'airquality_data')
 
 class LoadtoFormatted:
 
-    def __init__(self):
-
-        # Create spark session
-        spark = self.connectPySpark()
-
+    def __init__(self, spark):
         # Load data to PySpark
         print('Loading airquality data to PySpark...')
         df_airqual = self.loadToSpark(spark, airquality_path)
@@ -51,22 +46,11 @@ class LoadtoFormatted:
 
         return None
 
-    def connectPySpark(self):
-        try:
-            spark = SparkSession.builder.appName(
-                "P2FormatedZone").getOrCreate()
-            print("Spark connection is successful!")
-            return spark
-
-        except Exception as e:
-            print("Error: ", e)
-
     def loadToSpark(self, spark, path):
 
         file_names = os.listdir(path)
 
         dfs = {}
-        combined_df = None
         for file_name in file_names:
             file_path = os.path.join(path, file_name)
             if file_name.split('.')[-1] == 'json':
@@ -77,13 +61,9 @@ class LoadtoFormatted:
                 df = spark.read.option('header', True).parquet(file_path)
             else:
                 df = None
-                print("Uningestible file format: ", file_name)
+                # print("Uningestible file format: ", file_name)
 
             if df is not None:
                 dfs[file_name] = df
-                '''if combined_df is None and df is not None:
-                    combined_df = df
-                else:
-                    combined_df = combined_df.union(df)'''
 
         return dfs
