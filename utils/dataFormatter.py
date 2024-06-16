@@ -25,6 +25,7 @@ class DataFormatter:
         # Reconciliate data, unification column names
         print("Reconciliating data...")
         merged_dfs = self.reconciliate_data()
+        merged_dfs = self.reconciliate_data()
         print("Data reconciliated")
 
         # Clean data
