@@ -38,12 +38,11 @@ class MongoDBLoader:
     def write_to_collection(self, collection_name, dataframe, append=True):
         try:
             #uri = f"mongodb://{self.vm_host}:{self.mongodb_port}/{self.database_name}.{collection_name}"
-            uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/{
-                self.database_name}.{collection_name}"
+            uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.database_name}?retryWrites=true&w=majority&appName=Cluster0"
             if not append:
                 self.drop_collection(collection_name)
                 self.create_collection(collection_name)
-            dataframe.write.format("mongo").option("uri", uri).option("encoding", "utf-8-sig").mode("append").save()
+            dataframe.write.format("mongo").option("uri", uri).option('collection', collection_name).option("encoding", "utf-8-sig").mode("append").save()
             print(f"Data written to collection '{collection_name}' in database '{self.database_name}'")
         except Exception as e:
             print(f"Failed to write to collection '{collection_name}' in database '{self.database_name}': {e}")

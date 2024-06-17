@@ -22,8 +22,8 @@ def main():
             .builder \
             .appName("myApp") \
             .config('spark.jars.packages', 'org.mongodb.spark:mongo-spark-connector_2.12:3.0.1') \
-            .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/test.myCollection") \
-            .config("spark.mongodb.output.uri", "mongodb://127.0.0.1/test.myCollection") \
+            .config("spark.mongodb.input.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
+            .config("spark.mongodb.output.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
             .getOrCreate()
         print("Spark connection is successful!")
 

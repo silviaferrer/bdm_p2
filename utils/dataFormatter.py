@@ -25,7 +25,6 @@ class DataFormatter:
         # Reconciliate data, unification column names
         print("Reconciliating data...")
         merged_dfs = self.reconciliate_data()
-        merged_dfs = self.reconciliate_data()
         print("Data reconciliated")
 
         # Clean data
@@ -94,6 +93,10 @@ class DataFormatter:
 
             print(f"Idealista after merge columns: {df_idealista_merged.columns}")
             merged_dfs['idealista'] = df_idealista_merged
+            #==================================================================
+            # TESTING
+            #==================================================================
+            merged_dfs['idealista'].toPandas().to_csv('idealista.csv', index=False)
 
         # Process df_airqual
         df_airqual_list = list(self.dfs.get('airqual').values())
@@ -149,7 +152,7 @@ class DataFormatter:
         #         df = df.drop(col)
 
         # Step 2: Remove rows with null values
-        df = df.dropna()
+        #df = df.dropna()
 
         # Step 3: Find columns with wrong values (e.g., negative height)
         if 'height' in df.columns:
@@ -160,7 +163,7 @@ class DataFormatter:
             df = df.withColumn('age', F.when(df['age'] < 0, None).otherwise(df['age']))
 
         # Step 5: Remove rows with wrong data that cannot be transformed
-        df = df.dropna()
+        #df = df.dropna()
 
         return df
 
