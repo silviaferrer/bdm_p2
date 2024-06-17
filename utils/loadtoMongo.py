@@ -5,7 +5,9 @@ class MongoDBLoader:
         self.vm_host = vm_host
         self.mongodb_port = int(mongodb_port)
         self.database_name = database_name
-        self.client = MongoClient(self.vm_host, self.mongodb_port)
+        #self.client = MongoClient(self.vm_host, self.mongodb_port)
+        self.client = MongoClient(
+            "mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", self.mongodb_port)
         self.db = self.client[self.database_name]
 
     def create_collection(self, collection_name):
@@ -35,7 +37,9 @@ class MongoDBLoader:
 
     def write_to_collection(self, collection_name, dataframe, append=True):
         try:
-            uri = f"mongodb://{self.vm_host}:{self.mongodb_port}/{self.database_name}.{collection_name}"
+            #uri = f"mongodb://{self.vm_host}:{self.mongodb_port}/{self.database_name}.{collection_name}"
+            uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/{
+                self.database_name}.{collection_name}"
             if not append:
                 self.drop_collection(collection_name)
                 self.create_collection(collection_name)
