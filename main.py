@@ -4,7 +4,7 @@ import argparse
 from utils.loadtoMongo import MongoDBLoader
 from utils.dataFormatter import DataFormatter
 
-VM_HOST = '10.4.41.45'
+VM_HOST = '10.192.36.59'
 MONGODB_PORT = '27017'
 DB_NAME = 'test'
 
@@ -22,6 +22,8 @@ def main():
             .builder \
             .appName("myApp") \
             .config('spark.jars.packages', 'org.mongodb.spark:mongo-spark-connector_2.12:3.0.1') \
+            .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/test.myCollection") \
+            .config("spark.mongodb.output.uri", "mongodb://127.0.0.1/test.myCollection") \
             .getOrCreate()
         print("Spark connection is successful!")
 
@@ -41,7 +43,7 @@ def main():
             if dataFormatter.dfs:
                 for key, df in dataFormatter.dfs.items():
                     # Write to MongoDB
-                    mongoLoader.write_to_collection(key, df, append=True)
+                    mongoLoader.write_to_collection(key, df, append=False)
                     print(f"Data written to collection '{key}' in database '{DB_NAME}'")
                 
             else:
