@@ -30,7 +30,7 @@ class PredictiveAnalysis():
         print(dfs)
 
         # Join all tables
-        #df_joined = self.joinDf(spark, df_income)
+        df_joined = self.joinDf(dfs['idealista'], dfs['income'], 'district')
 
         # Define feature list and select the features from the source
         feature_list = []
@@ -85,7 +85,7 @@ class PredictiveAnalysis():
         joined_df = df_left.join(df_right, df_left[join_col] == df_right[join_col], 'inner')
         return joined_df
     
-    def selectFeatures(spark, df, feature_list):
+    def selectFeatures(self, spark, df, feature_list):
         # Get the current columns in the DataFrame
         current_columns = df.columns
         
