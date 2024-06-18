@@ -3,12 +3,17 @@ import pymongo
 import pandas as pd
 import pickle
 import warnings
+
+from utils.loadtoMongo import MongoDBLoader
 from pyspark.sql.functions import col
 from pyspark.ml.feature import StringIndexer, VectorAssembler
 from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import LinearRegression
 
+VM_HOST = '10.192.36.59'
+MONGODB_PORT = '27017'
+DB_NAME = 'test'
 
 class PredictiveAnalysis():
 
@@ -16,12 +21,16 @@ class PredictiveAnalysis():
 
         db_con = self.connectDuckDB('bdm_p2')
 
-        df_income = self.loadFromSpark(spark,'idealista') 
-        df_idealista = self.loadFromSpark(spark,'idealista') 
-        df_airqual = self.loadFromSpark(spark,'idealista') 
+        mongoLoader = MongoDBLoader(VM_HOST, MONGODB_PORT, DB_NAME)
+        
+        collections = ['airqual','idealista','income']
+
+        dfs = self.loadFromSpark(spark,mongoLoader.database_name,collections,mongoLoader)
+
+        print(dfs)
 
         # Join all tables
-        df_joined = self.joinDf(spark, df_income)
+        #df_joined = self.joinDf(spark, df_income)
 
         # Define feature list and select the features from the source
         feature_list = []
@@ -45,13 +54,32 @@ class PredictiveAnalysis():
         except Exception as e:
             print("Error: ", e)
     
-    def loadFromSpark(self, spark, df_name):
+    def loadFromSpark(self, spark, db_name, collections, mongoLoader):
 
-        df = spark.read.format("mongo").load()
-        return df
+        uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}?retryWrites=true&w=majority&appName=Cluster0"
+        # Dictionary to hold the DataFrames
+        dfs = {}
+
+        # Load each collection into a DataFrame
+        for collection in collections:
+            print(f"Loading collection '{collection}' into DataFrame")
+            #df = spark.read.format("mongo").option("uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}.{collection}?retryWrites=true&w=majority&appName=Cluster0").load()
+            df = spark.read.format("mongo").option("uri", uri).option('collection', collection).option("encoding", "utf-8-sig").load()
+            #df = mongoLoader.read_collection(spark,collection)
+            dfs[collection] = df
+            print(f"Loaded collection '{collection}' into DataFrame")
+
+        # Example: Show the schema and first few rows of each DataFrame
+        for collection, df in dfs.items():
+            print(f"Schema for collection '{collection}':")
+            df.printSchema()
+            print(f"First few rows of collection '{collection}':")
+            df.show()
+
+        return dfs
     
     def joinDf(self, df_left, df_right, join_col):
-
+    
         # FIRST ensure join-col in both!!!
 
         joined_df = df_left.join(df_right, df_left[join_col] == df_right[join_col], 'inner')
