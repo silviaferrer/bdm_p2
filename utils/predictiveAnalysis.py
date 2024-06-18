@@ -3,6 +3,7 @@ import pymongo
 import pandas as pd
 import pickle
 import warnings
+import os
 
 from utils.loadtoMongo import MongoDBLoader
 from pyspark.sql.functions import col
@@ -26,6 +27,15 @@ class PredictiveAnalysis():
         collections = ['airqual','idealista','income']
 
         dfs = self.loadFromSpark(spark,mongoLoader.database_name,collections,mongoLoader)
+
+        #===============================
+        # TEMP: store dfs in csv's
+        #===============================
+        predictive_output_path = os.path.join('data', 'output', 'predictive_analysis')
+        for key, df in dfs.items():
+            output_file_path = os.path.join(
+                predictive_output_path, f'{key}.csv')
+            df.toPandas().to_csv(output_file_path, index=False)
 
         print(dfs)
 
