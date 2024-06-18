@@ -12,6 +12,7 @@ from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import LinearRegression
 
+
 VM_HOST = '10.192.36.59'
 MONGODB_PORT = '27017'
 DB_NAME = 'test'
@@ -26,24 +27,34 @@ class PredictiveAnalysis():
         
         collections = ['airqual','idealista','income']
 
-        dfs = self.loadFromSpark(spark,mongoLoader.database_name,collections,mongoLoader)
+        #dfs = self.loadFromSpark(spark,mongoLoader.database_name,collections,mongoLoader)
+
+        # Join all tables
+        #df_joined = self.joinDf(dfs['idealista'], dfs['income'], 'district')
 
         #===============================
         # TEMP: store dfs in csv's
         #===============================
         predictive_output_path = os.path.join('data', 'output', 'predictive_analysis')
-        for key, df in dfs.items():
+        '''for key, df in dfs.items():
             output_file_path = os.path.join(
                 predictive_output_path, f'{key}.csv')
-            df.toPandas().to_csv(output_file_path, index=False)
+            df.toPandas().to_csv(output_file_path, index=False)'''
+        
 
-        print(dfs)
+        df_income = spark.read.csv(os.path.join(predictive_output_path,'income.csv'), header=True, inferSchema=True)
+        df_idealista = spark.read.csv(os.path.join(predictive_output_path,'idealista.csv'), header=True, inferSchema=True)
+        df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)
 
-        # Join all tables
-        df_joined = self.joinDf(dfs['idealista'], dfs['income'], 'district')
+        # Join the dataframes in a single dataframe
+        df_joined = self.joinDf(df_income,df_idealista,'district')
+        df_joined = self.joinDf(df_joined,df_airqual,'district')
 
-        # Define feature list and select the features from the source
-        feature_list = []
+        # Output the schema to check if the join was correct
+        df_joined.printSchema()
+
+        exclude_cols = ["_id", "priceByArea", "price"]
+        feature_list = [col for col in df_joined.columns if col not in exclude_cols]
         df_joined = self.selectFeatures(spark, df_joined, feature_list)
 
         model = self.buildModel(spark, df_joined)
@@ -90,9 +101,23 @@ class PredictiveAnalysis():
     
     def joinDf(self, df_left, df_right, join_col):
     
-        # FIRST ensure join-col in both!!!
+        # Check if join_col exists in both DataFrames
+        if join_col not in df_left.columns or join_col not in df_right.columns:
+            raise ValueError(f"Column '{join_col}' must be present in both DataFrames.")
+        
+        # Rename join column in right DataFrame to avoid clashes
+        df_right_renamed = df_right.withColumnRenamed(join_col, join_col + "_right")
+        
+        # Perform the join
+        joined_df = df_left.join(df_right_renamed, df_left[join_col] == df_right_renamed[join_col + "_right"], 'inner')
+        
+        # Drop the duplicate join column
+        joined_df = joined_df.drop(df_right_renamed[join_col + "_right"])
 
-        joined_df = df_left.join(df_right, df_left[join_col] == df_right[join_col], 'inner')
+        # Output the number of columns in the DataFrame
+        num_columns = len(joined_df.columns)
+        print(f"The number of columns in the joined DataFrame: {num_columns}")
+
         return joined_df
     
     def selectFeatures(self, spark, df, feature_list):
@@ -121,27 +146,39 @@ class PredictiveAnalysis():
         return selected_df
     
     def buildModel(self, spark, df):
-        # Assume the data has the following columns: 'feature1', 'feature2', 'label'
-        indexer = StringIndexer(inputCol="feature1", outputCol="feature1_indexed")
-        assembler = VectorAssembler(inputCols=["feature1_indexed", "feature2"], outputCol="features")
-        pipeline = Pipeline(stages=[indexer, assembler])
-        preprocessed_df = pipeline.fit(df).transform(df)
-        data = preprocessed_df.select(col("features"), col("label"))
-        train_data, test_data = data.randomSplit([0.8, 0.2], seed=1234)
+        # Identify the label column and feature columns
+        label_col = "price"
+        feature_cols = [col for col in df.columns if col != label_col]
+        
+        # Handle string columns by indexing them
+        indexers = [StringIndexer(inputCol=col, outputCol=f"{col}_indexed").fit(df) for col in feature_cols if dict(df.dtypes)[col] == 'string']
+        indexed_cols = [f"{col}_indexed" if dict(df.dtypes)[col] == 'string' else col for col in feature_cols]
 
-        # Step 4: Create a predictive model
+        # Assemble feature columns into a single vector column
+        assembler = VectorAssembler(inputCols=indexed_cols, outputCol="features")
+        
+        # Create a pipeline with indexers and the assembler
+        pipeline = Pipeline(stages=indexers + [assembler])
+        preprocessed_df = pipeline.fit(df).transform(df)
+        data = preprocessed_df.select(col("features"), col(label_col).alias("label"))
+        
+        # Split the data into training and testing sets
+        train_data, test_data = data.randomSplit([0.8, 0.2], seed=1234)
+        
+        # Create and train the linear regression model
         lr = LinearRegression(featuresCol="features", labelCol="label")
         lr_model = lr.fit(train_data)
-
-        # Step 5: Evaluate the model
+        
+        # Evaluate the model
         predictions = lr_model.transform(test_data)
-        evaluator = RegressionEvaluator(predictionCol="prediction", labelCol="label", metricName="rmse")
-        rmse = evaluator.evaluate(predictions)
+        evaluator_rmse = RegressionEvaluator(predictionCol="prediction", labelCol="label", metricName="rmse")
+        rmse = evaluator_rmse.evaluate(predictions)
         print(f"Root Mean Squared Error (RMSE): {rmse}")
+        
         evaluator_r2 = RegressionEvaluator(predictionCol="prediction", labelCol="label", metricName="r2")
         r2 = evaluator_r2.evaluate(predictions)
         print(f"R2: {r2}")
-
+        
         return lr_model
 
     # Function to serialize and save the model to DuckDB
