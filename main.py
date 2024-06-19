@@ -22,7 +22,7 @@ logger.setLevel(logging.DEBUG)
 handler = RotatingFileHandler('main.log', maxBytes=5*1024*1024, backupCount=5)
 handler.setLevel(logging.DEBUG)
 # This configuration ensures that logs are rotated when they reach 5 MB, with up to 5 backup files retained. 
-# The logs include timestamps, logger names, log levels, and messages, providing a comprehensive logging solution for a persistence loader.
+# The logs include timestamps, logger names, log levels, and messages, providing a comprehensive logging solution.
 
 # Create formatter
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
