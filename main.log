@@ -113,3 +113,1033 @@
 2024-06-19 19:19:15,302 - data_management - INFO - Data written to collection 'final'
 2024-06-19 19:19:15,302 - data_management - INFO - Finished Formatting Data and loading it with success!
 2024-06-19 19:19:15,302 - data_management - INFO - Finished succesfully data formatting process
+2024-06-19 21:46:06,929 - data_management - INFO - Spark connection is successful!
+2024-06-19 21:46:07,007 - data_management - INFO - Starting data prediction process
+2024-06-19 21:46:07,011 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 21:46:08,720 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 21:46:08,720 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 21:46:09,073 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 21:46:09,073 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 21:46:09,166 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 21:46:09,166 - data_management - INFO - Schema for collection 'airqual':
+2024-06-19 21:46:09,185 - data_management - ERROR - Error occurred during data prediction: 'DataFrame' object has no attribute 'self'
+2024-06-19 21:49:53,491 - data_management - INFO - Spark connection is successful!
+2024-06-19 21:49:53,554 - data_management - INFO - Starting data prediction process
+2024-06-19 21:49:53,556 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 21:49:55,092 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 21:49:55,092 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 21:49:55,497 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 21:49:55,497 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 21:49:55,610 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 21:49:55,618 - data_management - ERROR - Error occurred during data prediction: can only concatenate str (not "NoneType") to str
+2024-06-19 21:50:59,763 - data_management - INFO - Spark connection is successful!
+2024-06-19 21:51:00,054 - data_management - INFO - Starting data prediction process
+2024-06-19 21:51:00,057 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 21:51:01,535 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 21:51:01,535 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 21:51:01,899 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 21:51:01,899 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 21:51:02,003 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 21:53:47,446 - data_management - INFO - Spark connection is successful!
+2024-06-19 21:53:47,519 - data_management - INFO - Starting data prediction process
+2024-06-19 21:53:47,522 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 21:53:48,977 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 21:53:48,977 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 21:53:49,336 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 21:53:49,336 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 21:53:49,433 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 21:53:49,447 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,zqa:string>
+2024-06-19 21:53:50,181 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|      district|  neighborhood|          nom_cabina|            ubicacio|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Urbana|   Fons|               8|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|Trànsit|               6|     44|41.3987|  2.1534|{6673129b4028e700...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|              12|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|   Fons|               8|     42|41.3788|  2.1331|{6673129b4028e700...|       ID| 8019042|Sants-Montjuïc|         Sants|   Barcelona - Sants|Jardins de Can Ma...|  1|
+|Urbana|Trànsit|              12|     44|41.3987|  2.1534|{6673129b4028e700...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|               8|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|               7|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|   Fons|               7|     42|41.3788|  2.1331|{6673129b4028e700...|       ID| 8019042|Sants-Montjuïc|         Sants|   Barcelona - Sants|Jardins de Can Ma...|  1|
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{6673129b4028e700...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|Trànsit|              14|     44|41.3987|  2.1534|{6673129b4028e700...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|              14|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              10|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|Trànsit|              10|     44|41.3987|  2.1534|{6673129b4028e700...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|               1|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|               6|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              12|     42|41.3788|  2.1331|{6673129b4028e700...|       ID| 8019042|Sants-Montjuïc|         Sants|   Barcelona - Sants|Jardins de Can Ma...|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+only showing top 20 rows
+
+2024-06-19 21:53:50,182 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 21:53:50,535 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+--------+--------------+--------+--------------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+--------------+-----------+--------------------+--------------------+-----------------+--------+
+|                 _id|             address|bathrooms|distance|      district|exterior|   externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|    price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|        status|subTypology|            subtitle|               title|topNewDevelopment|typology|
++--------------------+--------------------+---------+--------+--------------+--------+--------------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+--------------+-----------+--------------------+--------------------+-----------------+--------+
+|{6673128a4028e700...|barrio La Dreta d...|        3|     501|      Eixample|   false|            W-02JSFC|    1| false|    false|   true|           true|   true|     false|   false|                         true|41.3966291|2.1617948| Dreta de l'Eixample|         false|                  NULL|       31|     sale|             NULL|1500000.0|    10000.0|    92847091|        flat|    3|      false|150.0|          good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        1|     110|        Gràcia|   false|            W-02JUTK|    1|  true|    false|  false|           NULL|   true|     false|   false|                         NULL|41.4017637|2.1628004|      Vila de Gràcia|         false|                  NULL|       24|     sale|             NULL| 395000.0|     3496.0|    91332200|        flat|    4|      false|113.0|          good|       NULL|Vila de Gràcia, B...|                Piso|            false|    flat|
+|{6673128a4028e700...|barrio La Dreta d...|        2|     800|      Eixample|    true|               V1644|    4|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3953328| 2.167456| Dreta de l'Eixample|         false|                  NULL|       26|     sale|             NULL| 435000.0|     4065.0|    91748693|        flat|    4|      false|107.0|          good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        1|     635|        Gràcia|   false|            W-02FPFP|   bj| false|    false|  false|           NULL|   true|     false|   false|                         NULL|41.4024589|2.1543641|      Vila de Gràcia|         false|                  NULL|       32|     sale|             NULL| 500000.0|     4854.0|    91535815|        flat|    2|      false|103.0|          good|       NULL|Vila de Gràcia, B...|                Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        2|     502|        Gràcia|   false|            W-02ECLK|   bj| false|     true|  false|           true|   true|     false|   false|                         true|41.4005828|2.1558008|      Vila de Gràcia|         false|                  NULL|       36|     sale|             NULL| 750000.0|     3713.0|    85493774|        flat|    1|      false|202.0|          good|       NULL|Vila de Gràcia, B...|                Piso|            false|    flat|
+|{6673128a4028e700...|     Calle de Girona|        2|     391|      Eixample|    true|           VB2102072|    5| false|    false|   true|           true|   true|     false|    true|                        false|41.3981165|2.1641944| Dreta de l'Eixample|         false|                  NULL|       40|     sale|          30000.0| 539000.0|     5859.0|    93080432|        flat|    3|      false| 92.0|          good|       NULL|La Dreta de l'Eix...|Piso en Calle de ...|            false|    flat|
+|{6673128a4028e700...|  Calle del Rosselló|        2|     474|      Eixample|    true|           VB2101030|    3| false|    false|   true|           NULL|  false|     false|    true|                         NULL|41.3988207|2.1665551| Dreta de l'Eixample|         false|                  NULL|       23|     sale|             NULL| 682000.0|     4871.0|    92596597|        flat|    4|      false|140.0|         renew|       NULL|La Dreta de l'Eix...|Piso en Calle del...|            false|    flat|
+|{6673128a4028e700...|   Calle del Foc, 30|        1|    2605|Sants-Montjuïc|    true|a1S1t000005mL0NEAU.f|    2| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3541007|2.1372753|La Marina del Pra...|          true|                 false|       14|     sale|             NULL| 163900.0|     2980.0|    92571483|        flat|    1|       true| 55.0|newdevelopment|       NULL|La Marina del Pra...|Piso en Calle del...|            false|    flat|
+|{6673128a4028e700...|Calle de Francesc...|        2|    3144|Sants-Montjuïc|    true|              V-FRA3|    3| false|    false|   true|           true|   true|     false|   false|                         true|41.3600315|2.1367773|   La Marina de Port|         false|                  NULL|       32|     sale|             NULL| 420000.0|     3559.0|    90313533|        flat|    4|      false|118.0|          good|       NULL|La Marina del Por...|Piso en Calle de ...|            false|    flat|
+|{6673128a4028e700...|   Calle del Foc, 30|        2|    2605|Sants-Montjuïc|    true|a1S1t000005mL0KEA...|    2| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3541007|2.1372753|La Marina del Pra...|          true|                 false|       12|     sale|             NULL| 291700.0|     3473.0|    91566532|        flat|    3|       true| 84.0|newdevelopment|       NULL|La Marina del Pra...|Piso en Calle del...|            false|    flat|
+|{6673128a4028e700...|Paseo de la Zona ...|        1|    2737|Sants-Montjuïc|    true|                NULL|    2| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3577249|2.1409479|   La Marina de Port|         false|                  NULL|       20|     sale|             NULL| 159500.0|     1945.0|    92748577|        flat|    3|       true| 82.0|         renew|       NULL|La Marina del Por...|Piso en Paseo de ...|            false|    flat|
+|{6673128a4028e700...|   Calle del Foc, 30|        2|    2605|Sants-Montjuïc|    true|a1S1t000005mL0OEAU.e|    6| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3541007|2.1372753|La Marina del Pra...|          true|                 false|       13|     sale|             NULL| 456000.0|     4471.0|    91568692|        flat|    4|       true|102.0|newdevelopment|       NULL|La Marina del Pra...|Piso en Calle del...|            false|    flat|
+|{6673128a4028e700...|   Calle del Foc, 30|        1|    2605|Sants-Montjuïc|    true|a1S1t000005mL0KEA...|    1| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3541007|2.1372753|La Marina del Pra...|          true|                 false|       12|     sale|             NULL| 185000.0|     3246.0|    92598002|        flat|    1|       true| 57.0|newdevelopment|       NULL|La Marina del Pra...|Piso en Calle del...|            false|    flat|
+|{6673128a4028e700...|Paseo de la Zona ...|        1|    3028|Sants-Montjuïc|    true|         GEIMSU00368|    5| false|    false|   true|           NULL|  false|     false|   false|                         NULL|41.3606067|2.1405629|   La Marina de Port|         false|                  NULL|       36|     sale|             NULL| 200000.0|     2817.0|    93063326|        flat|    3|      false| 71.0|          good|       NULL|La Marina del Por...|Piso en Paseo de ...|            false|    flat|
+|{6673128a4028e700...|Calle de la Mare ...|        1|    3175|Sants-Montjuïc|   false|             MPS 506|    6| false|    false|   true|           NULL|  false|     false|   false|                         NULL|41.3616889|2.1395404|   La Marina de Port|         false|                  NULL|        8|     sale|             NULL| 265000.0|     3155.0|    93084125|        flat|    3|       true| 84.0|          good|       NULL|La Marina del Por...|Piso en Calle de ...|            false|    flat|
+|{6673128a4028e700...|Calle dels Ferroc...|        2|    2599|Sants-Montjuïc|    true|              329884|    2| false|    false|   true|           NULL|   true|     false|    true|                         NULL|41.3577893|2.1444421|   La Marina de Port|         false|                  NULL|       30|     sale|             NULL| 279500.0|     2823.0|    92963023|        flat|    3|       true| 99.0|          good|       NULL|La Marina del Por...|Piso en Calle del...|            false|    flat|
+|{6673128a4028e700...|   Calle del Foc, 30|        2|    2605|Sants-Montjuïc|    true|a1S1t000005mL0OEAU.e|    3| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3541007|2.1372753|La Marina del Pra...|          true|                 false|       13|     sale|             NULL| 295000.0|     3315.0|    92659114|        flat|    3|       true| 89.0|newdevelopment|       NULL|La Marina del Pra...|Piso en Calle del...|            false|    flat|
+|{6673128a4028e700...|Calle de la Mare ...|        1|    2623|Sants-Montjuïc|    true|   AC-RES-988-142-20|    1| false|    false|  false|           NULL|  false|     false|    true|                         NULL|41.3576466|2.1434531|   La Marina de Port|         false|                  NULL|       18|     sale|             NULL| 154000.0|     2369.0|    91578502|        flat|    3|      false| 65.0|          good|       NULL|La Marina del Por...|Piso en Calle de ...|            false|    flat|
+|{6673128a4028e700...|    barrio Pedralbes|        6|     801|     Les Corts|    true|         VB1911012-5|    1| false|    false|   true|           true|   true|     false|   false|                         true|41.3922277|2.1170429|           Pedralbes|         false|                  NULL|       40|     sale|             NULL|2400000.0|     7643.0|    91669550|        flat|    5|      false|314.0|          good|       NULL|Pedralbes, Barcelona|                Piso|            false|    flat|
+|{6673128a4028e700...|Calle de Sabino A...|        3|     682|     Les Corts|    true|          142A62AS25|    5| false|    false|   true|           NULL|  false|     false|   false|                         NULL|41.3876084| 2.126945|La Maternitat i S...|         false|                  NULL|       36|     sale|             NULL| 690000.0|     4929.0|    92588837|        flat|    4|      false|140.0|          good|       NULL|La Maternitat i S...|Piso en Calle de ...|            false|    flat|
++--------------------+--------------------+---------+--------+--------------+--------+--------------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+--------------+-----------+--------------------+--------------------+-----------------+--------+
+only showing top 20 rows
+
+2024-06-19 21:53:50,536 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 21:53:50,673 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667312844028e700...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667312844028e700...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667312844028e700...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667312844028e700...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667312844028e700...|        Sant Andreu|       Baró de Viver| 2343|2011|
+|151.7|{667312844028e700...|           Eixample| Dreta de l'Eixample|43206|2011|
+| 85.8|{667312844028e700...|     Horta-Guinardó|         El Guinardó|35673|2011|
+| 53.0|{667312844028e700...|     Sants-Montjuïc|La Marina del Pra...| 1065|2011|
+| 65.0|{667312844028e700...|         Sant Martí|Sant Martí de Pro...|26178|2011|
+| 76.1|{667312844028e700...|     Sants-Montjuïc|         Hostafrancs|15955|2011|
+|121.3|{667312844028e700...|           Eixample|L'Antiga Esquerra...|41653|2011|
+| 90.9|{667312844028e700...|         Sant Martí|El Parc i la Llac...|13772|2011|
+| 72.3|{667312844028e700...|         Nou Barris|Vilapicina i la T...|25515|2011|
+| 98.8|{667312844028e700...|       Ciutat Vella|      Gothic Quarter|17257|2011|
+| 53.2|{667312844028e700...|         Nou Barris|            Vallbona| 1381|2011|
+| 98.2|{667312844028e700...|             Gràcia|Camp d'en Grassot...|34497|2011|
+|246.0|{667312844028e700...|          Les Corts|           Pedralbes|11629|2011|
+| 81.2|{667312844028e700...|     Horta-Guinardó|Sant Genís dels A...| 6977|2011|
+| 78.0|{667312844028e700...|        Sant Andreu|Sant Andreu de Pa...|55902|2011|
+| 58.6|{667312844028e700...|         Nou Barris| El Turó de la Peira|15270|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 20 rows
+
+2024-06-19 21:53:50,674 - data_management - INFO - Joining tables...
+2024-06-19 21:53:50,734 - data_management - INFO - The number of columns in the joined DataFrame: 40
+2024-06-19 21:53:50,774 - data_management - INFO - The number of columns in the joined DataFrame: 51
+2024-06-19 21:53:51,592 - data_management - INFO - Shape of DataFrame before indexing: (5667, 51)
+2024-06-19 21:53:51,593 - data_management - INFO - Tables joined!
+2024-06-19 21:53:51,593 - data_management - INFO - Selecting features...
+2024-06-19 21:53:51,593 - data_management - ERROR - Error occurred during data prediction: 'PredictiveAnalysis' object has no attribute '_selectFeatures'
+2024-06-19 22:02:48,381 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:02:48,454 - data_management - INFO - Starting data prediction process
+2024-06-19 22:02:48,457 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 22:02:49,964 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 22:02:49,964 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 22:02:50,326 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 22:02:50,327 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 22:02:50,423 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 22:02:50,436 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,zqa:string>
+2024-06-19 22:02:51,196 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|      district|  neighborhood|          nom_cabina|            ubicacio|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Urbana|   Fons|               8|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|Trànsit|               6|     44|41.3987|  2.1534|{6673129b4028e700...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|              12|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|   Fons|               8|     42|41.3788|  2.1331|{6673129b4028e700...|       ID| 8019042|Sants-Montjuïc|         Sants|   Barcelona - Sants|Jardins de Can Ma...|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+only showing top 5 rows
+
+2024-06-19 22:02:51,197 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 22:02:51,524 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|distance|district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|       neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|    price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673128a4028e700...|barrio La Dreta d...|        3|     501|Eixample|   false|         W-02JSFC|    1| false|    false|   true|           true|   true|     false|   false|                         true|41.3966291|2.1617948|Dreta de l'Eixample|         false|                  NULL|       31|     sale|             NULL|1500000.0|    10000.0|    92847091|        flat|    3|      false|150.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        1|     110|  Gràcia|   false|         W-02JUTK|    1|  true|    false|  false|           NULL|   true|     false|   false|                         NULL|41.4017637|2.1628004|     Vila de Gràcia|         false|                  NULL|       24|     sale|             NULL| 395000.0|     3496.0|    91332200|        flat|    4|      false|113.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio La Dreta d...|        2|     800|Eixample|    true|            V1644|    4|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3953328| 2.167456|Dreta de l'Eixample|         false|                  NULL|       26|     sale|             NULL| 435000.0|     4065.0|    91748693|        flat|    4|      false|107.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        1|     635|  Gràcia|   false|         W-02FPFP|   bj| false|    false|  false|           NULL|   true|     false|   false|                         NULL|41.4024589|2.1543641|     Vila de Gràcia|         false|                  NULL|       32|     sale|             NULL| 500000.0|     4854.0|    91535815|        flat|    2|      false|103.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        2|     502|  Gràcia|   false|         W-02ECLK|   bj| false|     true|  false|           true|   true|     false|   false|                         true|41.4005828|2.1558008|     Vila de Gràcia|         false|                  NULL|       36|     sale|             NULL| 750000.0|     3713.0|    85493774|        flat|    1|      false|202.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 22:02:51,524 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 22:02:51,660 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667312844028e700...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667312844028e700...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667312844028e700...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667312844028e700...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667312844028e700...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 22:02:51,660 - data_management - INFO - Joining tables...
+2024-06-19 22:02:51,710 - data_management - INFO - The number of columns in the joined DataFrame: 40
+2024-06-19 22:02:51,738 - data_management - INFO - The number of columns in the joined DataFrame: 51
+2024-06-19 22:02:52,550 - data_management - INFO - Shape of DataFrame before indexing: (5667, 51)
+2024-06-19 22:02:52,550 - data_management - INFO - Tables joined!
+2024-06-19 22:02:52,550 - data_management - INFO - Selecting features...
+2024-06-19 22:02:52,579 - data_management - INFO - Features selected!
+2024-06-19 22:02:52,579 - data_management - INFO - Cleaning data...
+2024-06-19 22:03:06,514 - data_management - INFO - Columns with NA values to be dropped: ['externalReference', 'floor', 'hasLift', 'hasParkingSpace', 'isParkingSpaceIncludedInPrice', 'newDevelopmentFinished', 'parkingSpacePrice', 'subTypology']
+2024-06-19 22:03:06,811 - data_management - INFO - Shape of DataFrame before indexing: (5667, 41)
+2024-06-19 22:03:06,811 - data_management - INFO - Data cleaned!
+2024-06-19 22:03:06,811 - data_management - ERROR - Error occurred during data prediction: 'DataFrame' object has no attribute 'self'
+2024-06-19 22:04:54,859 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:04:54,945 - data_management - INFO - Starting data prediction process
+2024-06-19 22:04:54,948 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 22:04:56,713 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 22:04:56,713 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 22:04:57,099 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 22:04:57,099 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 22:04:57,202 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 22:04:57,216 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,zqa:string>
+2024-06-19 22:04:57,962 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|      district|  neighborhood|          nom_cabina|            ubicacio|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Urbana|   Fons|               8|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|Trànsit|               6|     44|41.3987|  2.1534|{6673129b4028e700...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|              12|     57|41.3875|  2.1151|{6673129b4028e700...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{6673129b4028e700...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|   Fons|               8|     42|41.3788|  2.1331|{6673129b4028e700...|       ID| 8019042|Sants-Montjuïc|         Sants|   Barcelona - Sants|Jardins de Can Ma...|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+only showing top 5 rows
+
+2024-06-19 22:04:57,963 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 22:04:58,229 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|distance|district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|       neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|    price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673128a4028e700...|barrio La Dreta d...|        3|     501|Eixample|   false|         W-02JSFC|    1| false|    false|   true|           true|   true|     false|   false|                         true|41.3966291|2.1617948|Dreta de l'Eixample|         false|                  NULL|       31|     sale|             NULL|1500000.0|    10000.0|    92847091|        flat|    3|      false|150.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        1|     110|  Gràcia|   false|         W-02JUTK|    1|  true|    false|  false|           NULL|   true|     false|   false|                         NULL|41.4017637|2.1628004|     Vila de Gràcia|         false|                  NULL|       24|     sale|             NULL| 395000.0|     3496.0|    91332200|        flat|    4|      false|113.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio La Dreta d...|        2|     800|Eixample|    true|            V1644|    4|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3953328| 2.167456|Dreta de l'Eixample|         false|                  NULL|       26|     sale|             NULL| 435000.0|     4065.0|    91748693|        flat|    4|      false|107.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        1|     635|  Gràcia|   false|         W-02FPFP|   bj| false|    false|  false|           NULL|   true|     false|   false|                         NULL|41.4024589|2.1543641|     Vila de Gràcia|         false|                  NULL|       32|     sale|             NULL| 500000.0|     4854.0|    91535815|        flat|    2|      false|103.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673128a4028e700...|barrio Vila de Gr...|        2|     502|  Gràcia|   false|         W-02ECLK|   bj| false|     true|  false|           true|   true|     false|   false|                         true|41.4005828|2.1558008|     Vila de Gràcia|         false|                  NULL|       36|     sale|             NULL| 750000.0|     3713.0|    85493774|        flat|    1|      false|202.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 22:04:58,230 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 22:04:58,369 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667312844028e700...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667312844028e700...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667312844028e700...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667312844028e700...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667312844028e700...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 22:04:58,369 - data_management - INFO - Joining tables...
+2024-06-19 22:04:58,413 - data_management - INFO - The number of columns in the joined DataFrame: 40
+2024-06-19 22:04:58,444 - data_management - INFO - The number of columns in the joined DataFrame: 51
+2024-06-19 22:04:59,214 - data_management - INFO - Shape of DataFrame before indexing: (5667, 51)
+2024-06-19 22:04:59,214 - data_management - INFO - Tables joined!
+2024-06-19 22:04:59,214 - data_management - INFO - Selecting features...
+2024-06-19 22:04:59,240 - data_management - INFO - Features selected!
+2024-06-19 22:04:59,240 - data_management - INFO - Cleaning data...
+2024-06-19 22:05:13,218 - data_management - INFO - Columns with NA values to be dropped: ['externalReference', 'floor', 'hasLift', 'hasParkingSpace', 'isParkingSpaceIncludedInPrice', 'newDevelopmentFinished', 'parkingSpacePrice', 'subTypology']
+2024-06-19 22:05:13,514 - data_management - INFO - Shape of DataFrame before indexing: (5667, 41)
+2024-06-19 22:05:13,514 - data_management - INFO - Data cleaned!
+2024-06-19 22:05:13,514 - data_management - INFO - Building model...
+2024-06-19 22:05:13,796 - data_management - INFO - Indexing categorical features...
+2024-06-19 22:05:21,116 - data_management - INFO - Assembeling vectors...
+2024-06-19 22:05:21,119 - data_management - INFO - Creating pipeline...
+2024-06-19 22:05:22,989 - data_management - INFO - Fitting model...
+2024-06-19 22:05:26,715 - data_management - INFO - Root Mean Squared Error (RMSE): 559963.0340821416
+2024-06-19 22:05:27,379 - data_management - INFO - R2: 0.8698350814918316
+2024-06-19 22:05:27,379 - data_management - INFO - Saving model...
+2024-06-19 22:05:27,888 - data_management - INFO - Model saved to DuckDB:
+2024-06-19 22:05:27,888 - data_management - INFO -                                                model
+0  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+1  [99, 114, 99, 0, 0, 0, 2, 0, 99, 114, 99, 0, 0...
+2  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+3  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+4  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+2024-06-19 22:05:27,895 - data_management - INFO - Saving model to MongoDB...
+2024-06-19 22:05:51,053 - data_management - INFO - Data written to collection 'ExploitationZone' in database 'test'
+2024-06-19 22:05:51,520 - data_management - INFO - Finished succesfully data prediction process
+2024-06-19 22:06:05,056 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:06:05,127 - data_management - INFO - Starting data formatting process
+2024-06-19 22:06:05,127 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 22:06:06,818 - data_management - INFO - Airquality data loaded!
+2024-06-19 22:06:06,818 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 22:06:06,921 - data_management - INFO - Income data loaded!
+2024-06-19 22:06:06,921 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 22:06:07,061 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 22:06:07,062 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 22:06:13,067 - data_management - INFO - Idealista data loaded!
+2024-06-19 22:06:13,067 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-19 22:06:13,067 - data_management - INFO - Starting reconciliate process...
+2024-06-19 22:06:13,282 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-19 22:06:24,524 - data_management - INFO - Idealista after merge columns: ['propertyCode', 'propertyType', 'subTypology', 'longitude', 'newDevelopment', 'status', 'distance', 'price', 'has3DTour', 'topNewDevelopment', 'exterior', 'size', 'title', 'has360', 'bathrooms', 'hasVideo', 'externalReference', 'district', 'hasPlan', 'isParkingSpaceIncludedInPrice', 'latitude', 'hasLift', 'hasParkingSpace', 'priceByArea', 'hasStaging', 'numPhotos', 'operation', 'newDevelopmentFinished', 'subtitle', 'rooms', 'floor', 'typology', 'parkingSpacePrice', 'showAddress', 'address', 'neighborhood']
+2024-06-19 22:06:24,733 - data_management - INFO - Airqual after merge columns: ['Codi_Contaminant', 'district', 'Estacio', 'Clas_2', 'codi_eoi', 'Clas_1', 'ubicacio', 'codi_dtes', 'nom_cabina', 'Longitud', 'zqa', 'Latitud', 'neighborhood']
+2024-06-19 22:06:24,734 - data_management - INFO - Data reconciliated
+2024-06-19 22:06:24,734 - data_management - ERROR - Error formatting data
+Traceback (most recent call last):
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/dataFormatter.py", line 176, in main
+    self.dfs = {key: self.clean_data(df) for key, df in merged_dfs.items()}
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'DataFormatter' object has no attribute 'clean_data'. Did you mean: '_clean_data'?
+2024-06-19 22:06:24,735 - data_management - INFO - Finished succesfully data formatting process
+2024-06-19 22:08:33,007 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:08:33,090 - data_management - INFO - Starting data formatting process
+2024-06-19 22:08:33,090 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 22:08:34,960 - data_management - INFO - Airquality data loaded!
+2024-06-19 22:08:34,960 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 22:08:35,045 - data_management - INFO - Income data loaded!
+2024-06-19 22:08:35,045 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 22:08:35,185 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 22:08:35,185 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 22:08:39,589 - data_management - INFO - Idealista data loaded!
+2024-06-19 22:08:39,589 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-19 22:08:39,589 - data_management - INFO - Starting reconciliate process...
+2024-06-19 22:08:39,795 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-19 22:08:51,518 - data_management - INFO - Idealista after merge columns: ['distance', 'has3DTour', 'priceByArea', 'numPhotos', 'hasVideo', 'topNewDevelopment', 'bathrooms', 'exterior', 'size', 'district', 'hasStaging', 'floor', 'address', 'showAddress', 'price', 'title', 'propertyCode', 'parkingSpacePrice', 'has360', 'subtitle', 'hasLift', 'typology', 'hasParkingSpace', 'newDevelopmentFinished', 'isParkingSpaceIncludedInPrice', 'hasPlan', 'rooms', 'propertyType', 'longitude', 'subTypology', 'newDevelopment', 'status', 'externalReference', 'operation', 'latitude', 'neighborhood']
+2024-06-19 22:08:51,778 - data_management - INFO - Airqual after merge columns: ['codi_dtes', 'Estacio', 'ubicacio', 'Clas_1', 'district', 'Longitud', 'Latitud', 'zqa', 'Codi_Contaminant', 'nom_cabina', 'codi_eoi', 'Clas_2', 'neighborhood']
+2024-06-19 22:08:51,779 - data_management - INFO - Data reconciliated
+2024-06-19 22:08:51,779 - data_management - INFO - Starting cleaning data...
+2024-06-19 22:08:51,780 - data_management - INFO - Data cleaned!
+2024-06-19 22:08:51,780 - data_management - INFO - Starting cleaning data...
+2024-06-19 22:08:51,781 - data_management - INFO - Data cleaned!
+2024-06-19 22:08:51,781 - data_management - INFO - Starting cleaning data...
+2024-06-19 22:08:51,782 - data_management - INFO - Data cleaned!
+2024-06-19 22:08:51,782 - data_management - INFO - Starting final join...
+2024-06-19 22:08:51,791 - data_management - INFO - Data joined!
+2024-06-19 22:08:51,791 - data_management - INFO - Columns of the final join are: ['district', 'neighborhood', 'RFD', 'pop', 'year', 'distance', 'has3DTour', 'priceByArea', 'numPhotos', 'hasVideo', 'topNewDevelopment', 'bathrooms', 'exterior', 'size', 'hasStaging', 'floor', 'address', 'showAddress', 'price', 'title', 'propertyCode', 'parkingSpacePrice', 'has360', 'subtitle', 'hasLift', 'typology', 'hasParkingSpace', 'newDevelopmentFinished', 'isParkingSpaceIncludedInPrice', 'hasPlan', 'rooms', 'propertyType', 'longitude', 'subTypology', 'newDevelopment', 'status', 'externalReference', 'operation', 'latitude', 'codi_dtes', 'Estacio', 'ubicacio', 'Clas_1', 'Longitud', 'Latitud', 'zqa', 'Codi_Contaminant', 'nom_cabina', 'codi_eoi', 'Clas_2']
+2024-06-19 22:08:51,791 - data_management - INFO - Starting to load formatting data to MongoDB...
+2024-06-19 22:08:51,981 - data_management - INFO - Collection 'income' dropped from database 'test'
+2024-06-19 22:08:52,082 - data_management - INFO - Collection 'income' created in database 'test'
+2024-06-19 22:08:53,599 - data_management - INFO - Data written to collection 'income' in database 'test'
+2024-06-19 22:08:53,599 - data_management - INFO - Data written to collection 'income'
+2024-06-19 22:08:53,629 - data_management - INFO - Collection 'idealista' dropped from database 'test'
+2024-06-19 22:08:53,738 - data_management - INFO - Collection 'idealista' created in database 'test'
+2024-06-19 22:09:15,730 - data_management - INFO - Data written to collection 'idealista' in database 'test'
+2024-06-19 22:09:15,731 - data_management - INFO - Data written to collection 'idealista'
+2024-06-19 22:09:15,761 - data_management - INFO - Collection 'airqual' dropped from database 'test'
+2024-06-19 22:09:15,861 - data_management - INFO - Collection 'airqual' created in database 'test'
+2024-06-19 22:09:16,769 - data_management - INFO - Data written to collection 'airqual' in database 'test'
+2024-06-19 22:09:16,770 - data_management - INFO - Data written to collection 'airqual'
+2024-06-19 22:09:16,799 - data_management - INFO - Collection 'final' dropped from database 'test'
+2024-06-19 22:09:16,902 - data_management - INFO - Collection 'final' created in database 'test'
+2024-06-19 22:10:50,667 - data_management - INFO - Data written to collection 'final' in database 'test'
+2024-06-19 22:10:50,667 - data_management - INFO - Data written to collection 'final'
+2024-06-19 22:10:50,667 - data_management - INFO - Finished Formatting Data and loading it with success!
+2024-06-19 22:10:50,667 - data_management - INFO - Finished succesfully data formatting process
+2024-06-19 22:15:23,994 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:15:24,072 - data_management - INFO - Starting data prediction process
+2024-06-19 22:15:24,075 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 22:15:25,832 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 22:15:25,832 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 22:15:26,260 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 22:15:26,261 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 22:15:26,362 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 22:15:26,382 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,zqa:string>
+2024-06-19 22:15:27,216 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|      district|  neighborhood|          nom_cabina|            ubicacio|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Urbana|   Fons|               8|      4|41.4039|  2.2045|{66733aec780d8746...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|Trànsit|               6|     44|41.3987|  2.1534|{66733aec780d8746...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|              12|     57|41.3875|  2.1151|{66733aec780d8746...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{66733aec780d8746...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|   Fons|               8|     42|41.3788|  2.1331|{66733aec780d8746...|       ID| 8019042|Sants-Montjuïc|         Sants|   Barcelona - Sants|Jardins de Can Ma...|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+only showing top 5 rows
+
+2024-06-19 22:15:27,218 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 22:15:27,603 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|                 _id|             address|bathrooms|distance|district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|    price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|               title|topNewDevelopment|typology|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|{66733adb780d8746...|Calle de Pi i Mar...|        1|     618|  Gràcia|    true|          S-30616|   en| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4064735|2.1638712|Camp d'en Grassot...|         false|                  NULL|       54|     sale|             NULL| 369000.0|     3127.0|    92596940|        flat|    3|      false|118.0|  good|       NULL|El Camp d'En Gras...|Piso en Calle de ...|            false|    flat|
+|{66733adb780d8746...|    Calle de Còrsega|        2|     571|  Gràcia|   false|                b|    4|  true|    false|   true|           NULL|  false|     false|   false|                         NULL|41.3960798|2.1605514|      Vila de Gràcia|         false|                  NULL|       25|     sale|             NULL|1080000.0|     5714.0|    91420072|        flat|    3|      false|189.0|  good|       NULL|Vila de Gràcia, B...|Piso en Calle de ...|            false|    flat|
+|{66733adb780d8746...|barrio La Dreta d...|        2|     539|Eixample|   false|         W-02JWIR|    6| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3963295| 2.162695| Dreta de l'Eixample|         false|                  NULL|       34|     sale|             NULL| 495000.0|     4901.0|    91605426|        flat|    3|      false|101.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66733adb780d8746...|barrio La Dreta d...|        3|     212|Eixample|    true|         BCN06337|    2| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4013436|2.1643126| Dreta de l'Eixample|         false|                  NULL|       23|     sale|             NULL| 745000.0|     5478.0|    91903984|        flat|    4|      false|136.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66733adb780d8746...|barrio La Dreta d...|        2|     662|Eixample|   false|         W-02K89V|    1| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3987511|2.1690591| Dreta de l'Eixample|         false|                  NULL|       30|     sale|             NULL| 840000.0|     5091.0|    91535984|        flat|    4|      false|165.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 22:15:27,604 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 22:15:27,750 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{66733ad4780d8746...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{66733ad4780d8746...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{66733ad4780d8746...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{66733ad4780d8746...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{66733ad4780d8746...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 22:15:27,750 - data_management - INFO - Joining tables...
+2024-06-19 22:15:27,806 - data_management - INFO - The number of columns in the joined DataFrame: 40
+2024-06-19 22:15:27,853 - data_management - INFO - The number of columns in the joined DataFrame: 51
+2024-06-19 22:15:28,703 - data_management - INFO - Shape of DataFrame before indexing: (5667, 51)
+2024-06-19 22:15:28,703 - data_management - INFO - Tables joined!
+2024-06-19 22:15:28,703 - data_management - INFO - Selecting features...
+2024-06-19 22:15:28,744 - data_management - INFO - Features selected!
+2024-06-19 22:15:28,744 - data_management - INFO - Cleaning data...
+2024-06-19 22:15:42,997 - data_management - INFO - Columns with NA values to be dropped: ['externalReference', 'floor', 'hasLift', 'hasParkingSpace', 'isParkingSpaceIncludedInPrice', 'newDevelopmentFinished', 'parkingSpacePrice', 'subTypology']
+2024-06-19 22:15:43,301 - data_management - INFO - Shape of DataFrame before indexing: (5667, 41)
+2024-06-19 22:15:43,301 - data_management - INFO - Data cleaned!
+2024-06-19 22:15:43,301 - data_management - INFO - Building model...
+2024-06-19 22:15:43,590 - data_management - INFO - Indexing categorical features...
+2024-06-19 22:15:50,760 - data_management - INFO - Assembeling vectors...
+2024-06-19 22:15:50,763 - data_management - INFO - Creating pipeline...
+2024-06-19 22:15:52,691 - data_management - INFO - Fitting model...
+2024-06-19 22:15:56,144 - data_management - INFO - Root Mean Squared Error (RMSE): 559963.0340821416
+2024-06-19 22:15:56,747 - data_management - INFO - R2: 0.8698350814918316
+2024-06-19 22:15:56,747 - data_management - INFO - Saving model...
+2024-06-19 22:15:57,315 - data_management - INFO - Model saved to DuckDB:
+2024-06-19 22:15:57,315 - data_management - INFO -                                                model
+0  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+1  [99, 114, 99, 0, 0, 0, 2, 0, 99, 114, 99, 0, 0...
+2  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+3  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+4  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+2024-06-19 22:15:57,320 - data_management - INFO - Saving model to MongoDB...
+2024-06-19 22:16:20,473 - data_management - INFO - Data written to collection 'ExploitationZone' in database 'test'
+2024-06-19 22:16:20,954 - data_management - INFO - Finished succesfully data prediction process
+2024-06-19 22:19:58,153 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:19:58,217 - data_management - INFO - Starting data visualization process
+2024-06-19 22:19:58,217 - data_management - ERROR - Error occurred during data visualization: 'DescriptiveAnalysis' object has no attribute '_connectDuckDB'
+2024-06-19 22:20:26,838 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:20:26,893 - data_management - INFO - Starting data visualization process
+2024-06-19 22:20:26,893 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 22:20:29,111 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 22:20:29,111 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 22:20:29,468 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 22:20:29,469 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 22:20:29,567 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 22:20:29,579 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,zqa:string>
+2024-06-19 22:20:30,297 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|      district|  neighborhood|          nom_cabina|            ubicacio|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+|Urbana|   Fons|               8|      4|41.4039|  2.2045|{66733aec780d8746...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|Trànsit|               6|     44|41.3987|  2.1534|{66733aec780d8746...|       IJ| 8019044|        Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|  1|
+|Urbana|   Fons|              12|     57|41.3875|  2.1151|{66733aec780d8746...|       IZ| 8019057|     Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{66733aec780d8746...|       I2| 8019004|    Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|  1|
+|Urbana|   Fons|               8|     42|41.3788|  2.1331|{66733aec780d8746...|       ID| 8019042|Sants-Montjuïc|         Sants|   Barcelona - Sants|Jardins de Can Ma...|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+--------------+--------------+--------------------+--------------------+---+
+only showing top 5 rows
+
+2024-06-19 22:20:30,298 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 22:20:30,553 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|                 _id|             address|bathrooms|distance|district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|    price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|               title|topNewDevelopment|typology|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|{66733adb780d8746...|Calle de Pi i Mar...|        1|     618|  Gràcia|    true|          S-30616|   en| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4064735|2.1638712|Camp d'en Grassot...|         false|                  NULL|       54|     sale|             NULL| 369000.0|     3127.0|    92596940|        flat|    3|      false|118.0|  good|       NULL|El Camp d'En Gras...|Piso en Calle de ...|            false|    flat|
+|{66733adb780d8746...|    Calle de Còrsega|        2|     571|  Gràcia|   false|                b|    4|  true|    false|   true|           NULL|  false|     false|   false|                         NULL|41.3960798|2.1605514|      Vila de Gràcia|         false|                  NULL|       25|     sale|             NULL|1080000.0|     5714.0|    91420072|        flat|    3|      false|189.0|  good|       NULL|Vila de Gràcia, B...|Piso en Calle de ...|            false|    flat|
+|{66733adb780d8746...|barrio La Dreta d...|        2|     539|Eixample|   false|         W-02JWIR|    6| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3963295| 2.162695| Dreta de l'Eixample|         false|                  NULL|       34|     sale|             NULL| 495000.0|     4901.0|    91605426|        flat|    3|      false|101.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66733adb780d8746...|barrio La Dreta d...|        3|     212|Eixample|    true|         BCN06337|    2| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4013436|2.1643126| Dreta de l'Eixample|         false|                  NULL|       23|     sale|             NULL| 745000.0|     5478.0|    91903984|        flat|    4|      false|136.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66733adb780d8746...|barrio La Dreta d...|        2|     662|Eixample|   false|         W-02K89V|    1| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3987511|2.1690591| Dreta de l'Eixample|         false|                  NULL|       30|     sale|             NULL| 840000.0|     5091.0|    91535984|        flat|    4|      false|165.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
++--------------------+--------------------+---------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 22:20:30,553 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 22:20:30,686 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{66733ad4780d8746...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{66733ad4780d8746...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{66733ad4780d8746...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{66733ad4780d8746...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{66733ad4780d8746...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 22:20:30,686 - data_management - INFO - Finished succesfully data visualization process
+2024-06-19 22:55:45,564 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:55:45,892 - data_management - INFO - Starting data formatting process
+2024-06-19 22:56:11,040 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 22:56:12,972 - data_management - ERROR - Error loading data to PySpark
+Traceback (most recent call last):
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/formattedLoader.py", line 46, in main
+    df = df.withColumn('year', file_name[:4])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pyspark/sql/dataframe.py", line 5170, in withColumn
+    raise PySparkTypeError(
+pyspark.errors.exceptions.base.PySparkTypeError: [NOT_COLUMN] Argument `col` should be a Column, got str.
+2024-06-19 22:57:15,654 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:57:15,993 - data_management - INFO - Starting data formatting process
+2024-06-19 22:57:24,631 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 22:57:26,394 - data_management - ERROR - Error loading data to PySpark
+Traceback (most recent call last):
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/formattedLoader.py", line 46, in main
+    df = df.withColumn('year', file_name[:4])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pyspark/sql/dataframe.py", line 5170, in withColumn
+    raise PySparkTypeError(
+pyspark.errors.exceptions.base.PySparkTypeError: [NOT_COLUMN] Argument `col` should be a Column, got str.
+2024-06-19 22:57:26,396 - data_management - INFO - Starting reconciliate process...
+2024-06-19 22:57:26,396 - data_management - ERROR - Error formatting data
+Traceback (most recent call last):
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/dataFormatter.py", line 173, in main
+    merged_dfs = self._reconciliate_data()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/dataFormatter.py", line 29, in _reconciliate_data
+    df_income_list = list(self.dfs.get('income').values())
+                          ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2024-06-19 22:57:26,397 - data_management - INFO - Finished succesfully data formatting process
+2024-06-19 22:57:40,195 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:57:40,469 - data_management - INFO - Starting data formatting process
+2024-06-19 22:57:46,084 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 22:58:43,395 - data_management - INFO - Spark connection is successful!
+2024-06-19 22:58:43,698 - data_management - INFO - Starting data formatting process
+2024-06-19 22:58:48,625 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 23:01:32,882 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:01:33,200 - data_management - INFO - Starting data formatting process
+2024-06-19 23:01:35,496 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 23:01:37,379 - data_management - INFO - Airquality data loaded!
+2024-06-19 23:03:38,818 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:03:39,136 - data_management - INFO - Starting data formatting process
+2024-06-19 23:03:43,394 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 23:03:45,448 - data_management - INFO - Airquality data loaded!
+2024-06-19 23:04:46,547 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 23:04:46,653 - data_management - INFO - Income data loaded!
+2024-06-19 23:04:46,653 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 23:04:46,762 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 23:04:46,762 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 23:04:46,978 - data_management - ERROR - Error loading data to PySpark
+Traceback (most recent call last):
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/formattedLoader.py", line 68, in main
+    df = df.withColumn('date', lit(to_date(folder[:10], 'yyyy_MM_dd')))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pyspark/sql/dataframe.py", line 5174, in withColumn
+    return DataFrame(self._jdf.withColumn(colName, col._jc), self.sparkSession)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 185, in deco
+    raise converted from None
+pyspark.errors.exceptions.captured.AnalysisException: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column or function parameter with name `2021_02_22` cannot be resolved. Did you mean one of the following? [`address`, `country`, `distance`, `district`, `exterior`].;
+'Project [address#382, bathrooms#383L, country#384, detailedType#385, distance#386, district#387, exterior#388, externalReference#389, floor#390, has360#391, has3DTour#392, hasLift#393, hasPlan#394, hasStaging#395, hasVideo#396, latitude#397, longitude#398, municipality#399, neighborhood#400, newDevelopment#401, numPhotos#402L, operation#403, parkingSpace#404, price#405, ... 13 more fields]
++- Relation [address#382,bathrooms#383L,country#384,detailedType#385,distance#386,district#387,exterior#388,externalReference#389,floor#390,has360#391,has3DTour#392,hasLift#393,hasPlan#394,hasStaging#395,hasVideo#396,latitude#397,longitude#398,municipality#399,neighborhood#400,newDevelopment#401,numPhotos#402L,operation#403,parkingSpace#404,price#405,... 12 more fields] parquet
+
+2024-06-19 23:04:46,983 - data_management - INFO - Starting reconciliate process...
+2024-06-19 23:04:46,983 - data_management - ERROR - Error formatting data
+Traceback (most recent call last):
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/dataFormatter.py", line 173, in main
+    merged_dfs = self._reconciliate_data()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/airdac/Documents/GitHub/bdm_p2/utils/dataFormatter.py", line 29, in _reconciliate_data
+    df_income_list = list(self.dfs.get('income').values())
+                          ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2024-06-19 23:04:46,984 - data_management - INFO - Finished succesfully data formatting process
+2024-06-19 23:05:03,064 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:05:03,385 - data_management - INFO - Starting data formatting process
+2024-06-19 23:05:03,385 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 23:05:05,200 - data_management - INFO - Airquality data loaded!
+2024-06-19 23:05:07,404 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 23:05:08,862 - data_management - INFO - Income data loaded!
+2024-06-19 23:05:09,602 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 23:05:11,216 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 23:05:11,625 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 23:08:52,514 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:08:52,839 - data_management - INFO - Starting data formatting process
+2024-06-19 23:08:52,840 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 23:08:54,796 - data_management - INFO - Airquality data loaded!
+2024-06-19 23:09:07,047 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 23:09:07,147 - data_management - INFO - Income data loaded!
+2024-06-19 23:09:07,147 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 23:09:07,282 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 23:09:07,282 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 23:09:10,980 - data_management - INFO - Idealista data loaded!
+2024-06-19 23:10:45,663 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-19 23:10:45,665 - data_management - INFO - Starting reconciliate process...
+2024-06-19 23:10:48,560 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-19 23:11:01,726 - data_management - INFO - Idealista after merge columns: ['isParkingSpaceIncludedInPrice', 'newDevelopment', 'hasPlan', 'hasParkingSpace', 'latitude', 'numPhotos', 'showAddress', 'externalReference', 'size', 'longitude', 'propertyType', 'typology', 'hasStaging', 'priceByArea', 'topNewDevelopment', 'newDevelopmentFinished', 'parkingSpacePrice', 'has360', 'exterior', 'propertyCode', 'address', 'bathrooms', 'has3DTour', 'rooms', 'title', 'floor', 'distance', 'status', 'date', 'subtitle', 'hasLift', 'operation', 'district', 'price', 'subTypology', 'hasVideo', 'neighborhood']
+2024-06-19 23:11:31,939 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:11:32,021 - data_management - INFO - Starting data formatting process
+2024-06-19 23:11:32,021 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 23:11:34,078 - data_management - INFO - Airquality data loaded!
+2024-06-19 23:11:34,079 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 23:11:34,175 - data_management - INFO - Income data loaded!
+2024-06-19 23:11:34,175 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 23:11:34,331 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 23:11:34,331 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 23:11:38,900 - data_management - INFO - Idealista data loaded!
+2024-06-19 23:11:38,900 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-19 23:11:38,900 - data_management - INFO - Starting reconciliate process...
+2024-06-19 23:11:39,139 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-19 23:11:50,965 - data_management - INFO - Idealista after merge columns: ['topNewDevelopment', 'operation', 'newDevelopmentFinished', 'price', 'status', 'district', 'exterior', 'hasPlan', 'title', 'has360', 'hasVideo', 'rooms', 'propertyType', 'floor', 'subTypology', 'newDevelopment', 'priceByArea', 'has3DTour', 'address', 'latitude', 'hasParkingSpace', 'isParkingSpaceIncludedInPrice', 'size', 'numPhotos', 'hasLift', 'date', 'typology', 'distance', 'parkingSpacePrice', 'bathrooms', 'externalReference', 'propertyCode', 'showAddress', 'hasStaging', 'subtitle', 'longitude', 'neighborhood']
+2024-06-19 23:11:51,182 - data_management - INFO - Airqual after merge columns: ['ubicacio', 'Codi_Contaminant', 'codi_dtes', 'Clas_1', 'nom_cabina', 'year', 'Longitud', 'Clas_2', 'zqa', 'Estacio', 'district', 'Latitud', 'codi_eoi', 'neighborhood']
+2024-06-19 23:11:51,182 - data_management - INFO - Data reconciliated
+2024-06-19 23:11:51,183 - data_management - INFO - Starting cleaning data...
+2024-06-19 23:11:51,184 - data_management - INFO - Data cleaned!
+2024-06-19 23:11:51,184 - data_management - INFO - Starting cleaning data...
+2024-06-19 23:11:51,185 - data_management - INFO - Data cleaned!
+2024-06-19 23:11:51,185 - data_management - INFO - Starting cleaning data...
+2024-06-19 23:11:51,185 - data_management - INFO - Data cleaned!
+2024-06-19 23:11:51,185 - data_management - INFO - Starting final join...
+2024-06-19 23:11:51,195 - data_management - INFO - Data joined!
+2024-06-19 23:11:51,195 - data_management - INFO - Columns of the final join are: ['district', 'neighborhood', 'RFD', 'pop', 'year', 'topNewDevelopment', 'operation', 'newDevelopmentFinished', 'price', 'status', 'exterior', 'hasPlan', 'title', 'has360', 'hasVideo', 'rooms', 'propertyType', 'floor', 'subTypology', 'newDevelopment', 'priceByArea', 'has3DTour', 'address', 'latitude', 'hasParkingSpace', 'isParkingSpaceIncludedInPrice', 'size', 'numPhotos', 'hasLift', 'date', 'typology', 'distance', 'parkingSpacePrice', 'bathrooms', 'externalReference', 'propertyCode', 'showAddress', 'hasStaging', 'subtitle', 'longitude', 'ubicacio', 'Codi_Contaminant', 'codi_dtes', 'Clas_1', 'nom_cabina', 'year', 'Longitud', 'Clas_2', 'zqa', 'Estacio', 'Latitud', 'codi_eoi']
+2024-06-19 23:11:51,195 - data_management - INFO - Starting to load formatting data to MongoDB...
+2024-06-19 23:11:51,409 - data_management - INFO - Collection 'income' dropped from database 'test'
+2024-06-19 23:11:51,523 - data_management - INFO - Collection 'income' created in database 'test'
+2024-06-19 23:11:52,871 - data_management - INFO - Data written to collection 'income' in database 'test'
+2024-06-19 23:11:52,872 - data_management - INFO - Data written to collection 'income'
+2024-06-19 23:11:52,906 - data_management - INFO - Collection 'idealista' dropped from database 'test'
+2024-06-19 23:11:53,018 - data_management - INFO - Collection 'idealista' created in database 'test'
+2024-06-19 23:12:15,886 - data_management - INFO - Data written to collection 'idealista' in database 'test'
+2024-06-19 23:12:15,887 - data_management - INFO - Data written to collection 'idealista'
+2024-06-19 23:12:15,920 - data_management - INFO - Collection 'airqual' dropped from database 'test'
+2024-06-19 23:12:16,032 - data_management - INFO - Collection 'airqual' created in database 'test'
+2024-06-19 23:12:17,884 - data_management - INFO - Data written to collection 'airqual' in database 'test'
+2024-06-19 23:12:17,885 - data_management - INFO - Data written to collection 'airqual'
+2024-06-19 23:12:17,918 - data_management - INFO - Collection 'final' dropped from database 'test'
+2024-06-19 23:12:18,032 - data_management - INFO - Collection 'final' created in database 'test'
+2024-06-19 23:13:50,445 - data_management - INFO - Data written to collection 'final' in database 'test'
+2024-06-19 23:13:50,447 - data_management - INFO - Data written to collection 'final'
+2024-06-19 23:13:50,447 - data_management - INFO - Finished Formatting Data and loading it with success!
+2024-06-19 23:13:50,447 - data_management - INFO - Finished succesfully data formatting process
+2024-06-19 23:20:43,157 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:20:43,482 - data_management - INFO - Starting data prediction process
+2024-06-19 23:20:43,487 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:20:45,258 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:20:45,258 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:20:45,544 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:20:45,545 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:20:45,641 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:20:45,656 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:20:46,565 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:20:46,567 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:20:46,855 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:20:46,855 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:20:46,974 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:20:46,975 - data_management - INFO - Joining tables...
+2024-06-19 23:39:48,290 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:39:48,368 - data_management - INFO - Starting data prediction process
+2024-06-19 23:39:48,370 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:39:49,847 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:39:49,848 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:39:50,134 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:39:50,134 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:39:50,215 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:39:50,229 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:39:51,038 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:39:51,039 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:39:51,311 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:39:51,312 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:39:51,429 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:39:51,429 - data_management - INFO - Joining tables...
+2024-06-19 23:39:51,507 - data_management - INFO - The number of columns in the joined DataFrame: 41
+2024-06-19 23:39:51,546 - data_management - INFO - The number of columns in the joined DataFrame: 52
+2024-06-19 23:39:52,410 - data_management - INFO - Shape of DataFrame before indexing: (0, 52)
+2024-06-19 23:39:52,410 - data_management - INFO - Tables joined!
+2024-06-19 23:39:52,410 - data_management - INFO - Selecting features...
+2024-06-19 23:39:52,433 - data_management - INFO - Features selected!
+2024-06-19 23:39:52,433 - data_management - INFO - Cleaning data...
+2024-06-19 23:40:06,497 - data_management - INFO - Columns with NA values to be dropped: []
+2024-06-19 23:40:06,802 - data_management - INFO - Shape of DataFrame before indexing: (0, 50)
+2024-06-19 23:40:06,802 - data_management - INFO - Data cleaned!
+2024-06-19 23:40:06,802 - data_management - INFO - Building model...
+2024-06-19 23:40:07,083 - data_management - INFO - Data is empty!
+2024-06-19 23:40:07,083 - data_management - INFO - Indexing categorical features...
+2024-06-19 23:40:15,400 - data_management - INFO - Assembeling vectors...
+2024-06-19 23:40:15,402 - data_management - INFO - Creating pipeline...
+2024-06-19 23:40:15,589 - data_management - ERROR - Error occurred during data prediction: Data type timestamp of column date is not supported.
+2024-06-19 23:41:24,566 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:41:24,874 - data_management - INFO - Starting data prediction process
+2024-06-19 23:41:24,877 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:41:26,339 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:41:26,339 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:41:26,618 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:41:26,619 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:41:26,716 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:41:26,730 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:41:27,465 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:41:27,466 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:41:27,743 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:41:27,744 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:41:27,874 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:41:27,874 - data_management - INFO - Joining tables...
+2024-06-19 23:41:33,795 - data_management - INFO - The number of columns in the joined DataFrame: 41
+2024-06-19 23:41:33,833 - data_management - INFO - The number of columns in the joined DataFrame: 52
+2024-06-19 23:41:34,977 - data_management - INFO - Shape of DataFrame before indexing: (0, 52)
+2024-06-19 23:41:34,977 - data_management - INFO - Tables joined!
+2024-06-19 23:41:34,977 - data_management - INFO - Selecting features...
+2024-06-19 23:41:35,007 - data_management - INFO - Features selected!
+2024-06-19 23:41:35,007 - data_management - INFO - Cleaning data...
+2024-06-19 23:41:49,618 - data_management - INFO - Columns with NA values to be dropped: []
+2024-06-19 23:41:49,945 - data_management - INFO - Shape of DataFrame before indexing: (0, 50)
+2024-06-19 23:41:49,946 - data_management - INFO - Data cleaned!
+2024-06-19 23:41:49,946 - data_management - INFO - Building model...
+2024-06-19 23:41:50,260 - data_management - INFO - Data is empty!
+2024-06-19 23:41:50,260 - data_management - INFO - Indexing categorical features...
+2024-06-19 23:41:59,008 - data_management - INFO - Assembeling vectors...
+2024-06-19 23:41:59,011 - data_management - INFO - Creating pipeline...
+2024-06-19 23:45:34,474 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:45:34,774 - data_management - INFO - Starting data prediction process
+2024-06-19 23:45:34,777 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:45:36,267 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:45:36,267 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:45:36,580 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:45:36,581 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:45:36,676 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:45:36,691 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:45:37,447 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:45:37,449 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:45:37,749 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:45:37,750 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:45:37,877 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:45:37,877 - data_management - INFO - Joining tables...
+2024-06-19 23:45:37,957 - data_management - INFO - The number of columns in the joined DataFrame: 41
+2024-06-19 23:45:38,013 - data_management - INFO - The number of columns in the joined DataFrame: 52
+2024-06-19 23:45:38,904 - data_management - INFO - Shape of DataFrame before indexing: (0, 52)
+2024-06-19 23:45:38,904 - data_management - INFO - Tables joined!
+2024-06-19 23:45:38,904 - data_management - INFO - Selecting features...
+2024-06-19 23:45:38,942 - data_management - INFO - Features selected!
+2024-06-19 23:45:38,942 - data_management - INFO - Cleaning data...
+2024-06-19 23:45:52,872 - data_management - INFO - Columns with NA values to be dropped: []
+2024-06-19 23:45:53,187 - data_management - INFO - Shape of DataFrame before indexing: (0, 50)
+2024-06-19 23:45:53,187 - data_management - INFO - Data cleaned!
+2024-06-19 23:45:53,187 - data_management - INFO - Building model...
+2024-06-19 23:45:53,459 - data_management - INFO - Data is empty!
+2024-06-19 23:45:53,460 - data_management - INFO - Indexing categorical features...
+2024-06-19 23:46:01,562 - data_management - INFO - Assembeling vectors...
+2024-06-19 23:46:01,565 - data_management - INFO - Creating pipeline...
+2024-06-19 23:47:52,586 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:47:52,891 - data_management - INFO - Starting data prediction process
+2024-06-19 23:47:52,893 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:47:55,090 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:47:55,090 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:47:55,366 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:47:55,367 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:47:55,464 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:47:55,481 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:47:56,244 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:47:56,246 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:47:56,549 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:47:56,550 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:47:56,689 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:47:56,690 - data_management - INFO - Joining tables...
+2024-06-19 23:47:56,780 - data_management - INFO - The number of columns in the joined DataFrame: 41
+2024-06-19 23:47:56,817 - data_management - INFO - The number of columns in the joined DataFrame: 52
+2024-06-19 23:47:57,679 - data_management - INFO - Shape of DataFrame before indexing: (0, 52)
+2024-06-19 23:47:57,680 - data_management - INFO - Tables joined!
+2024-06-19 23:47:57,680 - data_management - INFO - Selecting features...
+2024-06-19 23:47:57,715 - data_management - INFO - Features selected!
+2024-06-19 23:47:57,715 - data_management - INFO - Cleaning data...
+2024-06-19 23:48:27,046 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:48:27,338 - data_management - INFO - Starting data prediction process
+2024-06-19 23:48:27,341 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:48:28,787 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:48:28,787 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:48:29,089 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:48:29,090 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:48:29,194 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:48:29,210 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:48:29,989 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:48:29,991 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:48:30,299 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:48:30,300 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:48:30,438 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:48:30,438 - data_management - INFO - Joining tables...
+2024-06-19 23:48:30,518 - data_management - INFO - The number of columns in the joined DataFrame: 41
+2024-06-19 23:48:30,574 - data_management - INFO - The number of columns in the joined DataFrame: 52
+2024-06-19 23:49:51,765 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:49:52,058 - data_management - INFO - Starting data prediction process
+2024-06-19 23:49:52,061 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:49:53,639 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:49:53,639 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:49:53,972 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:49:53,972 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:49:54,074 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:49:54,090 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:49:54,905 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:49:54,908 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:49:55,234 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:49:55,235 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:49:55,387 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:49:55,388 - data_management - INFO - Joining tables...
+2024-06-19 23:55:19,660 - data_management - INFO - Spark connection is successful!
+2024-06-19 23:55:19,743 - data_management - INFO - Starting data prediction process
+2024-06-19 23:55:19,746 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-19 23:55:21,248 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-19 23:55:21,248 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-19 23:55:21,548 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-19 23:55:21,548 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-19 23:55:21,645 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-19 23:55:21,660 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-19 23:55:22,417 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{667349b03e38e154...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{667349b03e38e154...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{667349b03e38e154...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-19 23:55:22,418 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-19 23:55:22,695 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|           district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|        neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|   price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+|{6673499e3e38e154...|barrio Sant Gerva...|        3|2021-02-22 00:00:00|     832|Sarrià-Sant Gervasi|    true|            14092|    1| false|     true|   true|           NULL|   true|     false|   false|                         NULL|41.3956444|2.1549884|Sant Gervasi – Ga...|         false|                  NULL|       33|     sale|             NULL|999000.0|     3996.0|    89854790|        flat|    5|      false|250.0| renew|       NULL|Sant Gervasi - Ga...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     805|           Eixample|    true|         BCN06436|    1|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3940567|2.1597249| Dreta de l'Eixample|         false|                  NULL|       22|     sale|             NULL|990000.0|     5156.0|    91627282|        flat|    5|      false|192.0| renew|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     802|           Eixample|    true|         BCN06262|    3|  true|     true|   true|           NULL|   true|     false|    true|                         NULL|41.3951624|2.1671727| Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|920000.0|     6216.0|    87780999|        flat|    3|      false|148.0|  good|       NULL|La Dreta de l'Eix...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio Vila de Gr...|        1|2021-02-22 00:00:00|     225|             Gràcia|    true|        VB2103013|    1| false|    false|  false|           NULL|   true|     false|    true|                         NULL|41.4019072|2.1592846|      Vila de Gràcia|         false|                  NULL|       39|     sale|             NULL|395000.0|     5197.0|    93181159|        flat|    2|      false| 76.0|  good|       NULL|Vila de Gràcia, B...| Piso|            false|    flat|
+|{6673499e3e38e154...|barrio La Dreta d...|        4|2021-02-22 00:00:00|     621|           Eixample|   false|         W-02KD38| NULL| false|    false|   true|           true|   true|     false|   false|                         true|41.3959627|2.1589645| Dreta de l'Eixample|         false|                  NULL|       38|     sale|             NULL|   1.2E7|    17143.0|    92232387|   penthouse|    4|      false|700.0|  good|  penthouse|La Dreta de l'Eix...|Ático|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+-------------------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+--------------------+--------------+----------------------+---------+---------+-----------------+--------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+-----+-----------------+--------+
+only showing top 5 rows
+
+2024-06-19 23:55:22,695 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-19 23:55:22,815 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{667349983e38e154...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{667349983e38e154...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{667349983e38e154...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{667349983e38e154...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{667349983e38e154...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-19 23:55:22,815 - data_management - INFO - Joining tables...
+2024-06-19 23:55:22,898 - data_management - INFO - The number of columns in the joined DataFrame: 50
+2024-06-19 23:55:22,935 - data_management - INFO - The number of columns in the joined DataFrame: 52
+2024-06-19 23:55:23,747 - data_management - INFO - Shape of DataFrame before indexing: (261, 52)
+2024-06-19 23:55:23,747 - data_management - INFO - Tables joined!
+2024-06-19 23:55:23,747 - data_management - INFO - Selecting features...
+2024-06-19 23:55:23,772 - data_management - INFO - Features selected!
+2024-06-19 23:55:23,772 - data_management - INFO - Cleaning data...
+2024-06-19 23:55:37,037 - data_management - INFO - Columns with NA values to be dropped: ['externalReference', 'floor', 'hasLift', 'hasParkingSpace', 'isParkingSpaceIncludedInPrice', 'newDevelopmentFinished', 'parkingSpacePrice', 'subTypology']
+2024-06-19 23:55:37,345 - data_management - INFO - Shape of DataFrame before indexing: (261, 42)
+2024-06-19 23:55:37,345 - data_management - INFO - Data cleaned!
+2024-06-19 23:55:37,345 - data_management - INFO - Building model...
+2024-06-19 23:55:37,638 - data_management - INFO - Indexing categorical features...
+2024-06-19 23:55:45,243 - data_management - INFO - Assembeling vectors...
+2024-06-19 23:55:45,247 - data_management - INFO - Creating pipeline...
+2024-06-19 23:55:47,160 - data_management - INFO - Fitting model...
+2024-06-19 23:55:50,799 - data_management - INFO - Root Mean Squared Error (RMSE): 111698.07032135547
+2024-06-19 23:55:51,468 - data_management - INFO - R2: 0.9437314343651972
+2024-06-19 23:55:51,468 - data_management - INFO - Saving model...
+2024-06-19 23:55:51,971 - data_management - INFO - Model saved to DuckDB:
+2024-06-19 23:55:51,972 - data_management - INFO -                                                model
+0  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+1  [99, 114, 99, 0, 0, 0, 2, 0, 99, 114, 99, 0, 0...
+2  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+3  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+4  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+2024-06-19 23:55:51,976 - data_management - INFO - Saving model to MongoDB...
+2024-06-19 23:55:53,127 - data_management - INFO - Data written to collection 'ExploitationZone' in database 'test'
+2024-06-19 23:55:53,589 - data_management - INFO - Finished succesfully data prediction process

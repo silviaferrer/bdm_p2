@@ -1,4 +1,5 @@
 import os
+from pyspark.sql.functions import to_date, lit
 
 dir_path = os.getcwd()
 data_path = os.path.join(dir_path, 'data')
@@ -33,7 +34,7 @@ class LoadtoFormatted:
 
             if df is not None:
                 dfs[file_name] = df
-
+                
         return dfs
 
     def main(self):
@@ -41,6 +42,8 @@ class LoadtoFormatted:
             # Load data to PySpark
             self.logger.info('Loading airquality data to PySpark...')
             df_airqual = self._loadToSpark(airquality_path)
+            df_airqual = {file_name: df.withColumn('year', lit(file_name[:4]))
+              for file_name, df in df_airqual.items()}
             if df_airqual is not None:
                 self.logger.info('Airquality data loaded!')
 
@@ -62,7 +65,9 @@ class LoadtoFormatted:
                 if os.path.isdir(file_path):
                     df = next(iter(self._loadToSpark(file_path).values()))
                     if df is not None:
+                        df = df.withColumn('date', to_date(lit(folder[:10]), 'yyyy_MM_dd'))
                         dfs_idealista[folder] = df
+
             if dfs_idealista:
                 self.logger.info('Idealista data loaded!')
 

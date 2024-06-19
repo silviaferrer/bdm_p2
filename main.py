@@ -6,6 +6,7 @@ from logging.handlers import RotatingFileHandler
 from utils.loadtoMongo import MongoDBLoader
 from utils.dataFormatter import DataFormatter
 from utils.predictiveAnalysis import PredictiveAnalysis
+from utils.descriptiveAnalysis import DescriptiveAnalysis
 
 VM_HOST = '10.192.36.59'
 MONGODB_PORT = '27017'
@@ -73,6 +74,8 @@ def main():
         try:
             logger.info('Starting data visualization process')
 
+            descriptiveAnalysis = DescriptiveAnalysis(spark, mongoLoader, logger)
+            descriptiveAnalysis.main()
 
             logger.info('Finished succesfully data visualization process')
 

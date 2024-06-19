@@ -1,15 +1,16 @@
 import duckdb
 import pandas as pd
-import pickle
 import os
-import joblib
 import tempfile
+from functools import reduce
 
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, year, unix_timestamp
 from pyspark.ml.feature import StringIndexer, VectorAssembler
 from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import LinearRegression
+
+from utils.utils import loadFromSpark
 
 class PredictiveAnalysis():
 
@@ -30,47 +31,32 @@ class PredictiveAnalysis():
         except Exception as e:
             self.logger.error("Error: ", e)
     
-    def _loadFromSpark(self):
-
-        uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.mongoLoader.database_name}?retryWrites=true&w=majority&appName=Cluster0"
-        # Dictionary to hold the DataFrames
-        dfs = {}
-
-        # Load each collection into a DataFrame
-        for collection in self.collections:
-            self.logger.info(f"Loading collection '{collection}' into DataFrame")
-            #df = self.spark.read.format("mongo").option("uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}.{collection}?retryWrites=true&w=majority&appName=Cluster0").load()
-            df = self.spark.read.format("mongo").option("uri", uri).option('collection', collection).option("encoding", "utf-8-sig").load()
-            #df = self.mongoLoader.read_collection(self.spark,collection)
-            dfs[collection] = df
-            self.logger.info(f"Loaded collection '{collection}' into DataFrame")
-
-        # Example: Show the schema and first few rows of each DataFrame
-        for collection, df in dfs.items():
-            self.logger.info(f"Schema for collection '{collection}':")
-            df.self.logger.infoSchema()
-            self.logger.info(f"First few rows of collection '{collection}':")
-            df.show()
-
-        return dfs
-    
     def _joinDf(self, df_left, df_right, join_col):
     
         # Check if join_col exists in both DataFrames
-        if join_col not in df_left.columns or join_col not in df_right.columns:
+        if not set(join_col).issubset(set(df_left.columns).intersection(set(df_right.columns))):
             raise ValueError(f"Column '{join_col}' must be present in both DataFrames.")
         
         # Rename join column in right DataFrame to avoid clashes
-        df_right_renamed = df_right.withColumnRenamed(join_col, join_col + "_right")
+        df_right_renamed = df_right
+        for col in join_col:
+            df_right_renamed = df_right_renamed.withColumnRenamed(col, col + "_right")
+
+        # Create a list of column equality conditions
+        conditions = [df_left[col] == df_right_renamed[col + "_right"]
+                      for col in join_col]
+        # Combine the conditions using the & operator
+        join_condition = reduce(lambda a, b: a & b, conditions)
         
         # Perform the join
-        joined_df = df_left.join(df_right_renamed, df_left[join_col] == df_right_renamed[join_col + "_right"], 'inner')
+        joined_df = df_left.join(df_right_renamed, join_condition, 'inner')
         
         # Drop the duplicate join column
-        joined_df = joined_df.drop(df_right_renamed[join_col + "_right"])
+        for col in join_col:
+            joined_df = joined_df.drop(df_right_renamed[col + "_right"])
 
         # Identify columns that are the same in both DataFrames (excluding the join column)
-        common_columns = set(df_left.columns).intersection(set(df_right.columns)) - {join_col}
+        common_columns = set(df_left.columns).intersection(set(df_right.columns)) - set(join_col)
             
         # Drop one of the common columns
         for col in common_columns:
@@ -82,7 +68,7 @@ class PredictiveAnalysis():
 
         return joined_df
     
-    def _f(self, df, feature_list):
+    def _selectFeatures(self, df, feature_list):
         # Get the current columns in the DataFrame
         current_columns = df.columns
         
@@ -128,6 +114,8 @@ class PredictiveAnalysis():
         self.logger.info("Creating pipeline...")
         # Create a pipeline with indexers and the assembler
         pipeline = Pipeline(stages=indexers + [assembler])
+        # Change date type for a type supported by the pipeline
+        df = df.withColumn('date', unix_timestamp(df['date']))
         preprocessed_df = pipeline.fit(df).transform(df)
         data = preprocessed_df.select("features", df[label_col].alias("label"))
 
@@ -196,7 +184,8 @@ class PredictiveAnalysis():
         return cleaned_df
         
     def main(self):
-        dfs = self._loadFromSpark()
+        dfs = loadFromSpark(self.spark, self.mongoLoader
+                            , self.logger, self.collections)
 
         # Join all tables
         #df_joined = self._joinDf(dfs['idealista'], dfs['income'], 'district')
@@ -217,8 +206,11 @@ class PredictiveAnalysis():
 
         self.logger.info("Joining tables...")
         # Join the dataframes in a single dataframe
-        df_joined = self._joinDf(dfs['income'], dfs['idealista'], 'neighborhood')
-        df_joined = self._joinDf(df_joined, dfs['airqual'], 'neighborhood')
+        df_idealista = dfs['idealista']
+        dfs['idealista'] = df_idealista.withColumn('year', year(df_idealista['date']))
+
+        df_joined = self._joinDf(dfs['airqual'], dfs['idealista'], ['neighborhood', 'year'])
+        df_joined = self._joinDf(df_joined, dfs['income'], ['neighborhood'])
 
         num_rows = df_joined.count()
         num_cols = len(df_joined.columns)
@@ -247,7 +239,7 @@ class PredictiveAnalysis():
         self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
         self.logger.info("Data cleaned!")
 
-        df_joined.self.logger.infoSchema()
+        #df_joined.self.logger.infoSchema()
 
         self.logger.info("Building model...")
         model = self._buildModel(df_joined)

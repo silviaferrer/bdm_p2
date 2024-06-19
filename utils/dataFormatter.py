@@ -1,11 +1,10 @@
 from pyspark.sql.types import StringType
 import os
-import unicodedata
 from pyspark.sql import functions as F
-from pyspark.sql.functions import col, lit, udf
-from pyspark.sql.types import StructType
+from pyspark.sql.functions import col, udf
 
 from utils.formattedLoader import LoadtoFormatted
+from utils.utils import *
 
 dir_path = os.getcwd()
 data_path = os.path.join(dir_path, 'data')
@@ -111,7 +110,7 @@ class DataFormatter:
 
         return merged_dfs
 
-    def _join_dfs(self):
+    '''def _join_dfs(self):
         self.logger.info('Starting final join...')
         dfs_dict = self.dfs
         # Merge df_income, df_airqual, and df_idealista into a single DataFrame
@@ -120,7 +119,7 @@ class DataFormatter:
 
         # Store the final DataFrame in the dictionary
         self.dfs['final'] = final_df
-        self.logger.info("Data joined!")
+        self.logger.info("Data joined!")'''
 
     def _clean_data(self, df):
         self.logger.info("Starting cleaning data...")
@@ -174,10 +173,10 @@ class DataFormatter:
             merged_dfs = self._reconciliate_data()
 
             # Clean data
-            self.dfs = {key: self.clean_data(df) for key, df in merged_dfs.items()}
+            self.dfs = {key: self._clean_data(df) for key, df in merged_dfs.items()}
 
             # Join dfs
-            self._join_dfs()
+            #self._join_dfs()
             
             self.logger.info(f"Columns of the final join are: {self.dfs['final'].columns}")
 
@@ -187,99 +186,3 @@ class DataFormatter:
 
         except Exception:
             self.logger.error("Error formatting data", exc_info=True)
-
-def get_all_columns(dfs):
-    all_columns = set()
-    for df in dfs:
-        all_columns.update(df.columns)
-    return list(all_columns) if all_columns else []
-
-def explode_column(dfs, column_name):
-    output_dfs = []
-    for df in dfs:
-        if column_name in df.columns:
-            for subcol in df.select(column_name + '.*').columns:
-                df = df.withColumn(subcol, col(column_name + '.' + subcol))
-            output_dfs.append(df.drop(column_name))
-    return output_dfs
-
-def ensure_all_columns(df, all_columns):
-    # Add missing columns with null values
-    for col_name in all_columns:
-        if col_name not in df.columns:
-            df = df.withColumn(col_name, lit(None))
-
-    # Reorder columns to match the order in all_columns
-    ordered_columns = [col_name for col_name in all_columns if col_name in df.columns]
-    df = df.select(*ordered_columns)
-
-    return df
-
-def join_and_union(dfs, df_lookup, join_column, lookup_column, ensure_same_schema=False):
-    joined_list = []
-    all_columns = get_all_columns(dfs)
-    all_columns += get_all_columns([df_lookup])
-
-    for df in dfs:
-        # This makes the district column empty
-        '''if ensure_same_schema:
-            df = ensure_all_columns(df, all_columns)'''
-
-        # Ensure compatible column types on join columns
-        lookup_data_type = df_lookup.schema[lookup_column].dataType
-        if df.schema[join_column].dataType != lookup_data_type:
-            # Handle mismatched column types
-            if isinstance(lookup_data_type, StructType):
-                # If the lookup column type is a struct, cast the DataFrame column to match
-                df = df.withColumn(
-                    join_column, df[join_column].cast(lookup_data_type))
-            else:
-                # Otherwise, add or replace the column with null values
-                df = df.withColumn(join_column, lit(None).cast(lookup_data_type))
-
-        # logger.info_shape_info(df, f"{df_name} before join")
-        joined_df = df.join(df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
-        # logger.info_shape_info(joined_df, f"{df_name} after join")
-        
-        # Alias columns to avoid ambiguous references
-        rdd = joined_df.rdd
-        # We use RDDs because withColumnRenamed
-        # changes the name of all columns with the old name, so if we
-        # have two columns named equally, after renaming them,
-        # they will keep having the same name
-
-        aliased_columns = []
-        for col_name in joined_df.columns:
-            aliased_name = col_name
-            count = 1
-            while aliased_name in aliased_columns:
-                aliased_name = f"{col_name}_{count}"
-                count += 1
-            aliased_columns.append(aliased_name)
-        
-        schema = joined_df.schema
-        for idx, aliased_column in enumerate(aliased_columns):
-            schema[idx].name = aliased_column
-        joined_df = rdd.toDF(schema)
-        
-        # Reorder columns
-        joined_df = ensure_all_columns(joined_df, all_columns)
-
-        joined_list.append(joined_df)
-
-    # Union
-    if joined_list:
-        merged_df = joined_list[0]
-        for df in joined_list[1:]:
-            merged_df = merged_df.union(df)
-        return merged_df
-    return None
-
-def remove_accents(input_str):
-    nfkd_form = unicodedata.normalize('NFKD', input_str)
-    only_ascii = nfkd_form.encode('ASCII', 'ignore')
-    return only_ascii.decode()
-
-def lowercase_lookup(s):
-    # Replace this with your actual string function
-    return remove_accents(s.lower().replace('-', ' '))
