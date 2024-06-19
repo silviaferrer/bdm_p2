@@ -15,84 +15,14 @@ class PredictiveAnalysis():
 
     def __init__(self, spark, mongoLoader, logger):
 
-        db_con = self.connectDuckDB('BDM_P2_ExploitationZone')
+        self.db_con = self._connectDuckDB('BDM_P2_ExploitationZone')
         self.spark = spark
         self.mongoLoader = mongoLoader
         self.logger = logger
         
-        collections = ['airqual','idealista','income']
-
-        dfs = self.loadFromSpark(spark,mongoLoader.database_name,collections,mongoLoader)
-
-        # Join all tables
-        #df_joined = self.joinDf(dfs['idealista'], dfs['income'], 'district')
-
-        #===============================
-        # TEMP: store dfs in csv's
-        #===============================
-        '''predictive_output_path = os.path.join('data', 'output', 'predictive_analysis')
-        for key, df in dfs.items():
-            output_file_path = os.path.join(
-                predictive_output_path, f'{key}.csv')
-            df.toPandas().to_csv(output_file_path, index=False)'''
-        
-
-        '''df_income = spark.read.csv(os.path.join(predictive_output_path,'income.csv'), header=True, inferSchema=True)
-        df_idealista = spark.read.csv(os.path.join(predictive_output_path,'idealista.csv'), header=True, inferSchema=True)
-        df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)'''
-
-        self.logger.info("Joining tables...")
-        # Join the dataframes in a single dataframe
-        df_joined = self.joinDf(dfs['income'],dfs['idealista'],'neighborhood')
-        df_joined = self.joinDf(df_joined,dfs['airqual'],'neighborhood')
-
-        num_rows = df_joined.count()
-        num_cols = len(df_joined.columns)
-        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
-
-        self.logger.info("Tables joined!")
-        # Output the schema to check if the join was correct
-        #df_joined.self.logger.infoSchema()
-
-        self.logger.info("Selecting features...")
-        exclude_cols = ["_id", "priceByArea"]
-        feature_list = [col for col in df_joined.columns if col not in exclude_cols]
-        df_joined = self.selectFeatures(spark, df_joined, feature_list)
-        self.logger.info("Features selected!")
-
-        #df_joined.self.logger.infoSchema()
-        # Output the shape of the DataFrame before indexing
-        '''num_rows = df_joined.count()
-        num_cols = len(df_joined.columns)
-        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")'''
-
-        self.logger.info("Cleaning data...")
-        df_joined = self.cleanDF(spark,df_joined)
-        num_rows = df_joined.count()
-        num_cols = len(df_joined.columns)
-        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
-        self.logger.info("Data cleaned!")
-
-        df_joined.self.logger.infoSchema()
-
-        self.logger.info("Building model...")
-        model = self.buildModel(spark, df_joined)
-
-        self.logger.info("Saving model...")
-        # Save model to DuckDB
-        self.saveModel(model, db_con, 'Model1')
-
-        # Save df and model to Exploitation Zone in MongoDB
-        self.logger.info("Saving model to MongoDB...")
-        mongoLoader.write_to_collection('ExploitationZone',df_joined)
-        mongoLoader.save_model_to_collection(model,'ExploitationZone')
-
-        # Close the DuckDB connection
-        db_con.close()
-
-        return None
+        self.collections = ['airqual','idealista','income']
     
-    def connectDuckDB(self, db_path):
+    def _connectDuckDB(self, db_path):
         try:
             # Create a DuckDB connection
             con = duckdb.connect(db_path)
@@ -100,14 +30,14 @@ class PredictiveAnalysis():
         except Exception as e:
             self.logger.error("Error: ", e)
     
-    def loadFromSpark(self, db_name, collections):
+    def _loadFromSpark(self):
 
-        uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}?retryWrites=true&w=majority&appName=Cluster0"
+        uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.mongoLoader.database_name}?retryWrites=true&w=majority&appName=Cluster0"
         # Dictionary to hold the DataFrames
         dfs = {}
 
         # Load each collection into a DataFrame
-        for collection in collections:
+        for collection in self.collections:
             self.logger.info(f"Loading collection '{collection}' into DataFrame")
             #df = self.spark.read.format("mongo").option("uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}.{collection}?retryWrites=true&w=majority&appName=Cluster0").load()
             df = self.spark.read.format("mongo").option("uri", uri).option('collection', collection).option("encoding", "utf-8-sig").load()
@@ -124,7 +54,7 @@ class PredictiveAnalysis():
 
         return dfs
     
-    def joinDf(self, df_left, df_right, join_col):
+    def _joinDf(self, df_left, df_right, join_col):
     
         # Check if join_col exists in both DataFrames
         if join_col not in df_left.columns or join_col not in df_right.columns:
@@ -152,7 +82,7 @@ class PredictiveAnalysis():
 
         return joined_df
     
-    def selectFeatures(self, df, feature_list):
+    def _f(self, df, feature_list):
         # Get the current columns in the DataFrame
         current_columns = df.columns
         
@@ -177,7 +107,7 @@ class PredictiveAnalysis():
         
         return selected_df
     
-    def buildModel(self, df):
+    def _buildModel(self, df):
 
         if df.isEmpty():
             self.logger.info("Data is empty!")
@@ -227,7 +157,7 @@ class PredictiveAnalysis():
         return lr_model
 
     # Function to serialize and save the model to DuckDB
-    def saveModel(self, model, db_con, table_name):
+    def _saveModel(self, model, table_name):
         # Use a temporary directory to save the serialized model
         with tempfile.TemporaryDirectory() as temp_dir:
             model_path = os.path.join(temp_dir, "lr_model")
@@ -244,15 +174,15 @@ class PredictiveAnalysis():
             df = pd.DataFrame({'model': [model_bytes]})
             
             # Save the DataFrame to a DuckDB table
-            db_con.execute(f"CREATE TABLE IF NOT EXISTS {table_name} (model BLOB)")
-            db_con.execute(f"INSERT INTO {table_name} VALUES (?)", [model_bytes])
+            self.db_con.execute(f"CREATE TABLE IF NOT EXISTS {table_name} (model BLOB)")
+            self.db_con.execute(f"INSERT INTO {table_name} VALUES (?)", [model_bytes])
             
             # Verify the model was saved
-            result_df = db_con.execute(f"SELECT * FROM {table_name}").fetchdf()
+            result_df = self.db_con.execute(f"SELECT * FROM {table_name}").fetchdf()
             self.logger.info("Model saved to DuckDB:")
             self.logger.info(result_df.head())
         
-    def cleanDF(self, df):
+    def _cleanDF(self, df):
 
         # Identify columns with any null values
         cols_to_drop = [col for col in df.columns if df.filter(df[col].isNull()).count() > 0]
@@ -265,3 +195,73 @@ class PredictiveAnalysis():
         
         return cleaned_df
         
+    def main(self):
+        dfs = self._loadFromSpark()
+
+        # Join all tables
+        #df_joined = self._joinDf(dfs['idealista'], dfs['income'], 'district')
+
+        #===============================
+        # TEMP: store dfs in csv's
+        #===============================
+        '''predictive_output_path = os.path.join('data', 'output', 'predictive_analysis')
+        for key, df in dfs.items():
+            output_file_path = os.path.join(
+                predictive_output_path, f'{key}.csv')
+            df.toPandas().to_csv(output_file_path, index=False)'''
+        
+
+        '''df_income = spark.read.csv(os.path.join(predictive_output_path,'income.csv'), header=True, inferSchema=True)
+        df_idealista = spark.read.csv(os.path.join(predictive_output_path,'idealista.csv'), header=True, inferSchema=True)
+        df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)'''
+
+        self.logger.info("Joining tables...")
+        # Join the dataframes in a single dataframe
+        df_joined = self._joinDf(dfs['income'], dfs['idealista'], 'neighborhood')
+        df_joined = self._joinDf(df_joined, dfs['airqual'], 'neighborhood')
+
+        num_rows = df_joined.count()
+        num_cols = len(df_joined.columns)
+        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
+
+        self.logger.info("Tables joined!")
+        # Output the schema to check if the join was correct
+        #df_joined.self.logger.infoSchema()
+
+        self.logger.info("Selecting features...")
+        exclude_cols = ["_id", "priceByArea"]
+        feature_list = [col for col in df_joined.columns if col not in exclude_cols]
+        df_joined = self._selectFeatures(df_joined, feature_list)
+        self.logger.info("Features selected!")
+
+        #df_joined.self.logger.infoSchema()
+        # Output the shape of the DataFrame before indexing
+        '''num_rows = df_joined.count()
+        num_cols = len(df_joined.columns)
+        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")'''
+
+        self.logger.info("Cleaning data...")
+        df_joined = self._cleanDF(df_joined)
+        num_rows = df_joined.count()
+        num_cols = len(df_joined.columns)
+        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
+        self.logger.info("Data cleaned!")
+
+        df_joined.self.logger.infoSchema()
+
+        self.logger.info("Building model...")
+        model = self._buildModel(df_joined)
+
+        self.logger.info("Saving model...")
+        # Save model to DuckDB
+        self._saveModel(model, 'Model1')
+
+        # Save df and model to Exploitation Zone in MongoDB
+        self.logger.info("Saving model to MongoDB...")
+        self.mongoLoader.write_to_collection('ExploitationZone', df_joined)
+        self.mongoLoader.save_model_to_collection(model, 'ExploitationZone')
+
+        # Close the DuckDB connection
+        self.db_con.close()
+
+        return None

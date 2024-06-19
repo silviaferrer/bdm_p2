@@ -18,32 +18,12 @@ airquality_path = os.path.join(data_path, 'airquality_data')
 
 class DataFormatter:
     def __init__(self, spark, mongoLoader, logger):
-        try:
-            formattedLoader = LoadtoFormatted(spark, logger)
-            self.dfs = formattedLoader.dfs
-            self.spark = formattedLoader.spark
-            self.mongoLoader = mongoLoader
-            self.logger = logger
+        self.dfs = {}
+        self.spark = spark
+        self.mongoLoader = mongoLoader
+        self.logger = logger
 
-            # Reconciliate data, unification column names
-            merged_dfs = self.reconciliate_data()
-
-            # Clean data
-            self.dfs = {key: self.clean_data(df) for key, df in merged_dfs.items()}
-
-            # Join dfs
-            self.join_dfs()
-            
-            self.logger.info(f"Columns of the final join are: {self.dfs['final'].columns}")
-
-            # Write each DataFrame to MongoDB
-            self.load_to_mongo()  
-            self.logger.info("Finished Formatting Data and loading it with success!")
-
-        except Exception:
-            self.logger.error("Error formatting data", exc_info=True)
-
-    def reconciliate_data(self):
+    def _reconciliate_data(self):
         self.logger.info('Starting reconciliate process...')
         merged_dfs = {}
         # Process df_income
@@ -131,7 +111,7 @@ class DataFormatter:
 
         return merged_dfs
 
-    def join_dfs(self):
+    def _join_dfs(self):
         self.logger.info('Starting final join...')
         dfs_dict = self.dfs
         # Merge df_income, df_airqual, and df_idealista into a single DataFrame
@@ -142,7 +122,7 @@ class DataFormatter:
         self.dfs['final'] = final_df
         self.logger.info("Data joined!")
 
-    def clean_data(self, df):
+    def _clean_data(self, df):
         self.logger.info("Starting cleaning data...")
 
         # Step 0: Remove duplicates
@@ -171,7 +151,7 @@ class DataFormatter:
 
         return df
 
-    def load_to_mongo(self):
+    def _load_to_mongo(self):
         self.logger.info("Starting to load formatting data to MongoDB...")
         try:
             # Ensure you have the final DataFrame in the dataFormatter
@@ -185,6 +165,28 @@ class DataFormatter:
                 self.logger.info("No final DataFrame found in dataFormatter")
         except Exception:
             self.logger.error("Error loading formatting data to MongoDB", exc_info=True)
+
+    def main(self):
+        try:
+            formattedLoader = LoadtoFormatted(self.spark, self.logger)
+            self.dfs = formattedLoader.main()
+            # Reconciliate data, unification column names
+            merged_dfs = self._reconciliate_data()
+
+            # Clean data
+            self.dfs = {key: self.clean_data(df) for key, df in merged_dfs.items()}
+
+            # Join dfs
+            self._join_dfs()
+            
+            self.logger.info(f"Columns of the final join are: {self.dfs['final'].columns}")
+
+            # Write each DataFrame to MongoDB
+            self._load_to_mongo()  
+            self.logger.info("Finished Formatting Data and loading it with success!")
+
+        except Exception:
+            self.logger.error("Error formatting data", exc_info=True)
 
 def get_all_columns(dfs):
     all_columns = set()

@@ -60,7 +60,8 @@ def main():
         try:
             logger.info('Starting data formatting process')
 
-            dataFormatter = DataFormatter(spark, mongoLoader, logger)    
+            dataFormatter = DataFormatter(spark, mongoLoader, logger)
+            dataFormatter.main()
 
             logger.info('Finished succesfully data formatting process')
 
@@ -84,6 +85,7 @@ def main():
             logger.info('Starting data prediction process')
 
             predictiveAnalysis = PredictiveAnalysis(spark, mongoLoader, logger)
+            predictiveAnalysis.main()
 
             logger.info('Finished succesfully data prediction process')
 
