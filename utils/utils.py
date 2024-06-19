@@ -1,4 +1,5 @@
 import unicodedata
+from functools import reduce
 
 from pyspark.sql.functions import col, lit
 from pyspark.sql.types import StructType
@@ -130,6 +131,47 @@ def loadFromSpark(spark, mongoLoader, logger, collections):
         logger.info(f"Schema for collection '{collection}':" +
                             df.schema.simpleString())
         logger.info(f"First few rows of collection '{collection}':" +
-                            df._show_string(5))
+                    df._show_string(5))
 
     return dfs
+    
+def joinDf(logger, df_left, df_right, join_col):
+
+    # Check if join_col exists in both DataFrames
+    if not set(join_col).issubset(set(df_left.columns).intersection(set(df_right.columns))):
+        raise ValueError(
+            f"Column '{join_col}' must be present in both DataFrames.")
+
+    # Rename join column in right DataFrame to avoid clashes
+    df_right_renamed = df_right
+    for col in join_col:
+        df_right_renamed = df_right_renamed.withColumnRenamed(
+            col, col + "_right")
+
+    # Create a list of column equality conditions
+    conditions = [df_left[col] == df_right_renamed[col + "_right"]
+                    for col in join_col]
+    # Combine the conditions using the & operator
+    join_condition = reduce(lambda a, b: a & b, conditions)
+
+    # Perform the join
+    joined_df = df_left.join(df_right_renamed, join_condition, 'inner')
+
+    # Drop the duplicate join column
+    for col in join_col:
+        joined_df = joined_df.drop(df_right_renamed[col + "_right"])
+
+    # Identify columns that are the same in both DataFrames (excluding the join column)
+    common_columns = set(df_left.columns).intersection(
+        set(df_right.columns)) - set(join_col)
+
+    # Drop one of the common columns
+    for col in common_columns:
+        joined_df = joined_df.drop(df_right_renamed[col])
+
+    # Output the number of columns in the DataFrame
+    num_columns = len(joined_df.columns)
+    logger.info(
+        f"The number of columns in the joined DataFrame: {num_columns}")
+
+    return joined_df

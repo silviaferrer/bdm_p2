@@ -2,7 +2,6 @@ import duckdb
 import pandas as pd
 import os
 import tempfile
-from functools import reduce
 
 from pyspark.sql.functions import col, year, unix_timestamp
 from pyspark.ml.feature import StringIndexer, VectorAssembler
@@ -10,7 +9,7 @@ from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import LinearRegression
 
-from utils.utils import loadFromSpark
+from utils.utils import loadFromSpark, joinDf
 
 class PredictiveAnalysis():
 
@@ -30,43 +29,6 @@ class PredictiveAnalysis():
             return con
         except Exception as e:
             self.logger.error("Error: ", e)
-    
-    def _joinDf(self, df_left, df_right, join_col):
-    
-        # Check if join_col exists in both DataFrames
-        if not set(join_col).issubset(set(df_left.columns).intersection(set(df_right.columns))):
-            raise ValueError(f"Column '{join_col}' must be present in both DataFrames.")
-        
-        # Rename join column in right DataFrame to avoid clashes
-        df_right_renamed = df_right
-        for col in join_col:
-            df_right_renamed = df_right_renamed.withColumnRenamed(col, col + "_right")
-
-        # Create a list of column equality conditions
-        conditions = [df_left[col] == df_right_renamed[col + "_right"]
-                      for col in join_col]
-        # Combine the conditions using the & operator
-        join_condition = reduce(lambda a, b: a & b, conditions)
-        
-        # Perform the join
-        joined_df = df_left.join(df_right_renamed, join_condition, 'inner')
-        
-        # Drop the duplicate join column
-        for col in join_col:
-            joined_df = joined_df.drop(df_right_renamed[col + "_right"])
-
-        # Identify columns that are the same in both DataFrames (excluding the join column)
-        common_columns = set(df_left.columns).intersection(set(df_right.columns)) - set(join_col)
-            
-        # Drop one of the common columns
-        for col in common_columns:
-            joined_df = joined_df.drop(df_right_renamed[col])
-
-        # Output the number of columns in the DataFrame
-        num_columns = len(joined_df.columns)
-        self.logger.info(f"The number of columns in the joined DataFrame: {num_columns}")
-
-        return joined_df
     
     def _selectFeatures(self, df, feature_list):
         # Get the current columns in the DataFrame
@@ -209,8 +171,8 @@ class PredictiveAnalysis():
         df_idealista = dfs['idealista']
         dfs['idealista'] = df_idealista.withColumn('year', year(df_idealista['date']))
 
-        df_joined = self._joinDf(dfs['airqual'], dfs['idealista'], ['neighborhood', 'year'])
-        df_joined = self._joinDf(df_joined, dfs['income'], ['neighborhood'])
+        df_joined = joinDf(self.logger, dfs['airqual'], dfs['idealista'], ['neighborhood', 'year'])
+        df_joined = joinDf(self.logger, df_joined, dfs['income'], ['neighborhood'])
 
         num_rows = df_joined.count()
         num_cols = len(df_joined.columns)
