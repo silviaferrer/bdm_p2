@@ -93,10 +93,6 @@ class DataFormatter:
 
             print(f"Idealista after merge columns: {df_idealista_merged.columns}")
             merged_dfs['idealista'] = df_idealista_merged
-            #==================================================================
-            # TESTING
-            #==================================================================
-            merged_dfs['idealista'].toPandas().to_csv('idealista.csv', index=False)
 
         # Process df_airqual
         df_airqual_list = list(self.dfs.get('airqual').values())
