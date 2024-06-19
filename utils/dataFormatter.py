@@ -17,11 +17,12 @@ airquality_path = os.path.join(data_path, 'airquality_data')
 
 
 class DataFormatter:
-    def __init__(self, spark, logger):
+    def __init__(self, spark, mongoLoader, logger):
         try:
             formattedLoader = LoadtoFormatted(spark, logger)
             self.dfs = formattedLoader.dfs
             self.spark = formattedLoader.spark
+            self.mongoLoader = mongoLoader
             self.logger = logger
 
             # Reconciliate data, unification column names
@@ -34,7 +35,10 @@ class DataFormatter:
             self.join_dfs()
             
             self.logger.info(f"Columns of the final join are: {self.dfs['final'].columns}")
-            self.logger.info("Finished Formatting Data with success!")
+
+            # Write each DataFrame to MongoDB
+            self.load_to_mongo()  
+            self.logger.info("Finished Formatting Data and loading it with success!")
 
         except Exception:
             self.logger.error("Error formatting data", exc_info=True)
@@ -166,6 +170,21 @@ class DataFormatter:
         self.logger.info("Data cleaned!")
 
         return df
+
+    def load_to_mongo(self):
+        self.logger.info("Starting to load formatting data to MongoDB...")
+        try:
+            # Ensure you have the final DataFrame in the dataFormatter
+            if self.dfs:
+                for key, df in self.dfs.items():
+                    # Write to MongoDB
+                    self.mongoLoader.write_to_collection(key, df, append=False)
+                    self.logger.info(f"Data written to collection '{key}'")
+                
+            else:
+                self.logger.info("No final DataFrame found in dataFormatter")
+        except Exception:
+            self.logger.error("Error loading formatting data to MongoDB", exc_info=True)
 
 def get_all_columns(dfs):
     all_columns = set()

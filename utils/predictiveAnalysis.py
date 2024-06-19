@@ -1,31 +1,24 @@
 import duckdb
-import pymongo
 import pandas as pd
 import pickle
-import warnings
 import os
 import joblib
 import tempfile
 
-from utils.loadtoMongo import MongoDBLoader
 from pyspark.sql.functions import col
 from pyspark.ml.feature import StringIndexer, VectorAssembler
 from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import LinearRegression
 
-
-VM_HOST = '10.192.36.59'
-MONGODB_PORT = '27017'
-DB_NAME = 'test'
-
 class PredictiveAnalysis():
 
-    def __init__(self,spark):
+    def __init__(self, spark, mongoLoader, logger):
 
         db_con = self.connectDuckDB('BDM_P2_ExploitationZone')
-
-        mongoLoader = MongoDBLoader(VM_HOST, MONGODB_PORT, DB_NAME)
+        self.spark = spark
+        self.mongoLoader = mongoLoader
+        self.logger = logger
         
         collections = ['airqual','idealista','income']
 
@@ -48,49 +41,49 @@ class PredictiveAnalysis():
         df_idealista = spark.read.csv(os.path.join(predictive_output_path,'idealista.csv'), header=True, inferSchema=True)
         df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)'''
 
-        print("Joining tables...")
+        self.logger.info("Joining tables...")
         # Join the dataframes in a single dataframe
         df_joined = self.joinDf(dfs['income'],dfs['idealista'],'neighborhood')
         df_joined = self.joinDf(df_joined,dfs['airqual'],'neighborhood')
 
         num_rows = df_joined.count()
         num_cols = len(df_joined.columns)
-        print(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
+        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
 
-        print("Tables joined!")
+        self.logger.info("Tables joined!")
         # Output the schema to check if the join was correct
-        #df_joined.printSchema()
+        #df_joined.self.logger.infoSchema()
 
-        print("Selecting features...")
+        self.logger.info("Selecting features...")
         exclude_cols = ["_id", "priceByArea"]
         feature_list = [col for col in df_joined.columns if col not in exclude_cols]
         df_joined = self.selectFeatures(spark, df_joined, feature_list)
-        print("Features selected!")
+        self.logger.info("Features selected!")
 
-        #df_joined.printSchema()
+        #df_joined.self.logger.infoSchema()
         # Output the shape of the DataFrame before indexing
         '''num_rows = df_joined.count()
         num_cols = len(df_joined.columns)
-        print(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")'''
+        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")'''
 
-        print("Cleaning data...")
+        self.logger.info("Cleaning data...")
         df_joined = self.cleanDF(spark,df_joined)
         num_rows = df_joined.count()
         num_cols = len(df_joined.columns)
-        print(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
-        print("Data cleaned!")
+        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
+        self.logger.info("Data cleaned!")
 
-        df_joined.printSchema()
+        df_joined.self.logger.infoSchema()
 
-        print("Building model...")
+        self.logger.info("Building model...")
         model = self.buildModel(spark, df_joined)
 
-        print("Saving model...")
+        self.logger.info("Saving model...")
         # Save model to DuckDB
         self.saveModel(model, db_con, 'Model1')
 
         # Save df and model to Exploitation Zone in MongoDB
-        print("Saving model to MongoDB...")
+        self.logger.info("Saving model to MongoDB...")
         mongoLoader.write_to_collection('ExploitationZone',df_joined)
         mongoLoader.save_model_to_collection(model,'ExploitationZone')
 
@@ -105,9 +98,9 @@ class PredictiveAnalysis():
             con = duckdb.connect(db_path)
             return con
         except Exception as e:
-            print("Error: ", e)
+            self.logger.error("Error: ", e)
     
-    def loadFromSpark(self, spark, db_name, collections, mongoLoader):
+    def loadFromSpark(self, db_name, collections):
 
         uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}?retryWrites=true&w=majority&appName=Cluster0"
         # Dictionary to hold the DataFrames
@@ -115,18 +108,18 @@ class PredictiveAnalysis():
 
         # Load each collection into a DataFrame
         for collection in collections:
-            print(f"Loading collection '{collection}' into DataFrame")
-            #df = spark.read.format("mongo").option("uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}.{collection}?retryWrites=true&w=majority&appName=Cluster0").load()
-            df = spark.read.format("mongo").option("uri", uri).option('collection', collection).option("encoding", "utf-8-sig").load()
-            #df = mongoLoader.read_collection(spark,collection)
+            self.logger.info(f"Loading collection '{collection}' into DataFrame")
+            #df = self.spark.read.format("mongo").option("uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{db_name}.{collection}?retryWrites=true&w=majority&appName=Cluster0").load()
+            df = self.spark.read.format("mongo").option("uri", uri).option('collection', collection).option("encoding", "utf-8-sig").load()
+            #df = self.mongoLoader.read_collection(self.spark,collection)
             dfs[collection] = df
-            print(f"Loaded collection '{collection}' into DataFrame")
+            self.logger.info(f"Loaded collection '{collection}' into DataFrame")
 
         # Example: Show the schema and first few rows of each DataFrame
         for collection, df in dfs.items():
-            print(f"Schema for collection '{collection}':")
-            df.printSchema()
-            print(f"First few rows of collection '{collection}':")
+            self.logger.info(f"Schema for collection '{collection}':")
+            df.self.logger.infoSchema()
+            self.logger.info(f"First few rows of collection '{collection}':")
             df.show()
 
         return dfs
@@ -155,11 +148,11 @@ class PredictiveAnalysis():
 
         # Output the number of columns in the DataFrame
         num_columns = len(joined_df.columns)
-        print(f"The number of columns in the joined DataFrame: {num_columns}")
+        self.logger.info(f"The number of columns in the joined DataFrame: {num_columns}")
 
         return joined_df
     
-    def selectFeatures(self, spark, df, feature_list):
+    def selectFeatures(self, df, feature_list):
         # Get the current columns in the DataFrame
         current_columns = df.columns
         
@@ -173,36 +166,36 @@ class PredictiveAnalysis():
             else:
                 missing_features.append(feature)
         
-        # Print warning for missing features
+        # self.logger.info warning for missing features
         if missing_features:
-            warnings.warn(f"The following features are not present in the DataFrame: {', '.join(missing_features)}")
-            # Alternatively, you can print a message:
-            # print(f"Warning: The following features are not present in the DataFrame: {', '.join(missing_features)}")
+            self.logger.warning(f"The following features are not present in the DataFrame: {', '.join(missing_features)}")
+            # Alternatively, you can self.logger.info a message:
+            # self.logger.info(f"Warning: The following features are not present in the DataFrame: {', '.join(missing_features)}")
         
         # Select only the valid features in the DataFrame
         selected_df = df.select(*[col(feature) for feature in valid_features])
         
         return selected_df
     
-    def buildModel(self, spark, df):
+    def buildModel(self, df):
 
         if df.isEmpty():
-            print("Data is empty!")
+            self.logger.info("Data is empty!")
 
         # Identify the label column and feature columns
         label_col = "price"
         feature_cols = [col for col in df.columns if col != label_col]
         
         # Handle string columns by indexing them
-        print("Indexing categorical features...")
+        self.logger.info("Indexing categorical features...")
         indexers = [StringIndexer(inputCol=col, outputCol=f"{col}_indexed").fit(df) for col in feature_cols if dict(df.dtypes)[col] == 'string']
         indexed_cols = [f"{col}_indexed" if dict(df.dtypes)[col] == 'string' else col for col in feature_cols]
 
-        print("Assembeling vectors...")
+        self.logger.info("Assembeling vectors...")
         # Assemble feature columns into a single vector column
         assembler = VectorAssembler(inputCols=indexed_cols, outputCol="features")
         
-        print("Creating pipeline...")
+        self.logger.info("Creating pipeline...")
         # Create a pipeline with indexers and the assembler
         pipeline = Pipeline(stages=indexers + [assembler])
         preprocessed_df = pipeline.fit(df).transform(df)
@@ -216,7 +209,7 @@ class PredictiveAnalysis():
         if train_data.isEmpty() or test_data.isEmpty():
             raise ValueError("The split yielded an empty training or testing set. Please check your data or try a different seed.")
 
-        print("Fitting model...")
+        self.logger.info("Fitting model...")
         # Create and train the linear regression model
         lr = LinearRegression(featuresCol="features", labelCol="label")
         lr_model = lr.fit(train_data)
@@ -225,11 +218,11 @@ class PredictiveAnalysis():
         predictions = lr_model.transform(test_data)
         evaluator_rmse = RegressionEvaluator(predictionCol="prediction", labelCol="label", metricName="rmse")
         rmse = evaluator_rmse.evaluate(predictions)
-        print(f"Root Mean Squared Error (RMSE): {rmse}")
+        self.logger.info(f"Root Mean Squared Error (RMSE): {rmse}")
         
         evaluator_r2 = RegressionEvaluator(predictionCol="prediction", labelCol="label", metricName="r2")
         r2 = evaluator_r2.evaluate(predictions)
-        print(f"R2: {r2}")
+        self.logger.info(f"R2: {r2}")
         
         return lr_model
 
@@ -256,16 +249,16 @@ class PredictiveAnalysis():
             
             # Verify the model was saved
             result_df = db_con.execute(f"SELECT * FROM {table_name}").fetchdf()
-            print("Model saved to DuckDB:")
-            print(result_df.head())
+            self.logger.info("Model saved to DuckDB:")
+            self.logger.info(result_df.head())
         
-    def cleanDF(self, spark, df):
+    def cleanDF(self, df):
 
         # Identify columns with any null values
         cols_to_drop = [col for col in df.columns if df.filter(df[col].isNull()).count() > 0]
 
-        # Print the columns to be dropped
-        print(f"Columns with NA values to be dropped: {cols_to_drop}")
+        # self.logger.info the columns to be dropped
+        self.logger.info(f"Columns with NA values to be dropped: {cols_to_drop}")
         
         # Drop the identified columns
         cleaned_df = df.drop(*cols_to_drop)

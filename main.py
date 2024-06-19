@@ -45,36 +45,22 @@ def main():
             .builder \
             .appName("myApp") \
             .config('spark.jars.packages', 'org.mongodb.spark:mongo-spark-connector_2.12:3.0.1') \
+            .config("spark.mongodb.input.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
+            .config("spark.mongodb.output.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
             .getOrCreate()
         logger.info("Spark connection is successful!")
-        #.config("spark.mongodb.input.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
-            # .config("spark.mongodb.output.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
 
     except Exception as e:
-        logger.error("Error: ", e)
+        logger.error("Building Spark Session error: ", e)
+
+    mongoLoader = MongoDBLoader(VM_HOST, MONGODB_PORT, DB_NAME, logger)
 
     if exec_mode == 'data-formatting':
 
         try:
             logger.info('Starting data formatting process')
 
-            dataFormatter = DataFormatter(spark, logger)
-            mongoLoader = MongoDBLoader(VM_HOST, MONGODB_PORT, DB_NAME, logger)
-
-            # Write each DataFrame to MongoDB
-            # Ensure you have the final DataFrame in the dataFormatter
-            collections  = []
-            if dataFormatter.dfs:
-                for key, df in dataFormatter.dfs.items():
-                    # Write to MongoDB
-                    mongoLoader.write_to_collection(key, df, append=False)
-                    logger.info(f"Data written to collection '{key}' in database '{DB_NAME}'")
-                    collections.append(key)
-                
-            else:
-                logger.info("No final DataFrame found in dataFormatter")
-
-    
+            dataFormatter = DataFormatter(spark, mongoLoader, logger)    
 
             logger.info('Finished succesfully data formatting process')
 
@@ -97,7 +83,7 @@ def main():
         try:
             logger.info('Starting data prediction process')
 
-            predictiveAnalysis = PredictiveAnalysis(spark)
+            predictiveAnalysis = PredictiveAnalysis(spark, mongoLoader, logger)
 
             logger.info('Finished succesfully data prediction process')
 
