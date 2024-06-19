@@ -4,6 +4,8 @@ import pandas as pd
 import pickle
 import warnings
 import os
+import joblib
+import tempfile
 
 from utils.loadtoMongo import MongoDBLoader
 from pyspark.sql.functions import col
@@ -21,7 +23,7 @@ class PredictiveAnalysis():
 
     def __init__(self,spark):
 
-        db_con = self.connectDuckDB('bdm_p2')
+        db_con = self.connectDuckDB('BDM_P2_ExploitationZone')
 
         mongoLoader = MongoDBLoader(VM_HOST, MONGODB_PORT, DB_NAME)
         
@@ -46,21 +48,51 @@ class PredictiveAnalysis():
         df_idealista = spark.read.csv(os.path.join(predictive_output_path,'idealista.csv'), header=True, inferSchema=True)
         df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)
 
+        print("Joining tables...")
         # Join the dataframes in a single dataframe
-        df_joined = self.joinDf(df_income,df_idealista,'district')
-        df_joined = self.joinDf(df_joined,df_airqual,'district')
+        df_joined = self.joinDf(df_income,df_idealista,'neighborhood')
+        df_joined = self.joinDf(df_joined,df_airqual,'neighborhood')
 
+        num_rows = df_joined.count()
+        num_cols = len(df_joined.columns)
+        print(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
+
+        print("Tables joined!")
         # Output the schema to check if the join was correct
-        df_joined.printSchema()
+        #df_joined.printSchema()
 
-        exclude_cols = ["_id", "priceByArea", "price"]
+        print("Selecting features...")
+        exclude_cols = ["_id", "priceByArea"]
         feature_list = [col for col in df_joined.columns if col not in exclude_cols]
         df_joined = self.selectFeatures(spark, df_joined, feature_list)
+        print("Features selected!")
 
+        #df_joined.printSchema()
+        # Output the shape of the DataFrame before indexing
+        '''num_rows = df_joined.count()
+        num_cols = len(df_joined.columns)
+        print(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")'''
+
+        print("Cleaning data...")
+        df_joined = self.cleanDF(spark,df_joined)
+        num_rows = df_joined.count()
+        num_cols = len(df_joined.columns)
+        print(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
+        print("Data cleaned!")
+
+        df_joined.printSchema()
+
+        print("Building model...")
         model = self.buildModel(spark, df_joined)
 
+        print("Saving model...")
         # Save model to DuckDB
         self.saveModel(model, db_con, 'Model1')
+
+        # Save df and model to Exploitation Zone in MongoDB
+        print("Saving model to MongoDB...")
+        mongoLoader.write_to_collection('ExploitationZone',df_joined)
+        mongoLoader.save_model_to_collection(model,'ExploitationZone')
 
         # Close the DuckDB connection
         db_con.close()
@@ -114,6 +146,13 @@ class PredictiveAnalysis():
         # Drop the duplicate join column
         joined_df = joined_df.drop(df_right_renamed[join_col + "_right"])
 
+        # Identify columns that are the same in both DataFrames (excluding the join column)
+        common_columns = set(df_left.columns).intersection(set(df_right.columns)) - {join_col}
+            
+        # Drop one of the common columns
+        for col in common_columns:
+            joined_df = joined_df.drop(df_right_renamed[col])
+
         # Output the number of columns in the DataFrame
         num_columns = len(joined_df.columns)
         print(f"The number of columns in the joined DataFrame: {num_columns}")
@@ -146,25 +185,38 @@ class PredictiveAnalysis():
         return selected_df
     
     def buildModel(self, spark, df):
+
+        if df.isEmpty():
+            print("Data is empty!")
+
         # Identify the label column and feature columns
         label_col = "price"
         feature_cols = [col for col in df.columns if col != label_col]
         
         # Handle string columns by indexing them
+        print("Indexing categorical features...")
         indexers = [StringIndexer(inputCol=col, outputCol=f"{col}_indexed").fit(df) for col in feature_cols if dict(df.dtypes)[col] == 'string']
         indexed_cols = [f"{col}_indexed" if dict(df.dtypes)[col] == 'string' else col for col in feature_cols]
 
+        print("Assembeling vectors...")
         # Assemble feature columns into a single vector column
         assembler = VectorAssembler(inputCols=indexed_cols, outputCol="features")
         
+        print("Creating pipeline...")
         # Create a pipeline with indexers and the assembler
         pipeline = Pipeline(stages=indexers + [assembler])
         preprocessed_df = pipeline.fit(df).transform(df)
-        data = preprocessed_df.select(col("features"), col(label_col).alias("label"))
+        data = preprocessed_df.select("features", df[label_col].alias("label"))
+
         
         # Split the data into training and testing sets
         train_data, test_data = data.randomSplit([0.8, 0.2], seed=1234)
-        
+
+        # Check if the split yielded non-empty datasets
+        if train_data.isEmpty() or test_data.isEmpty():
+            raise ValueError("The split yielded an empty training or testing set. Please check your data or try a different seed.")
+
+        print("Fitting model...")
         # Create and train the linear regression model
         lr = LinearRegression(featuresCol="features", labelCol="label")
         lr_model = lr.fit(train_data)
@@ -182,20 +234,41 @@ class PredictiveAnalysis():
         return lr_model
 
     # Function to serialize and save the model to DuckDB
-    def saveModel(model, db_con, table_name):
-        # Serialize the model to a byte array
-        model_bytes = pickle.dumps(model)
+    def saveModel(self, model, db_con, table_name):
+        # Use a temporary directory to save the serialized model
+        with tempfile.TemporaryDirectory() as temp_dir:
+            model_path = os.path.join(temp_dir, "lr_model")
+            model.save(model_path)
+            
+            # Read the model file(s) into a byte array
+            model_bytes = bytearray()
+            for root, _, files in os.walk(model_path):
+                for file in files:
+                    with open(os.path.join(root, file), 'rb') as f:
+                        model_bytes.extend(f.read())
+            
+            # Create a DataFrame with the serialized model
+            df = pd.DataFrame({'model': [model_bytes]})
+            
+            # Save the DataFrame to a DuckDB table
+            db_con.execute(f"CREATE TABLE IF NOT EXISTS {table_name} (model BLOB)")
+            db_con.execute(f"INSERT INTO {table_name} VALUES (?)", [model_bytes])
+            
+            # Verify the model was saved
+            result_df = db_con.execute(f"SELECT * FROM {table_name}").fetchdf()
+            print("Model saved to DuckDB:")
+            print(result_df.head())
         
-        # Create a DataFrame with the serialized model
-        df = pd.DataFrame({'model': [model_bytes]})
+    def cleanDF(self, spark, df):
+
+        # Identify columns with any null values
+        cols_to_drop = [col for col in df.columns if df.filter(df[col].isNull()).count() > 0]
+
+        # Print the columns to be dropped
+        print(f"Columns with NA values to be dropped: {cols_to_drop}")
         
-        # Save the DataFrame to a DuckDB table
-        db_con.execute(f"CREATE TABLE IF NOT EXISTS {table_name} (model BLOB)")
-        db_con.execute(f"INSERT INTO {table_name} VALUES (?)", [model_bytes])
+        # Drop the identified columns
+        cleaned_df = df.drop(*cols_to_drop)
         
-        # Verify the model was saved
-        result_df = db_con.execute(f"SELECT * FROM {table_name}").fetchdf()
-        print("Model saved to DuckDB:")
-        print(result_df.head())
-        
+        return cleaned_df
         

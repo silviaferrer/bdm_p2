@@ -1,4 +1,6 @@
 from pymongo import MongoClient
+import tempfile
+import os
 
 class MongoDBLoader:
     def __init__(self, vm_host, mongodb_port, database_name):
@@ -46,6 +48,36 @@ class MongoDBLoader:
             print(f"Data written to collection '{collection_name}' in database '{self.database_name}'")
         except Exception as e:
             print(f"Failed to write to collection '{collection_name}' in database '{self.database_name}': {e}")
+
+    def save_model_to_collection(self, model, collection_name):
+        try:
+            # Define the MongoDB URI
+            uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.database_name}?retryWrites=true&w=majority&appName=Cluster0"
+            
+            # Use a temporary directory to save the serialized model
+            with tempfile.TemporaryDirectory() as temp_dir:
+                model_path = os.path.join(temp_dir, "pyspark_model")
+                model.save(model_path)
+                
+                # Read the model files into a byte array
+                model_bytes = bytearray()
+                for root, _, files in os.walk(model_path):
+                    for file in files:
+                        with open(os.path.join(root, file), 'rb') as f:
+                            model_bytes.extend(f.read())
+                
+                # Connect to MongoDB
+                client = MongoClient(uri)
+                db = client[self.database_name]
+                collection = db[collection_name]
+                
+                # Insert the model byte array into MongoDB
+                model_document = {'model': model_bytes}
+                collection.insert_one(model_document)
+                
+                print(f"Model saved to MongoDB collection '{collection_name}' in database '{self.database_name}'.")
+        except Exception as e:
+            print(f"Failed to save model to collection '{collection_name}' in database '{self.database_name}': {e}")
 
     def initialize_database(self):
         # Create a dummy collection and insert a document to initialize the database
