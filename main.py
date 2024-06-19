@@ -5,6 +5,7 @@ from logging.handlers import RotatingFileHandler
 
 from utils.loadtoMongo import MongoDBLoader
 from utils.dataFormatter import DataFormatter
+from utils.predictiveAnalysis import PredictiveAnalysis
 
 VM_HOST = '10.192.36.59'
 MONGODB_PORT = '27017'
@@ -62,11 +63,13 @@ def main():
 
             # Write each DataFrame to MongoDB
             # Ensure you have the final DataFrame in the dataFormatter
+            collections  = []
             if dataFormatter.dfs:
                 for key, df in dataFormatter.dfs.items():
                     # Write to MongoDB
                     mongoLoader.write_to_collection(key, df, append=False)
                     logger.info(f"Data written to collection '{key}' in database '{DB_NAME}'")
+                    collections.append(key)
                 
             else:
                 logger.info("No final DataFrame found in dataFormatter")
@@ -94,6 +97,7 @@ def main():
         try:
             logger.info('Starting data prediction process')
 
+            predictiveAnalysis = PredictiveAnalysis(spark)
 
             logger.info('Finished succesfully data prediction process')
 
