@@ -196,8 +196,9 @@ def join_and_union(dfs, df_lookup, join_column, lookup_column, ensure_same_schem
     all_columns += get_all_columns([df_lookup])
 
     for df in dfs:
-        if ensure_same_schema:
-            df = ensure_all_columns(df, all_columns)
+        # This makes the district column empty
+        '''if ensure_same_schema:
+            df = ensure_all_columns(df, all_columns)'''
 
         # Ensure compatible column types
         '''for col_name in df.columns:
