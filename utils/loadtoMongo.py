@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 import tempfile
 import os
+from bson.binary import Binary
 
 class MongoDBLoader:
     def __init__(self, vm_host, mongodb_port, database_name):
@@ -72,7 +73,8 @@ class MongoDBLoader:
                 collection = db[collection_name]
                 
                 # Insert the model byte array into MongoDB
-                model_document = {'model': model_bytes}
+                model_binary = Binary(model_bytes)
+                model_document = {'model': model_binary}
                 collection.insert_one(model_document)
                 
                 print(f"Model saved to MongoDB collection '{collection_name}' in database '{self.database_name}'.")

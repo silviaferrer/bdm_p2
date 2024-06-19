@@ -29,7 +29,7 @@ class PredictiveAnalysis():
         
         collections = ['airqual','idealista','income']
 
-        #dfs = self.loadFromSpark(spark,mongoLoader.database_name,collections,mongoLoader)
+        dfs = self.loadFromSpark(spark,mongoLoader.database_name,collections,mongoLoader)
 
         # Join all tables
         #df_joined = self.joinDf(dfs['idealista'], dfs['income'], 'district')
@@ -37,21 +37,21 @@ class PredictiveAnalysis():
         #===============================
         # TEMP: store dfs in csv's
         #===============================
-        predictive_output_path = os.path.join('data', 'output', 'predictive_analysis')
-        '''for key, df in dfs.items():
+        '''predictive_output_path = os.path.join('data', 'output', 'predictive_analysis')
+        for key, df in dfs.items():
             output_file_path = os.path.join(
                 predictive_output_path, f'{key}.csv')
             df.toPandas().to_csv(output_file_path, index=False)'''
         
 
-        df_income = spark.read.csv(os.path.join(predictive_output_path,'income.csv'), header=True, inferSchema=True)
+        '''df_income = spark.read.csv(os.path.join(predictive_output_path,'income.csv'), header=True, inferSchema=True)
         df_idealista = spark.read.csv(os.path.join(predictive_output_path,'idealista.csv'), header=True, inferSchema=True)
-        df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)
+        df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)'''
 
         print("Joining tables...")
         # Join the dataframes in a single dataframe
-        df_joined = self.joinDf(df_income,df_idealista,'neighborhood')
-        df_joined = self.joinDf(df_joined,df_airqual,'neighborhood')
+        df_joined = self.joinDf(dfs['income'],dfs['idealista'],'neighborhood')
+        df_joined = self.joinDf(df_joined,dfs['airqual'],'neighborhood')
 
         num_rows = df_joined.count()
         num_cols = len(df_joined.columns)
