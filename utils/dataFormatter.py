@@ -17,32 +17,30 @@ airquality_path = os.path.join(data_path, 'airquality_data')
 
 
 class DataFormatter:
-    def __init__(self, spark):
-        formattedLoader = LoadtoFormatted(spark)
-        self.dfs = formattedLoader.dfs
-        self.spark = formattedLoader.spark
+    def __init__(self, spark, logger):
+        try:
+            formattedLoader = LoadtoFormatted(spark, logger)
+            self.dfs = formattedLoader.dfs
+            self.spark = formattedLoader.spark
+            self.logger = logger
 
-        # Reconciliate data, unification column names
-        print("Reconciliating data...")
-        merged_dfs = self.reconciliate_data()
-        print("Data reconciliated")
+            # Reconciliate data, unification column names
+            merged_dfs = self.reconciliate_data()
 
-        # Clean data
-        print("Cleaning data...")
-        self.dfs = {key: self.clean_data(df) for key, df in merged_dfs.items()}
+            # Clean data
+            self.dfs = {key: self.clean_data(df) for key, df in merged_dfs.items()}
 
-        print("Data cleaned!")
+            # Join dfs
+            self.join_dfs()
+            
+            self.logger.info(f"Columns of the final join are: {self.dfs['final'].columns}")
+            self.logger.info("Finished Formatting Data with success!")
 
-        # Join dfs
-        print("Joining data...")
-        self.join_dfs()
-        print("Data joined!")
-
-        print(self.dfs['final'].columns)
-
+        except Exception:
+            self.logger.error("Error formatting data", exc_info=True)
 
     def reconciliate_data(self):
-        print('Starting reconciliate process...')
+        self.logger.info('Starting reconciliate process...')
         merged_dfs = {}
         # Process df_income
         df_income_list = list(self.dfs.get('income').values())
@@ -66,7 +64,7 @@ class DataFormatter:
             df_income_merged = df_income_merged.withColumn('RFD', 
                 col('info')[0]['RFD']).withColumn('pop', col('info')[0]['pop']).withColumn('year', col('info')[0]['year']).drop('info')
 
-            print(f"Income after merge columns: {df_income_merged.columns}")
+            self.logger.info(f"Income after merge columns: {df_income_merged.columns}")
             merged_dfs['income'] = df_income_merged
 
         # Process df_idealista
@@ -91,12 +89,8 @@ class DataFormatter:
             df_idealista_merged = join_and_union([df_idealista_merged], df_lookup, 'neighborhood', 'ne')
             df_idealista_merged = df_idealista_merged.drop('neighborhood', 'ne').withColumnRenamed('ne_re', 'neighborhood')
 
-            print(f"Idealista after merge columns: {df_idealista_merged.columns}")
+            self.logger.info(f"Idealista after merge columns: {df_idealista_merged.columns}")
             merged_dfs['idealista'] = df_idealista_merged
-            #==================================================================
-            # TESTING
-            #==================================================================
-            merged_dfs['idealista'].toPandas().to_csv('idealista.csv', index=False)
 
         # Process df_airqual
         df_airqual_list = list(self.dfs.get('airqual').values())
@@ -126,13 +120,15 @@ class DataFormatter:
             df_airqual_merged = df_airqual_merged.drop('Nom_barri', 'neighborhood_name', 'Codi_barri').withColumnRenamed(
                 'neighborhood_reconciled', 'neighborhood')
 
-            print(f"Airqual after merge columns: {df_airqual_merged.columns}")
+            self.logger.info(f"Airqual after merge columns: {df_airqual_merged.columns}")
             merged_dfs['airqual'] = df_airqual_merged
+
+        self.logger.info("Data reconciliated")
 
         return merged_dfs
 
     def join_dfs(self):
-        print('Starting final join...')
+        self.logger.info('Starting final join...')
         dfs_dict = self.dfs
         # Merge df_income, df_airqual, and df_idealista into a single DataFrame
         final_df = dfs_dict['income'].join(dfs_dict['idealista'], ['district', 'neighborhood'], 'outer') \
@@ -140,8 +136,11 @@ class DataFormatter:
 
         # Store the final DataFrame in the dictionary
         self.dfs['final'] = final_df
+        self.logger.info("Data joined!")
 
     def clean_data(self, df):
+        self.logger.info("Starting cleaning data...")
+
         # Step 0: Remove duplicates
         df = df.dropDuplicates()
 
@@ -164,6 +163,7 @@ class DataFormatter:
 
         # Step 5: Remove rows with wrong data that cannot be transformed
         #df = df.dropna()
+        self.logger.info("Data cleaned!")
 
         return df
 
@@ -203,18 +203,6 @@ def join_and_union(dfs, df_lookup, join_column, lookup_column, ensure_same_schem
         if ensure_same_schema:
             df = ensure_all_columns(df, all_columns)
 
-        # Ensure compatible column types
-        '''for col_name in df.columns:
-            if col_name in df_lookup.columns:
-                lookup_data_type = df_lookup.schema[col_name].dataType
-                if df.schema[col_name].dataType != lookup_data_type:
-                    # Handle mismatched column types
-                    if isinstance(lookup_data_type, StructType):
-                        # If the lookup column type is a struct, cast the DataFrame column to match
-                        df = df.withColumn(col_name, df[col_name].cast(lookup_data_type))
-                    else:
-                        # Otherwise, add or replace the column with null values
-                        df = df.withColumn(col_name, lit(None).cast(lookup_data_type))'''
         # Ensure compatible column types on join columns
         lookup_data_type = df_lookup.schema[lookup_column].dataType
         if df.schema[join_column].dataType != lookup_data_type:
@@ -227,9 +215,9 @@ def join_and_union(dfs, df_lookup, join_column, lookup_column, ensure_same_schem
                 # Otherwise, add or replace the column with null values
                 df = df.withColumn(join_column, lit(None).cast(lookup_data_type))
 
-        # print_shape_info(df, f"{df_name} before join")
+        # logger.info_shape_info(df, f"{df_name} before join")
         joined_df = df.join(df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
-        # print_shape_info(joined_df, f"{df_name} after join")
+        # logger.info_shape_info(joined_df, f"{df_name} after join")
         
         # Alias columns to avoid ambiguous references
         rdd = joined_df.rdd
@@ -251,7 +239,6 @@ def join_and_union(dfs, df_lookup, join_column, lookup_column, ensure_same_schem
         for idx, aliased_column in enumerate(aliased_columns):
             schema[idx].name = aliased_column
         joined_df = rdd.toDF(schema)
-        #joined_df = rdd.toDF(Row(*aliased_columns))
         
         # Reorder columns
         joined_df = ensure_all_columns(joined_df, all_columns)
