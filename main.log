@@ -25,3 +25,91 @@
 2024-06-19 18:29:37,943 - data_management - INFO - Columns of the final join are: ['district', 'neighborhood', 'RFD', 'pop', 'year', 'floor', 'newDevelopmentFinished', 'externalReference', 'typology', 'priceByArea', 'operation', 'price', 'title', 'numPhotos', 'latitude', 'status', 'propertyCode', 'bathrooms', 'hasVideo', 'exterior', 'topNewDevelopment', 'size', 'address', 'isParkingSpaceIncludedInPrice', 'rooms', 'subTypology', 'hasLift', 'hasStaging', 'hasPlan', 'longitude', 'has3DTour', 'distance', 'showAddress', 'hasParkingSpace', 'parkingSpacePrice', 'newDevelopment', 'propertyType', 'subtitle', 'has360', 'nom_cabina', 'Codi_Contaminant', 'ubicacio', 'Longitud', 'Estacio', 'Latitud', 'zqa', 'codi_eoi', 'Clas_1', 'Clas_2', 'codi_dtes']
 2024-06-19 18:29:37,943 - data_management - INFO - Finished Formatting Data with success!
 2024-06-19 18:29:38,428 - data_management - ERROR - Error occurred during data formatting: nameserver 8.8.4.4, is not a dns.nameserver.Nameserver instance or text form, IP address, nor a valid https URL
+2024-06-19 19:10:11,899 - data_management - INFO - Spark connection is successful!
+2024-06-19 19:10:11,992 - data_management - INFO - Starting data formatting process
+2024-06-19 19:10:11,992 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 19:10:13,967 - data_management - INFO - Airquality data loaded!
+2024-06-19 19:10:13,967 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 19:10:14,052 - data_management - INFO - Income data loaded!
+2024-06-19 19:10:14,053 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 19:10:14,173 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 19:10:14,173 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 19:10:17,472 - data_management - INFO - Idealista data loaded!
+2024-06-19 19:10:17,472 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-19 19:10:17,473 - data_management - INFO - Starting reconciliate process...
+2024-06-19 19:10:17,685 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-19 19:10:28,876 - data_management - INFO - Idealista after merge columns: ['hasStaging', 'isParkingSpaceIncludedInPrice', 'showAddress', 'numPhotos', 'longitude', 'priceByArea', 'typology', 'floor', 'propertyCode', 'size', 'latitude', 'subTypology', 'status', 'district', 'hasVideo', 'operation', 'hasParkingSpace', 'address', 'exterior', 'price', 'subtitle', 'hasLift', 'externalReference', 'rooms', 'parkingSpacePrice', 'title', 'newDevelopmentFinished', 'propertyType', 'hasPlan', 'bathrooms', 'distance', 'topNewDevelopment', 'newDevelopment', 'has360', 'has3DTour', 'neighborhood']
+2024-06-19 19:10:29,098 - data_management - INFO - Airqual after merge columns: ['ubicacio', 'Latitud', 'zqa', 'district', 'nom_cabina', 'Codi_Contaminant', 'Clas_1', 'codi_dtes', 'Clas_2', 'Longitud', 'Estacio', 'codi_eoi', 'neighborhood']
+2024-06-19 19:10:29,098 - data_management - INFO - Data reconciliated
+2024-06-19 19:10:29,098 - data_management - INFO - Starting cleaning data...
+2024-06-19 19:10:29,100 - data_management - INFO - Data cleaned!
+2024-06-19 19:10:29,100 - data_management - INFO - Starting cleaning data...
+2024-06-19 19:10:29,101 - data_management - INFO - Data cleaned!
+2024-06-19 19:10:29,101 - data_management - INFO - Starting cleaning data...
+2024-06-19 19:10:29,101 - data_management - INFO - Data cleaned!
+2024-06-19 19:10:29,101 - data_management - INFO - Starting final join...
+2024-06-19 19:10:29,112 - data_management - INFO - Data joined!
+2024-06-19 19:10:29,113 - data_management - INFO - Columns of the final join are: ['district', 'neighborhood', 'RFD', 'pop', 'year', 'hasStaging', 'isParkingSpaceIncludedInPrice', 'showAddress', 'numPhotos', 'longitude', 'priceByArea', 'typology', 'floor', 'propertyCode', 'size', 'latitude', 'subTypology', 'status', 'hasVideo', 'operation', 'hasParkingSpace', 'address', 'exterior', 'price', 'subtitle', 'hasLift', 'externalReference', 'rooms', 'parkingSpacePrice', 'title', 'newDevelopmentFinished', 'propertyType', 'hasPlan', 'bathrooms', 'distance', 'topNewDevelopment', 'newDevelopment', 'has360', 'has3DTour', 'ubicacio', 'Latitud', 'zqa', 'nom_cabina', 'Codi_Contaminant', 'Clas_1', 'codi_dtes', 'Clas_2', 'Longitud', 'Estacio', 'codi_eoi']
+2024-06-19 19:10:29,113 - data_management - INFO - Starting to load formatting data to MongoDB...
+2024-06-19 19:10:29,306 - data_management - INFO - Collection 'income' dropped from database 'test'
+2024-06-19 19:10:29,406 - data_management - INFO - Collection 'income' created in database 'test'
+2024-06-19 19:10:30,781 - data_management - INFO - Data written to collection 'income' in database 'test'
+2024-06-19 19:10:30,781 - data_management - INFO - Data written to collection 'income'
+2024-06-19 19:10:30,812 - data_management - INFO - Collection 'idealista' dropped from database 'test'
+2024-06-19 19:10:30,913 - data_management - INFO - Collection 'idealista' created in database 'test'
+2024-06-19 19:10:51,422 - data_management - INFO - Data written to collection 'idealista' in database 'test'
+2024-06-19 19:10:51,423 - data_management - INFO - Data written to collection 'idealista'
+2024-06-19 19:10:51,453 - data_management - INFO - Collection 'airqual' dropped from database 'test'
+2024-06-19 19:10:51,555 - data_management - INFO - Collection 'airqual' created in database 'test'
+2024-06-19 19:10:52,502 - data_management - INFO - Data written to collection 'airqual' in database 'test'
+2024-06-19 19:10:52,502 - data_management - INFO - Data written to collection 'airqual'
+2024-06-19 19:10:52,532 - data_management - INFO - Collection 'final' dropped from database 'test'
+2024-06-19 19:10:52,668 - data_management - INFO - Collection 'final' created in database 'test'
+2024-06-19 19:12:33,996 - data_management - INFO - Data written to collection 'final' in database 'test'
+2024-06-19 19:12:33,997 - data_management - INFO - Data written to collection 'final'
+2024-06-19 19:12:33,997 - data_management - INFO - Finished Formatting Data and loading it with success!
+2024-06-19 19:12:33,998 - data_management - INFO - Finished succesfully data formatting process
+2024-06-19 19:16:34,106 - data_management - INFO - Spark connection is successful!
+2024-06-19 19:16:34,205 - data_management - INFO - Starting data formatting process
+2024-06-19 19:16:34,205 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-19 19:16:36,182 - data_management - INFO - Airquality data loaded!
+2024-06-19 19:16:36,183 - data_management - INFO - Loading income data to PySpark...
+2024-06-19 19:16:36,267 - data_management - INFO - Income data loaded!
+2024-06-19 19:16:36,267 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-19 19:16:36,393 - data_management - INFO - Lookup tables data loaded!
+2024-06-19 19:16:36,393 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-19 19:16:39,546 - data_management - INFO - Idealista data loaded!
+2024-06-19 19:16:39,546 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-19 19:16:39,546 - data_management - INFO - Starting reconciliate process...
+2024-06-19 19:16:39,768 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-19 19:16:51,006 - data_management - INFO - Idealista after merge columns: ['district', 'price', 'numPhotos', 'priceByArea', 'hasLift', 'isParkingSpaceIncludedInPrice', 'size', 'longitude', 'address', 'newDevelopmentFinished', 'newDevelopment', 'status', 'has360', 'operation', 'latitude', 'bathrooms', 'topNewDevelopment', 'rooms', 'hasPlan', 'hasVideo', 'has3DTour', 'propertyType', 'subTypology', 'subtitle', 'hasParkingSpace', 'hasStaging', 'typology', 'propertyCode', 'title', 'externalReference', 'floor', 'showAddress', 'distance', 'parkingSpacePrice', 'exterior', 'neighborhood']
+2024-06-19 19:16:51,302 - data_management - INFO - Airqual after merge columns: ['Estacio', 'Latitud', 'ubicacio', 'Longitud', 'codi_eoi', 'zqa', 'district', 'codi_dtes', 'Clas_2', 'nom_cabina', 'Clas_1', 'Codi_Contaminant', 'neighborhood']
+2024-06-19 19:16:51,302 - data_management - INFO - Data reconciliated
+2024-06-19 19:16:51,303 - data_management - INFO - Starting cleaning data...
+2024-06-19 19:16:51,304 - data_management - INFO - Data cleaned!
+2024-06-19 19:16:51,304 - data_management - INFO - Starting cleaning data...
+2024-06-19 19:16:51,305 - data_management - INFO - Data cleaned!
+2024-06-19 19:16:51,305 - data_management - INFO - Starting cleaning data...
+2024-06-19 19:16:51,306 - data_management - INFO - Data cleaned!
+2024-06-19 19:16:51,306 - data_management - INFO - Starting final join...
+2024-06-19 19:16:51,316 - data_management - INFO - Data joined!
+2024-06-19 19:16:51,316 - data_management - INFO - Columns of the final join are: ['district', 'neighborhood', 'RFD', 'pop', 'year', 'price', 'numPhotos', 'priceByArea', 'hasLift', 'isParkingSpaceIncludedInPrice', 'size', 'longitude', 'address', 'newDevelopmentFinished', 'newDevelopment', 'status', 'has360', 'operation', 'latitude', 'bathrooms', 'topNewDevelopment', 'rooms', 'hasPlan', 'hasVideo', 'has3DTour', 'propertyType', 'subTypology', 'subtitle', 'hasParkingSpace', 'hasStaging', 'typology', 'propertyCode', 'title', 'externalReference', 'floor', 'showAddress', 'distance', 'parkingSpacePrice', 'exterior', 'Estacio', 'Latitud', 'ubicacio', 'Longitud', 'codi_eoi', 'zqa', 'codi_dtes', 'Clas_2', 'nom_cabina', 'Clas_1', 'Codi_Contaminant']
+2024-06-19 19:16:51,316 - data_management - INFO - Starting to load formatting data to MongoDB...
+2024-06-19 19:16:51,506 - data_management - INFO - Collection 'income' dropped from database 'test'
+2024-06-19 19:16:51,607 - data_management - INFO - Collection 'income' created in database 'test'
+2024-06-19 19:16:52,879 - data_management - INFO - Data written to collection 'income' in database 'test'
+2024-06-19 19:16:52,879 - data_management - INFO - Data written to collection 'income'
+2024-06-19 19:16:52,909 - data_management - INFO - Collection 'idealista' dropped from database 'test'
+2024-06-19 19:16:53,011 - data_management - INFO - Collection 'idealista' created in database 'test'
+2024-06-19 19:17:14,518 - data_management - INFO - Data written to collection 'idealista' in database 'test'
+2024-06-19 19:17:14,518 - data_management - INFO - Data written to collection 'idealista'
+2024-06-19 19:17:14,548 - data_management - INFO - Collection 'airqual' dropped from database 'test'
+2024-06-19 19:17:14,650 - data_management - INFO - Collection 'airqual' created in database 'test'
+2024-06-19 19:17:15,576 - data_management - INFO - Data written to collection 'airqual' in database 'test'
+2024-06-19 19:17:15,577 - data_management - INFO - Data written to collection 'airqual'
+2024-06-19 19:17:15,607 - data_management - INFO - Collection 'final' dropped from database 'test'
+2024-06-19 19:17:15,712 - data_management - INFO - Collection 'final' created in database 'test'
+2024-06-19 19:19:15,302 - data_management - INFO - Data written to collection 'final' in database 'test'
+2024-06-19 19:19:15,302 - data_management - INFO - Data written to collection 'final'
+2024-06-19 19:19:15,302 - data_management - INFO - Finished Formatting Data and loading it with success!
+2024-06-19 19:19:15,302 - data_management - INFO - Finished succesfully data formatting process
