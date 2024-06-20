@@ -2025,3 +2025,228 @@ only showing top 5 rows
 2024-06-20 18:41:33,554 - data_management - INFO - Saving model to MongoDB...
 2024-06-20 18:41:34,699 - data_management - INFO - Data written to collection 'ExploitationZone_modelDf' in database 'test'
 2024-06-20 18:41:35,252 - data_management - INFO - Finished succesfully data prediction process
+2024-06-20 19:46:37,251 - data_management - INFO - Spark connection is successful!
+2024-06-20 19:49:09,567 - data_management - INFO - Spark connection is successful!
+2024-06-20 19:49:09,570 - data_management - INFO - Starting data formatting process
+2024-06-20 19:49:09,570 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-20 19:49:11,561 - data_management - INFO - Airquality data loaded!
+2024-06-20 19:49:11,561 - data_management - INFO - Loading income data to PySpark...
+2024-06-20 19:49:11,657 - data_management - INFO - Income data loaded!
+2024-06-20 19:49:11,657 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-20 19:49:11,807 - data_management - INFO - Lookup tables data loaded!
+2024-06-20 19:49:11,807 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-20 19:49:16,401 - data_management - INFO - Idealista data loaded!
+2024-06-20 19:49:16,402 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-20 19:49:16,402 - data_management - INFO - Starting reconciliate process...
+2024-06-20 19:49:16,644 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-20 19:49:29,244 - data_management - INFO - Idealista after merge columns: ['bathrooms', 'longitude', 'propertyCode', 'numPhotos', 'newDevelopment', 'date', 'parkingSpacePrice', 'typology', 'priceByArea', 'hasVideo', 'exterior', 'topNewDevelopment', 'hasLift', 'externalReference', 'floor', 'showAddress', 'district', 'title', 'has3DTour', 'subtitle', 'newDevelopmentFinished', 'latitude', 'price', 'address', 'propertyType', 'rooms', 'size', 'subTypology', 'operation', 'distance', 'status', 'isParkingSpaceIncludedInPrice', 'hasPlan', 'has360', 'hasParkingSpace', 'hasStaging', 'neighborhood']
+2024-06-20 19:49:29,562 - data_management - INFO - Airqual after merge columns: ['Latitud', 'year', 'Codi_Contaminant', 'Longitud', 'Clas_1', 'Clas_2', 'ubicacio', 'codi_eoi', 'district', 'zqa', 'codi_dtes', 'Estacio', 'nom_cabina', 'neighborhood']
+2024-06-20 19:49:29,562 - data_management - INFO - Data reconciliated
+2024-06-20 19:49:29,563 - data_management - INFO - Starting cleaning data...
+2024-06-20 19:49:29,564 - data_management - INFO - Data cleaned!
+2024-06-20 19:49:29,564 - data_management - INFO - Starting cleaning data...
+2024-06-20 19:49:29,565 - data_management - INFO - Data cleaned!
+2024-06-20 19:49:29,565 - data_management - INFO - Starting cleaning data...
+2024-06-20 19:49:29,566 - data_management - INFO - Data cleaned!
+2024-06-20 19:49:29,566 - data_management - INFO - Starting to load formatting data to MongoDB...
+2024-06-20 19:49:59,695 - data_management - ERROR - Failed to drop collection 'income' from database 'test': cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66746b95e054dc7c4fe1f9f4, topology_type: Unknown, servers: [<ServerDescription ('cluster0', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2024-06-20 19:50:30,129 - data_management - ERROR - Failed to create collection 'income' in database 'test': cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66746b95e054dc7c4fe1f9f4, topology_type: Unknown, servers: [<ServerDescription ('cluster0', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2024-06-20 19:50:30,184 - data_management - ERROR - Failed to write to collection 'income' in database 'test': requirement failed: Invalid uri: 'Cluster0'
+2024-06-20 19:50:30,184 - data_management - INFO - Data written to collection 'income'
+2024-06-20 19:51:00,553 - data_management - ERROR - Failed to drop collection 'idealista' from database 'test': cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66746b95e054dc7c4fe1f9f4, topology_type: Unknown, servers: [<ServerDescription ('cluster0', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2024-06-20 19:51:30,997 - data_management - ERROR - Failed to create collection 'idealista' in database 'test': cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66746b95e054dc7c4fe1f9f4, topology_type: Unknown, servers: [<ServerDescription ('cluster0', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2024-06-20 19:51:31,027 - data_management - ERROR - Failed to write to collection 'idealista' in database 'test': requirement failed: Invalid uri: 'Cluster0'
+2024-06-20 19:51:31,028 - data_management - INFO - Data written to collection 'idealista'
+2024-06-20 19:52:01,433 - data_management - ERROR - Failed to drop collection 'airqual' from database 'test': cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66746b95e054dc7c4fe1f9f4, topology_type: Unknown, servers: [<ServerDescription ('cluster0', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2024-06-20 19:52:31,869 - data_management - ERROR - Failed to create collection 'airqual' in database 'test': cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66746b95e054dc7c4fe1f9f4, topology_type: Unknown, servers: [<ServerDescription ('cluster0', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('cluster0:27017: [Errno 8] nodename nor servname provided, or not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2024-06-20 19:52:31,897 - data_management - ERROR - Failed to write to collection 'airqual' in database 'test': requirement failed: Invalid uri: 'Cluster0'
+2024-06-20 19:52:31,897 - data_management - INFO - Data written to collection 'airqual'
+2024-06-20 19:52:31,897 - data_management - INFO - Finished Formatting Data and loading it with success!
+2024-06-20 19:52:31,897 - data_management - INFO - Finished succesfully data formatting process
+2024-06-20 19:54:42,902 - data_management - INFO - Spark connection is successful!
+2024-06-20 19:54:42,985 - data_management - INFO - Starting data formatting process
+2024-06-20 19:54:42,985 - data_management - INFO - Loading airquality data to PySpark...
+2024-06-20 19:54:45,029 - data_management - INFO - Airquality data loaded!
+2024-06-20 19:54:45,029 - data_management - INFO - Loading income data to PySpark...
+2024-06-20 19:54:45,103 - data_management - INFO - Income data loaded!
+2024-06-20 19:54:45,103 - data_management - INFO - Loading lookup tables data to PySpark...
+2024-06-20 19:54:45,241 - data_management - INFO - Lookup tables data loaded!
+2024-06-20 19:54:45,241 - data_management - INFO - Loading idealista data to PySpark...
+2024-06-20 19:54:49,802 - data_management - INFO - Idealista data loaded!
+2024-06-20 19:54:49,802 - data_management - INFO - Finished loading data to PySpark with success!
+2024-06-20 19:54:49,802 - data_management - INFO - Starting reconciliate process...
+2024-06-20 19:54:50,096 - data_management - INFO - Income after merge columns: ['district', 'neighborhood', 'RFD', 'pop', 'year']
+2024-06-20 19:55:01,966 - data_management - INFO - Idealista after merge columns: ['isParkingSpaceIncludedInPrice', 'bathrooms', 'floor', 'subtitle', 'typology', 'showAddress', 'topNewDevelopment', 'has360', 'hasParkingSpace', 'newDevelopment', 'hasVideo', 'status', 'rooms', 'exterior', 'price', 'has3DTour', 'hasPlan', 'newDevelopmentFinished', 'subTypology', 'title', 'externalReference', 'latitude', 'operation', 'hasLift', 'date', 'parkingSpacePrice', 'numPhotos', 'address', 'priceByArea', 'longitude', 'district', 'distance', 'propertyType', 'propertyCode', 'size', 'hasStaging', 'neighborhood']
+2024-06-20 19:55:02,197 - data_management - INFO - Airqual after merge columns: ['zqa', 'Clas_1', 'Estacio', 'Longitud', 'Codi_Contaminant', 'year', 'Latitud', 'codi_dtes', 'Clas_2', 'nom_cabina', 'district', 'ubicacio', 'codi_eoi', 'neighborhood']
+2024-06-20 19:55:02,197 - data_management - INFO - Data reconciliated
+2024-06-20 19:55:02,197 - data_management - INFO - Starting cleaning data...
+2024-06-20 19:55:02,199 - data_management - INFO - Data cleaned!
+2024-06-20 19:55:02,199 - data_management - INFO - Starting cleaning data...
+2024-06-20 19:55:02,199 - data_management - INFO - Data cleaned!
+2024-06-20 19:55:02,199 - data_management - INFO - Starting cleaning data...
+2024-06-20 19:55:02,200 - data_management - INFO - Data cleaned!
+2024-06-20 19:55:02,200 - data_management - INFO - Starting to load formatting data to MongoDB...
+2024-06-20 19:55:02,388 - data_management - INFO - Collection 'income' dropped from database 'test'
+2024-06-20 19:55:02,488 - data_management - INFO - Collection 'income' created in database 'test'
+2024-06-20 19:55:03,898 - data_management - INFO - Data written to collection 'income' in database 'test'
+2024-06-20 19:55:03,899 - data_management - INFO - Data written to collection 'income'
+2024-06-20 19:55:03,927 - data_management - INFO - Collection 'idealista' dropped from database 'test'
+2024-06-20 19:55:04,029 - data_management - INFO - Collection 'idealista' created in database 'test'
+2024-06-20 19:55:22,134 - data_management - INFO - Data written to collection 'idealista' in database 'test'
+2024-06-20 19:55:22,135 - data_management - INFO - Data written to collection 'idealista'
+2024-06-20 19:55:23,097 - data_management - INFO - Collection 'airqual' dropped from database 'test'
+2024-06-20 19:55:24,170 - data_management - INFO - Collection 'airqual' created in database 'test'
+2024-06-20 19:55:26,205 - data_management - INFO - Data written to collection 'airqual' in database 'test'
+2024-06-20 19:55:26,205 - data_management - INFO - Data written to collection 'airqual'
+2024-06-20 19:55:26,205 - data_management - INFO - Finished Formatting Data and loading it with success!
+2024-06-20 19:55:26,206 - data_management - INFO - Finished succesfully data formatting process
+2024-06-20 19:56:00,054 - data_management - INFO - Spark connection is successful!
+2024-06-20 19:56:00,122 - data_management - INFO - Starting data visualization process
+2024-06-20 19:56:00,123 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-20 19:56:01,696 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-20 19:56:01,697 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-20 19:56:02,029 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-20 19:56:02,029 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-20 19:56:02,127 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-20 19:56:02,143 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-20 19:56:03,050 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{66746d0c2c6f2547...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{66746d0c2c6f2547...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{66746d0c2c6f2547...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{66746d0c2c6f2547...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{66746d0c2c6f2547...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-20 19:56:03,051 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-20 19:56:03,358 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|       neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|    price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|               title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|{66746cfe2c6f2547...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     760|Eixample|    true|            14725|    4| false|     true|   NULL|           NULL|   true|     false|   false|                         NULL|41.3943032|2.1622767|Dreta de l'Eixample|         false|                  NULL|       47|     sale|             NULL|1600000.0|     9467.0|    91637762|        flat|    3|      false|169.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66746cfe2c6f2547...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     515|Eixample|    true|         BCN06455|    4| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4021599|2.1678097|Dreta de l'Eixample|         false|                  NULL|       27|     sale|             NULL| 465000.0|     3941.0|    92097031|        flat|    5|      false|118.0| renew|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66746cfe2c6f2547...|barrio La Dreta d...|        3|2021-02-22 00:00:00|     769|Eixample|    true|         BCN19869| NULL| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3948533|2.1578979|Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|1850000.0|    10632.0|    91178037|        flat|    3|      false|174.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66746cfe2c6f2547...|barrio La Dreta d...|        3|2021-02-22 00:00:00|     853|Eixample|    true|         BCN04358|   bj|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4011862|  2.17202|Dreta de l'Eixample|         false|                  NULL|       37|     sale|             NULL|1495000.0|     1869.0|    86437932|      duplex|    4|      false|800.0|  good|     duplex|La Dreta de l'Eix...|              Dúplex|            false|    flat|
+|{66746cfe2c6f2547...|     Paseo de Gràcia|        1|2021-02-22 00:00:00|     780|Eixample|    true|      VB2011024-1|    5|  true|    false|   true|           NULL|   true|     false|    true|                         NULL|41.3941412|2.1609541|Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL| 870000.0|    10116.0|    92472112|        flat|    1|      false| 86.0|  good|       NULL|La Dreta de l'Eix...|Piso en Paseo de ...|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+only showing top 5 rows
+
+2024-06-20 19:56:03,358 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-20 19:56:03,492 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{66746cf72c6f2547...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{66746cf72c6f2547...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{66746cf72c6f2547...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{66746cf72c6f2547...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{66746cf72c6f2547...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-20 19:56:03,548 - data_management - INFO - The number of columns in the joined DataFrame: 41
+2024-06-20 19:56:03,615 - data_management - INFO - The number of columns in the joined DataFrame: 50
+2024-06-20 19:56:03,615 - data_management - INFO - Calculating KPIs...
+2024-06-20 19:56:04,240 - data_management - INFO - Average number of new listings per day: 166.88888888888889
+2024-06-20 19:56:04,914 - data_management - INFO - Top-seller neighborhoods in the last month:+--------------------+-----+
+|        neighborhood|count|
++--------------------+-----+
+| Dreta de l'Eixample|  240|
+|      Gothic Quarter|  145|
+|            El Raval|   78|
+|"Sant Pere, Santa...|   45|
+|         Sant Antoni|    2|
++--------------------+-----+
+
+2024-06-20 19:56:05,095 - data_management - INFO - Top 5 neighborhoods with the most contaminants from 2019 to 2023:+--------------+-----+
+|  neighborhood|count|
++--------------+-----+
+|          NULL|   93|
+|     Pedralbes|   38|
+|Vila de Gràcia|   28|
+|   El Poblenou|   16|
+|         Sants|   12|
++--------------+-----+
+
+2024-06-20 19:56:05,555 - data_management - INFO - Correlation between price and RFD: 0.5703817421818224
+2024-06-20 19:56:06,113 - data_management - INFO - Correlation between price and air contaminants:                          -0.02814275195846184
+2024-06-20 19:56:06,113 - data_management - INFO - KPIs calculated!
+2024-06-20 19:56:06,113 - data_management - INFO - Saving KPIs to MongoDB...
+2024-06-20 19:56:06,804 - data_management - INFO - Data written to collection 'ExploitationZone_KPIs' in database 'test'
+2024-06-20 19:56:07,634 - data_management - INFO - Data written to collection 'ExploitationZone_topSellers' in database 'test'
+2024-06-20 19:56:09,323 - data_management - INFO - Data written to collection 'ExploitationZone_topContaminants' in database 'test'
+2024-06-20 19:56:09,324 - data_management - INFO - KPIs saved!
+2024-06-20 19:56:09,324 - data_management - INFO - Finished succesfully data visualization process
+2024-06-20 19:58:44,838 - data_management - INFO - Spark connection is successful!
+2024-06-20 19:58:44,917 - data_management - INFO - Starting data prediction process
+2024-06-20 19:58:44,924 - data_management - INFO - Loading collection 'airqual' into DataFrame
+2024-06-20 19:58:46,614 - data_management - INFO - Loaded collection 'airqual' into DataFrame
+2024-06-20 19:58:46,614 - data_management - INFO - Loading collection 'idealista' into DataFrame
+2024-06-20 19:58:46,967 - data_management - INFO - Loaded collection 'idealista' into DataFrame
+2024-06-20 19:58:46,967 - data_management - INFO - Loading collection 'income' into DataFrame
+2024-06-20 19:58:47,071 - data_management - INFO - Loaded collection 'income' into DataFrame
+2024-06-20 19:58:47,087 - data_management - INFO - Schema for collection 'airqual':struct<Clas_1:string,Clas_2:string,Codi_Contaminant:string,Estacio:string,Latitud:string,Longitud:string,_id:struct<oid:string>,codi_dtes:string,codi_eoi:string,district:string,neighborhood:string,nom_cabina:string,ubicacio:string,year:string,zqa:string>
+2024-06-20 19:58:47,931 - data_management - INFO - First few rows of collection 'airqual':+------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Clas_1| Clas_2|Codi_Contaminant|Estacio|Latitud|Longitud|                 _id|codi_dtes|codi_eoi|  district|  neighborhood|          nom_cabina|            ubicacio|year|zqa|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+|Urbana|Trànsit|               1|     44|41.3987|  2.1534|{66746d0c2c6f2547...|       IJ| 8019044|    Gràcia|Vila de Gràcia|  Barcelona - Gràcia|Plaça Gal·la Plac...|2021|  1|
+|Urbana|   Fons|               9|     57|41.3875|  2.1151|{66746d0c2c6f2547...|       IZ| 8019057| Les Corts|     Pedralbes|Barcelona - Palau...|c/ John Maynard K...|2021|  1|
+|Urbana|   Fons|              10|      4|41.4039|  2.2045|{66746d0c2c6f2547...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|               7|      4|41.4039|  2.2045|{66746d0c2c6f2547...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
+|Urbana|   Fons|              12|      4|41.4039|  2.2045|{66746d0c2c6f2547...|       I2| 8019004|Sant Martí|   El Poblenou|Barcelona - Poblenou|Plaça Josep Truet...|2021|  1|
++------+-------+----------------+-------+-------+--------+--------------------+---------+--------+----------+--------------+--------------------+--------------------+----+---+
+only showing top 5 rows
+
+2024-06-20 19:58:47,932 - data_management - INFO - Schema for collection 'idealista':struct<_id:struct<oid:string>,address:string,bathrooms:bigint,date:timestamp,distance:string,district:string,exterior:boolean,externalReference:string,floor:string,has360:boolean,has3DTour:boolean,hasLift:boolean,hasParkingSpace:boolean,hasPlan:boolean,hasStaging:boolean,hasVideo:boolean,isParkingSpaceIncludedInPrice:boolean,latitude:double,longitude:double,neighborhood:string,newDevelopment:boolean,newDevelopmentFinished:boolean,numPhotos:bigint,operation:string,parkingSpacePrice:double,price:double,priceByArea:double,propertyCode:string,propertyType:string,rooms:bigint,showAddress:boolean,size:double,status:string,subTypology:string,subtitle:string,title:string,topNewDevelopment:boolean,typology:string>
+2024-06-20 19:58:48,239 - data_management - INFO - First few rows of collection 'idealista':+--------------------+--------------------+---------+-------------------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|                 _id|             address|bathrooms|               date|distance|district|exterior|externalReference|floor|has360|has3DTour|hasLift|hasParkingSpace|hasPlan|hasStaging|hasVideo|isParkingSpaceIncludedInPrice|  latitude|longitude|       neighborhood|newDevelopment|newDevelopmentFinished|numPhotos|operation|parkingSpacePrice|    price|priceByArea|propertyCode|propertyType|rooms|showAddress| size|status|subTypology|            subtitle|               title|topNewDevelopment|typology|
++--------------------+--------------------+---------+-------------------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+|{66746cfe2c6f2547...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     760|Eixample|    true|            14725|    4| false|     true|   NULL|           NULL|   true|     false|   false|                         NULL|41.3943032|2.1622767|Dreta de l'Eixample|         false|                  NULL|       47|     sale|             NULL|1600000.0|     9467.0|    91637762|        flat|    3|      false|169.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66746cfe2c6f2547...|barrio La Dreta d...|        2|2021-02-22 00:00:00|     515|Eixample|    true|         BCN06455|    4| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4021599|2.1678097|Dreta de l'Eixample|         false|                  NULL|       27|     sale|             NULL| 465000.0|     3941.0|    92097031|        flat|    5|      false|118.0| renew|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66746cfe2c6f2547...|barrio La Dreta d...|        3|2021-02-22 00:00:00|     769|Eixample|    true|         BCN19869| NULL| false|    false|   true|           NULL|   true|     false|   false|                         NULL|41.3948533|2.1578979|Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL|1850000.0|    10632.0|    91178037|        flat|    3|      false|174.0|  good|       NULL|La Dreta de l'Eix...|                Piso|            false|    flat|
+|{66746cfe2c6f2547...|barrio La Dreta d...|        3|2021-02-22 00:00:00|     853|Eixample|    true|         BCN04358|   bj|  true|    false|   true|           NULL|   true|     false|   false|                         NULL|41.4011862|  2.17202|Dreta de l'Eixample|         false|                  NULL|       37|     sale|             NULL|1495000.0|     1869.0|    86437932|      duplex|    4|      false|800.0|  good|     duplex|La Dreta de l'Eix...|              Dúplex|            false|    flat|
+|{66746cfe2c6f2547...|     Paseo de Gràcia|        1|2021-02-22 00:00:00|     780|Eixample|    true|      VB2011024-1|    5|  true|    false|   true|           NULL|   true|     false|    true|                         NULL|41.3941412|2.1609541|Dreta de l'Eixample|         false|                  NULL|       24|     sale|             NULL| 870000.0|    10116.0|    92472112|        flat|    1|      false| 86.0|  good|       NULL|La Dreta de l'Eix...|Piso en Paseo de ...|            false|    flat|
++--------------------+--------------------+---------+-------------------+--------+--------+--------+-----------------+-----+------+---------+-------+---------------+-------+----------+--------+-----------------------------+----------+---------+-------------------+--------------+----------------------+---------+---------+-----------------+---------+-----------+------------+------------+-----+-----------+-----+------+-----------+--------------------+--------------------+-----------------+--------+
+only showing top 5 rows
+
+2024-06-20 19:58:48,240 - data_management - INFO - Schema for collection 'income':struct<RFD:double,_id:struct<oid:string>,district:string,neighborhood:string,pop:bigint,year:bigint>
+2024-06-20 19:58:48,381 - data_management - INFO - First few rows of collection 'income':+-----+--------------------+-------------------+--------------------+-----+----+
+|  RFD|                 _id|           district|        neighborhood|  pop|year|
++-----+--------------------+-------------------+--------------------+-----+----+
+| 89.1|{66746cf72c6f2547...|     Horta-Guinardó|       Vall d'Hebron| 5580|2011|
+|190.7|{66746cf72c6f2547...|Sarrià-Sant Gervasi|Sant Gervasi – la...|24432|2011|
+| 95.9|{66746cf72c6f2547...|           Eixample|         Sant Antoni|38130|2011|
+| 89.9|{66746cf72c6f2547...|     Horta-Guinardó|    El Baix Guinardó|25972|2011|
+| 50.8|{66746cf72c6f2547...|        Sant Andreu|       Baró de Viver| 2343|2011|
++-----+--------------------+-------------------+--------------------+-----+----+
+only showing top 5 rows
+
+2024-06-20 19:58:48,381 - data_management - INFO - Joining tables...
+2024-06-20 19:58:48,460 - data_management - INFO - The number of columns in the joined DataFrame: 50
+2024-06-20 19:58:48,495 - data_management - INFO - The number of columns in the joined DataFrame: 52
+2024-06-20 19:58:49,369 - data_management - INFO - Shape of DataFrame before indexing: (261, 52)
+2024-06-20 19:58:49,369 - data_management - INFO - Tables joined!
+2024-06-20 19:58:49,369 - data_management - INFO - Selecting features...
+2024-06-20 19:58:49,393 - data_management - INFO - Features selected!
+2024-06-20 19:58:49,393 - data_management - INFO - Cleaning data...
+2024-06-20 19:59:04,248 - data_management - INFO - Columns with NA values to be dropped: ['externalReference', 'floor', 'hasLift', 'hasParkingSpace', 'isParkingSpaceIncludedInPrice', 'newDevelopmentFinished', 'parkingSpacePrice', 'subTypology']
+2024-06-20 19:59:04,629 - data_management - INFO - Shape of DataFrame before indexing: (261, 42)
+2024-06-20 19:59:04,629 - data_management - INFO - Data cleaned!
+2024-06-20 19:59:04,629 - data_management - INFO - Building model...
+2024-06-20 19:59:04,935 - data_management - INFO - Indexing categorical features...
+2024-06-20 19:59:12,951 - data_management - INFO - Assembeling vectors...
+2024-06-20 19:59:12,959 - data_management - INFO - Creating pipeline...
+2024-06-20 19:59:14,869 - data_management - INFO - Fitting model...
+2024-06-20 19:59:18,450 - data_management - INFO - Root Mean Squared Error (RMSE): 111698.07032135547
+2024-06-20 19:59:19,173 - data_management - INFO - R2: 0.9437314343651972
+2024-06-20 19:59:19,174 - data_management - INFO - Saving model...
+2024-06-20 19:59:19,822 - data_management - INFO - Model saved to DuckDB:
+2024-06-20 19:59:19,823 - data_management - INFO -                                                model
+0  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+1  [99, 114, 99, 0, 0, 0, 2, 0, 99, 114, 99, 0, 0...
+2  [99, 114, 99, 0, 0, 0, 2, 0, 80, 65, 82, 49, 2...
+3  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+4  [99, 114, 99, 0, 0, 0, 2, 0, 34, 123, 5, 137, ...
+2024-06-20 19:59:19,830 - data_management - INFO - Saving model to MongoDB...
+2024-06-20 19:59:21,695 - data_management - INFO - Data written to collection 'ExploitationZone_modelDf' in database 'test'
+2024-06-20 19:59:22,011 - data_management - INFO - Finished succesfully data prediction process

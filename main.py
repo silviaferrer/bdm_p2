@@ -51,7 +51,7 @@ def main():
     except Exception as e:
         logger.error("Building Spark Session error: ", e)
 
-    mongoLoader = MongoDBLoader(VM_HOST, MONGODB_PORT, DB_NAME, logger)
+    mongoLoader = MongoDBLoader(VM_HOST, MONGODB_PORT, DB_NAME, MONGO_CLUSTER, logger)
 
     if exec_mode == 'data-formatting':
 
