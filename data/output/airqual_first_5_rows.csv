@@ -1,6 +1,0 @@
-_id,Estacio,nom_cabina,codi_dtes,zqa,codi_eoi,Longitud,Latitud,ubicacio,Codi_districte,Nom_districte,Codi_barri,Nom_barri,Clas_1,Clas_2,Codi_Contaminant
-17,44,Barcelona - Gràcia,IJ,1,8019044,2.1534,41.3987,Plaça Gal·la Placídia (Via Augusta - Travessera de Gràcia),6,Gracia,31,la Vila de Gracia,Urbana,Trànsit,8
-2,50,Barcelona - Ciutadella,IL,1,8019050,2.1874,41.3864,Parc de la Ciutadella,1,Ciutat Vella,4,"Sant Pere, Santa Caterina i la Ribera",Urbana,Fons,14
-35,4,Barcelona - Poblenou,I2,1,8019004,2.2045,41.4039,Plaça Josep Trueta (Pujades - Lope de Vega),10,Sant Marti,68,el Poblenou,Urbana,Fons,12
-7,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,10
-12,43,Barcelona - Eixample,IH,1,8019043,2.1538,41.3853,Av. Roma - c/ Comte Urgell,5,Eixample,9,la Nova Esquerra de l'Eixample,Urbana,Trànsit,22

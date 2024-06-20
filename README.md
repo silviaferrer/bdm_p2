@@ -1,29 +1,31 @@
 # bdm_p2
-Notes for the report:
-- The neighborhood Sant Pere, Santa Caterina i la Ribera is not found on the income df and airqual df lookup because in the lookup tables it is written like "Sant Pere, Santa Caterina i la Ribera"
+UPC
+Master in Data Science
 
-Steps:
-    1. Reconciliate District and Neighbourhood names:
-        Join the 3 tables airquality, idealista, income with the respective
-        lookup tables and transform the District and Neighbourhood names (and
-        ids) to the reconciled names.
-        This will allow each user (analyst, ML engineer...) to join the tables
-        without worrying about the names' formats.
-    1.1.  Save dataframes in VM in the Formatted Zone
-    2. Come up with KPIs:
-        Start with the ones given in the presentation
-    3. Create a star-schema:
-        Create dimension and fact tables (with ids for the corresponding dimensions)
-        from the Formatted Zone tables
-    4. Calculate KPIs and visualize them graphically
-        Store the calculated KPIs in the VM in the in the Exploitation Zone
-        Create visualizations on PowerBI/Tableau
-    5. Come up with a predictive analysis
-        Start with the predictions given in the presentation
-    6. Join the necessary tables from the Formatted Zone
-    7. Train and test a model
-    8. Save the model in the VM in the Exploitation Zone
-    8. Ingest and process the Kafka stream
-        Apply the same formatting used in the Formatted Zone
-    9. Perform predictions using the model stored in the VM
-    10. Visualize the predictions
+P2: Formatted and Exploitation Zones
+Big Data Management
+
+Year: 2023/24
+Date: June 2024
+Team members:
+    Casanova, Adrià
+    Ferrer, Silvia
+    Vayá, Gabriel
+
+
+In this work we present a comprehensive approach to a second part of a Big Data Management
+Backbone. The project starts with a given solution for a Persistent Landing Zone, and is going to
+implement a Formatted Zone and an Exploitation Zone including the calculation of a set of KPI’s
+and a predictive analysis and the visualization of our overall analysis.
+
+The original code can be found in Github: https://github.com/silviaferrer/bdm_p2
+
+This project has three executables. Use the following commands to run them:
+- python main.py data-formatting
+    Load data to the Formatted Zone and format it
+
+- python main.py data-visualization
+    Calculate KPIs and store them in the Exploitation Zone
+
+- python main.py data-prediction
+    Train a ML model and store it in the Exploitation Zone

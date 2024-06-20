@@ -1,6 +1,0 @@
-_id,district,district_name,district_reconciled,neighborhood_id
-Q64124,Eixample,eixample,Eixample,"['Q3291762', 'Q720994', 'Q1026658', 'Q2107762', 'Q1904302', 'Q2470217']"
-Q250935,Sant Martí,sant marti,Sant Martí,"['Q6273541', 'Q2979686', 'Q1167101', 'Q3773169', 'Q2390761', 'Q542473', 'Q3294602', 'Q1404773', 'Q2736444', 'Q3294440']"
-Q1771488,Horta-Guinardó,horta guinardo,Horta-Guinardó,"['Q15225338', 'Q3298502', 'Q3298492', 'Q3320705', 'Q3319498', 'Q3297889', 'Q3321797', 'Q3298510', 'Q3297875', 'Q3045547', 'Q3320857']"
-Q1641049,Nou Barris,nou barris,Nou Barris,"['Q3320716', 'Q3750932', 'Q3750926', 'Q1627690', 'Q524311', 'Q2736697', 'Q3751386', 'Q3320722', 'Q3320806', 'Q3750558', 'Q3750940', 'Q3750551', 'Q3751072']"
-Q753075,Sants-Montjuïc,sants montjuic,Sants-Montjuïc,"['Q3751076', 'Q3750929', 'Q3596095', 'Q3596096', 'Q3753110', 'Q2476184', 'Q3750859', 'Q980253']"
