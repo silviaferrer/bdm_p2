@@ -43,16 +43,22 @@ class DescriptiveAnalysis():
 
         # Calculate top-seller neighborhoods
         top_seller_neighborhoods = last_month_df.groupBy(
-            'neighborhood').count().orderBy(desc('count'))
+            'neighborhood').count().orderBy(desc('count')).limit(5)
 
         self.logger.info('Top-seller neighborhoods in the last month:' + 
                          top_seller_neighborhoods._show_string(5))
+        
+        # Most contaminated neighborhoods
+        top_neighborhoods_airqual = dfs['airqual'].groupBy(
+            'neighborhood').count().orderBy(desc('count')).limit(5)
+
+        self.logger.info(
+            'Top 5 neighborhoods with the most contaminants from 2019 to 2023:' + top_neighborhoods_airqual._show_string(5))
 
 
         # Correlation of sale price and family income per neighborhood
         kpis['correlation_price_RFD'] = idealista_income.stat.corr('price', 'RFD')
         self.logger.info(f'Correlation between price and RFD: {kpis['correlation_price_RFD']}')
-
 
         # Correlation of sale price and air contaminants
         # Convert 'Codi_Contaminant' to numeric
@@ -70,8 +76,10 @@ class DescriptiveAnalysis():
         # Convert kpis to DataFrame
         kpis_df = self.spark.createDataFrame(
             [(k, v) for k, v in kpis.items()], ["KPI", "Value"])
-        self.mongoLoader.write_to_collection('ExploitationZone', kpis_df)
-        self.mongoLoader.write_to_collection('ExploitationZone', top_seller_neighborhoods)
+        self.mongoLoader.write_to_collection('ExploitationZone_KPIs', kpis_df)
+        self.mongoLoader.write_to_collection('ExploitationZone_topSellers', top_seller_neighborhoods)
+        self.mongoLoader.write_to_collection(
+            'ExploitationZone_topContaminants', top_neighborhoods_airqual)
 
         self.logger.info('KPIs saved!')
 

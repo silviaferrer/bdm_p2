@@ -212,8 +212,8 @@ class PredictiveAnalysis():
 
         # Save df and model to Exploitation Zone in MongoDB
         self.logger.info("Saving model to MongoDB...")
-        self.mongoLoader.write_to_collection('ExploitationZone', df_joined)
-        self.mongoLoader.save_model_to_collection(model, 'ExploitationZone')
+        self.mongoLoader.write_to_collection('ExploitationZone_modelDf', df_joined)
+        self.mongoLoader.save_model_to_collection(model, 'ExploitationZone_model')
 
         # Close the DuckDB connection
         self.db_con.close()
