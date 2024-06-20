@@ -47,8 +47,6 @@ class PredictiveAnalysis():
         # self.logger.info warning for missing features
         if missing_features:
             self.logger.warning(f"The following features are not present in the DataFrame: {', '.join(missing_features)}")
-            # Alternatively, you can self.logger.info a message:
-            # self.logger.info(f"Warning: The following features are not present in the DataFrame: {', '.join(missing_features)}")
         
         # Select only the valid features in the DataFrame
         selected_df = df.select(*[col(feature) for feature in valid_features])
@@ -81,7 +79,6 @@ class PredictiveAnalysis():
         preprocessed_df = pipeline.fit(df).transform(df)
         data = preprocessed_df.select("features", df[label_col].alias("label"))
 
-        
         # Split the data into training and testing sets
         train_data, test_data = data.randomSplit([0.8, 0.2], seed=1234)
 
@@ -106,8 +103,8 @@ class PredictiveAnalysis():
         
         return lr_model
 
-    # Function to serialize and save the model to DuckDB
     def _saveModel(self, model, table_name):
+        # Function to serialize and save the model to DuckDB
         # Use a temporary directory to save the serialized model
         with tempfile.TemporaryDirectory() as temp_dir:
             model_path = os.path.join(temp_dir, "lr_model")
@@ -149,23 +146,6 @@ class PredictiveAnalysis():
         dfs = loadFromSpark(self.spark, self.mongoLoader
                             , self.logger, self.collections)
 
-        # Join all tables
-        #df_joined = self._joinDf(dfs['idealista'], dfs['income'], 'district')
-
-        #===============================
-        # TEMP: store dfs in csv's
-        #===============================
-        '''predictive_output_path = os.path.join('data', 'output', 'predictive_analysis')
-        for key, df in dfs.items():
-            output_file_path = os.path.join(
-                predictive_output_path, f'{key}.csv')
-            df.toPandas().to_csv(output_file_path, index=False)'''
-        
-
-        '''df_income = spark.read.csv(os.path.join(predictive_output_path,'income.csv'), header=True, inferSchema=True)
-        df_idealista = spark.read.csv(os.path.join(predictive_output_path,'idealista.csv'), header=True, inferSchema=True)
-        df_airqual = spark.read.csv(os.path.join(predictive_output_path,'airqual.csv'), header=True, inferSchema=True)'''
-
         self.logger.info("Joining tables...")
         # Join the dataframes in a single dataframe
         df_idealista = dfs['idealista']
@@ -188,20 +168,12 @@ class PredictiveAnalysis():
         df_joined = self._selectFeatures(df_joined, feature_list)
         self.logger.info("Features selected!")
 
-        #df_joined.self.logger.infoSchema()
-        # Output the shape of the DataFrame before indexing
-        '''num_rows = df_joined.count()
-        num_cols = len(df_joined.columns)
-        self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")'''
-
         self.logger.info("Cleaning data...")
         df_joined = self._cleanDF(df_joined)
         num_rows = df_joined.count()
         num_cols = len(df_joined.columns)
         self.logger.info(f"Shape of DataFrame before indexing: ({num_rows}, {num_cols})")
         self.logger.info("Data cleaned!")
-
-        #df_joined.self.logger.infoSchema()
 
         self.logger.info("Building model...")
         model = self._buildModel(df_joined)
