@@ -4,15 +4,15 @@ import os
 from bson.binary import Binary
 
 class MongoDBLoader:
-    def __init__(self, vm_host, mongodb_port, database_name, logger):
+    def __init__(self, vm_host, mongodb_port, database_name, mongo_cluster, logger):
         self.vm_host = vm_host
         self.mongodb_port = int(mongodb_port)
         self.database_name = database_name
         self.logger = logger
-        #self.client = MongoClient(self.vm_host, self.mongodb_port)
-        self.client = MongoClient(
-            "mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", self.mongodb_port)
+        self.mongo_uri = mongo_cluster
+        self.client = MongoClient(self.mongo_uri, self.mongodb_port)
         self.db = self.client[self.database_name]
+        
 
     def create_collection(self, collection_name):
         try:
@@ -41,12 +41,11 @@ class MongoDBLoader:
 
     def write_to_collection(self, collection_name, dataframe, append=True):
         try:
-            #uri = f"mongodb://{self.vm_host}:{self.mongodb_port}/{self.database_name}.{collection_name}"
-            uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.database_name}?retryWrites=true&w=majority&appName=Cluster0"
+            # uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.database_name}?retryWrites=true&w=majority&appName=Cluster0"
             if not append:
                 self.drop_collection(collection_name)
                 self.create_collection(collection_name)
-            dataframe.write.format("mongo").option("uri", uri).option('collection', collection_name).option("encoding", "utf-8-sig").mode("append").save()
+            dataframe.write.format("mongo").option("uri", self.mongo_uri).option('collection', collection_name).option("encoding", "utf-8-sig").mode("append").save()
             self.logger.info(f"Data written to collection '{collection_name}' in database '{self.database_name}'")
         except Exception as e:
             self.logger.error(f"Failed to write to collection '{collection_name}' in database '{self.database_name}': {e}")
@@ -54,7 +53,7 @@ class MongoDBLoader:
     def save_model_to_collection(self, model, collection_name):
         try:
             # Define the MongoDB URI
-            uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.database_name}?retryWrites=true&w=majority&appName=Cluster0"
+            # uri = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{self.database_name}?retryWrites=true&w=majority&appName=Cluster0"
             
             # Use a temporary directory to save the serialized model
             with tempfile.TemporaryDirectory() as temp_dir:
@@ -69,9 +68,9 @@ class MongoDBLoader:
                             model_bytes.extend(f.read())
                 
                 # Connect to MongoDB
-                client = MongoClient(uri)
-                db = client[self.database_name]
-                collection = db[collection_name]
+                # client = MongoClient(self.mongo_uri)
+                # db = self.client[self.database_name]
+                collection = self.db[collection_name]
                 
                 # Insert the model byte array into MongoDB
                 model_binary = Binary(model_bytes)
@@ -81,12 +80,3 @@ class MongoDBLoader:
                 print(f"Model saved to MongoDB collection '{collection_name}' in database '{self.database_name}'.")
         except Exception as e:
             print(f"Failed to save model to collection '{collection_name}' in database '{self.database_name}': {e}")
-
-    def initialize_database(self):
-        # Create a dummy collection and insert a document to initialize the database
-        try:
-            dummy_collection_name = "dummy_collection"
-            self.db[dummy_collection_name].insert_one({"initialization": "This is to initialize the database"})
-            self.logger.info(f"Database '{self.database_name}' initialized with dummy collection '{dummy_collection_name}'")
-        except Exception as e:
-            self.logger.error(f"Failed to initialize database '{self.database_name}': {e}")

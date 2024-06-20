@@ -11,19 +11,16 @@ from utils.descriptiveAnalysis import DescriptiveAnalysis
 VM_HOST = '10.192.36.59'
 MONGODB_PORT = '27017'
 DB_NAME = 'test'
-
-# import os
-# os.environ['PYSPARK_PYTHON'] = 'C:/Users/Silvia/AppData/Local/Programs/Python/Python312/python.exe'
+MONGO_CLUSTER = f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0"
 
 # Create logger
 logger = logging.getLogger('data_management')
 logger.setLevel(logging.DEBUG)
 
 # Create rotating file handler
+# logs are rotated when they reach 5 MB, with up to 5 backup files retained 
 handler = RotatingFileHandler('main.log', maxBytes=5*1024*1024, backupCount=5)
 handler.setLevel(logging.DEBUG)
-# This configuration ensures that logs are rotated when they reach 5 MB, with up to 5 backup files retained. 
-# The logs include timestamps, logger names, log levels, and messages, providing a comprehensive logging solution.
 
 # Create formatter
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -35,7 +32,7 @@ logger.addHandler(handler)
 def main():
     parser = argparse.ArgumentParser(description='Data Management')
 
-    parser.add_argument('exec_mode', type=str, choices=['data-formatting', 'data-visualization', 'data-prediction', 'data-streaming'], help='Execution mode')
+    parser.add_argument('exec_mode', type=str, choices=['data-formatting', 'data-visualization', 'data-prediction'], help='Execution mode')
 
     args = parser.parse_args()
     exec_mode = args.exec_mode
@@ -46,8 +43,8 @@ def main():
             .builder \
             .appName("myApp") \
             .config('spark.jars.packages', 'org.mongodb.spark:mongo-spark-connector_2.12:3.0.1') \
-            .config("spark.mongodb.input.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
-            .config("spark.mongodb.output.uri", f"mongodb+srv://airdac:1234@cluster0.brrlvo1.mongodb.net/{DB_NAME}?retryWrites=true&w=majority&appName=Cluster0") \
+            .config("spark.mongodb.input.uri", MONGO_CLUSTER) \
+            .config("spark.mongodb.output.uri", MONGO_CLUSTER) \
             .getOrCreate()
         logger.info("Spark connection is successful!")
 
@@ -94,9 +91,6 @@ def main():
 
         except Exception as e:
             logger.error(f'Error occurred during data prediction: {e}')
-
-    # 'data-streaming'
-
 
     spark.stop()
 

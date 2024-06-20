@@ -64,7 +64,7 @@ class DataFormatter:
 
             # Reconcile district
             df_lookup = self.dfs['lookup']['rent_lookup_district.json'].select('di', 'di_re')
-            df_idealista_merged = join_and_union(df_idealista_list, df_lookup, 'district', 'di', ensure_same_schema=True)
+            df_idealista_merged = join_and_union(df_idealista_list, df_lookup, 'district', 'di')
             df_idealista_merged = df_idealista_merged.drop('di', 'district').withColumnRenamed('di_re', 'district')
 
             # Reconcile neighborhood
@@ -110,42 +110,20 @@ class DataFormatter:
 
         return merged_dfs
 
-    '''def _join_dfs(self):
-        self.logger.info('Starting final join...')
-        dfs_dict = self.dfs
-        # Merge df_income, df_airqual, and df_idealista into a single DataFrame
-        final_df = dfs_dict['income'].join(dfs_dict['idealista'], ['district', 'neighborhood'], 'outer') \
-                .join(dfs_dict['airqual'], ['district', 'neighborhood'], 'outer')
-
-        # Store the final DataFrame in the dictionary
-        self.dfs['final'] = final_df
-        self.logger.info("Data joined!")'''
-
     def _clean_data(self, df):
         self.logger.info("Starting cleaning data...")
 
-        # Step 0: Remove duplicates
+        # Remove duplicates
         df = df.dropDuplicates()
 
-        # # Step 1: Remove columns with > 30% null values
-        # threshold = 0.3 * df.count()
-        # for col in df.columns:
-        #     if df.filter(df[col].isNull()).count() > threshold:
-        #         df = df.drop(col)
-
-        # Step 2: Remove rows with null values
-        #df = df.dropna()
-
-        # Step 3: Find columns with wrong values (e.g., negative height)
+        # Find columns with wrong values (e.g., negative height)
         if 'height' in df.columns:
             df = df.filter(df['height'] >= 0)
 
-        # Step 4: Transform wrong columns (if necessary)
+        # Transform wrong columns (if necessary)
         if 'age' in df.columns:
             df = df.withColumn('age', F.when(df['age'] < 0, None).otherwise(df['age']))
 
-        # Step 5: Remove rows with wrong data that cannot be transformed
-        #df = df.dropna()
         self.logger.info("Data cleaned!")
 
         return df
@@ -174,11 +152,6 @@ class DataFormatter:
 
             # Clean data
             self.dfs = {key: self._clean_data(df) for key, df in merged_dfs.items()}
-
-            # Join dfs
-            #self._join_dfs()
-            
-            self.logger.info(f"Columns of the final join are: {self.dfs['final'].columns}")
 
             # Write each DataFrame to MongoDB
             self._load_to_mongo()  

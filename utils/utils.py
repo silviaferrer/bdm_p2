@@ -36,16 +36,12 @@ def ensure_all_columns(df, all_columns):
     return df
 
 
-def join_and_union(dfs, df_lookup, join_column, lookup_column, ensure_same_schema=False):
+def join_and_union(dfs, df_lookup, join_column, lookup_column):
     joined_list = []
     all_columns = get_all_columns(dfs)
     all_columns += get_all_columns([df_lookup])
 
     for df in dfs:
-        # This makes the district column empty
-        '''if ensure_same_schema:
-            df = ensure_all_columns(df, all_columns)'''
-
         # Ensure compatible column types on join columns
         lookup_data_type = df_lookup.schema[lookup_column].dataType
         if df.schema[join_column].dataType != lookup_data_type:
@@ -59,10 +55,8 @@ def join_and_union(dfs, df_lookup, join_column, lookup_column, ensure_same_schem
                 df = df.withColumn(join_column, lit(
                     None).cast(lookup_data_type))
 
-        # logger.info_shape_info(df, f"{df_name} before join")
         joined_df = df.join(
             df_lookup, df[join_column] == df_lookup[lookup_column], 'left')
-        # logger.info_shape_info(joined_df, f"{df_name} after join")
 
         # Alias columns to avoid ambiguous references
         rdd = joined_df.rdd
