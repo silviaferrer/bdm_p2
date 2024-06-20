@@ -117,12 +117,8 @@ class DataFormatter:
         df = df.dropDuplicates()
 
         # Find columns with wrong values (e.g., negative height)
-        if 'height' in df.columns:
-            df = df.filter(df['height'] >= 0)
-
+        
         # Transform wrong columns (if necessary)
-        if 'age' in df.columns:
-            df = df.withColumn('age', F.when(df['age'] < 0, None).otherwise(df['age']))
 
         self.logger.info("Data cleaned!")
 
